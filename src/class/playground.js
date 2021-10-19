@@ -52,7 +52,7 @@ Entry.Playground = class {
         
         
         // create video player
-        $("#entryMenuTop").html(`<video autoplay width="100%" height="100%" preload="metadata" controlsList="nodownload" id="myVideo" src=${global.Entry.guideList[global.Entry.videoNum].videoUrl}#t=0.1></video>`); //controls 
+        $("#entryMenuTop").html(`<video autoplay width="100%" height="100%" preload="metadata" controlsList="nodownload" id="myVideo" src=${global.Entry.guideList[global.Entry.videoNum].videoUrl}#t=1.1></video>`); //controls 
         $("#entryMenuTop").css({'z-index':99, position:'absolute'})
         $("#myVideo").css({position:'absolute'})
 
@@ -748,7 +748,12 @@ Entry.Playground = class {
 
           
             // JYJ - jquery는 여기에
-            this.createVideoPlayer();
+
+            if(global.Entry.deviceModel != "SM-T536") {
+                this.createVideoPlayer();
+            }
+            
+            console.log('device model', `${global.Entry.deviceModel}`);
             $(".engineContainer").hide();
         }
     }

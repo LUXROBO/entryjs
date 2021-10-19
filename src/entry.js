@@ -15,6 +15,7 @@ global.Entry.guideList = undefined;
 global.Entry.modiList = [];
 global.Entry.mode = '';
 global.Entry.melodyList = undefined;
+global.Entry.deviceModel = '';
 
 global.Entry.videoNum = 0;
 global.Entry.isPlayVideo = false;

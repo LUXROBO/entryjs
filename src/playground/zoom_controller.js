@@ -213,8 +213,8 @@ Entry.ZoomController = class ZoomController {
                         // console.log('block : ',block);
                         // window.android.log('block : ' + JSON.stringify(block));
 
-                        var parser = new Entry.Parser(Entry.Vim.WORKSPACE_MODE);
-                        var syntax = parser.mappingSyntax(Entry.Vim.WORKSPACE_MODE);
+                        let parser = new Entry.Parser(Entry.Vim.WORKSPACE_MODE);
+                        let syntax = parser.mappingSyntax(Entry.Vim.WORKSPACE_MODE);
         
                         // console.log('block : ',block.getThread);
                         // window.android.log('block getThread: '+JSON.stringify(block.getThread()));
@@ -222,12 +222,12 @@ Entry.ZoomController = class ZoomController {
                        
         
                         // var blockToPyParser = new Entry.BlockToPyParser(syntax);
-                        var blockToCParser = new Entry.BlockToCParser(syntax);
+                        let blockToCParser = new Entry.BlockToCParser(syntax);
                         // var pyToBlockParser = new Entry.PyToBlockParser(syntax);
         
                         blockToCParser._parseMode = Entry.Parser.PARSE_GENERAL;
 
-                        var cOutput = blockToCParser.Thread(block.getThread());
+                        let cOutput = blockToCParser.Thread(block.getThread());
 
                         if(blockToCParser._blockCount == 2 && blockToCParser._secondBlock.data.type =='repeat_inf') {
                             console.log('failUpload2');
@@ -242,17 +242,22 @@ Entry.ZoomController = class ZoomController {
                         }
                         
                         let binary = '#include "user.hpp"\n\nusing namespace math;\n\n';
-        
+                        console.log('binary1', JSON.stringify(binary));
+                        console.log('cOutput' , JSON.stringify(cOutput));
+
                         // 이미지 데이터
                         let images = cOutput.match(/(?<=drawPicture\().*(?=\))/g)||[]
                         let imgData = Entry.TextCodingUtil.imgData
+
+                        console.log('binary1-3');
+
 
                         for(let i =0 ; i < images.length ; i++){
                             binary += `const char picture${i}[${imgData[i].split(',').length + 1}] = {\n${imgData[i]}\n};\n\n`
                         }
                         
                         binary += 'void doUserTask()\n';
-        
+                        console.log('binary2', JSON.stringify(binary));
                         let moduleList = ''
                         const variables = Entry.variableContainer.variables_
                         variables.forEach((el)=>{
@@ -278,7 +283,7 @@ Entry.ZoomController = class ZoomController {
                             .join(';\n')
                             moduleList += melArr
                         }
-        
+                        console.log('binary3', JSON.stringify(binary));
                         // 모듈 블럭 선언
                         moduleList += `\n${Entry.module}\n`;
         
