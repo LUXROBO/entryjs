@@ -208,12 +208,37 @@ Entry.loadInterfaceState = function(interfaceState) {
             const interfaceModel = localStorage.getItem('workspace-interface');
             interfaceState = JSON.parse(interfaceModel);
         } else {
+
             interfaceState = {
                 menuWidth: 423,
                 canvasWidth: 480,
             };
         }
-        this.resizeElement(interfaceState);
+
+        if(global.Entry.deviceModel == "SM-T536") {
+
+            const menuWidth = 550;
+    
+            const width = menuWidth;
+
+            // console.log("menuWidth", menuWidth);
+            // console.log("canvasSize", canvasSize);
+            // console.log("width", global.Entry.deviceModel);
+
+            $('.entryWorkspaceBlockMenu').css({top:`${menuWidth*285/427}px`});  //285
+            $('.entryMenuTop').css({top:`-${(menuWidth*285/427)+0.6}px`,height:`${(menuWidth*285/427)+0.6}px`});
+            
+
+            $('.entryWorkspaceBoard').css({ left: `${menuWidth + 20}px` }); //`${menuWidth + 20 }px`
+            Entry.playground.resizeHandle_.style.left = `${550}px`;
+            Entry.playground.variableViewWrapper_.style.width = `${menuWidth - 4}px`;
+            
+            console.log("loadInterfaceState", Entry.playground.resizeHandle_.style.left);
+
+            Entry.windowResized.notify();
+        }
+
+        // this.resizeElement(interfaceState);
     }
 };
 
@@ -374,14 +399,16 @@ Entry.resizeElement = function(interfaceModel) {
         const blockMenu = mainWorkspace.blockMenu;
         const adjust = blockMenu.hasCategory() ? -1 * categorysize : 0;
 
-        // console.log("menuWidth", menuWidth-340);
-        // console.log("adjust", adjust);
-        const width = (menuWidth-300) * (0.9)  ;
+        const width = (menuWidth-300) * (0.9);
+
+        // console.log("menuWidth", menuWidth);
+        // console.log("canvasSize", canvasSize);
+        // console.log("width", global.Entry.deviceModel);
+
         $('.wrap').css({ width: `${width}px` });
-
-
         $('.blockMenuContainer').css({ width: `${menuWidth + adjust}px` });
         $('.blockMenuContainer>div').css({ width: `${menuWidth + adjust - 2}px` });
+      
         blockMenu.setWidth();
 
         // 가로 기링에 따라 동영상 플레이어 사이즈 및 위치 수정
