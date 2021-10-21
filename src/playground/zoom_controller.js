@@ -46,7 +46,7 @@ Entry.ZoomController = class ZoomController {
         return this.svgGroup;
     }
 
-    ZOOM_LEVEL = 10;
+    ZOOM_LEVEL = 2;
 
     generateView() {
         const zoomGroup = {
@@ -65,7 +65,7 @@ Entry.ZoomController = class ZoomController {
             width: this.CONTROLLER_WIDTH,
             height: this.CONTROLLER_HEIGHT,
         });
-        zoomGroup.refresh = zoomGroup.svgZoom.elem('image', {
+        zoomGroup.reset = zoomGroup.svgZoom.elem('image', {
             href: `${Entry.mediaFilePath}custom/modi_btn_refresh.png`,
             x: 0,
             y: 3,
@@ -84,7 +84,7 @@ Entry.ZoomController = class ZoomController {
             style: 'cursor: pointer;',
             onClick :`window.android.uploadCode(${Entry.binaryOutput})`
         });
-        zoomGroup.plus = zoomGroup.svgZoom.elem('image', {
+        zoomGroup.remote = zoomGroup.svgZoom.elem('image', {
             id:'remote',
             href: `${Entry.mediaFilePath}custom/modi_btn_remote_dis.png`,
             x: 181,
@@ -94,66 +94,80 @@ Entry.ZoomController = class ZoomController {
             filter: 'url(#entryButtonShadowFilter)',
             style: 'cursor: pointer;',
         });
+
        
-        // zoomGroup.svgZoom.elem('image', {
-        //     href: `${Entry.mediaFilePath}btn_zoom_bg.svg`,
-        //     width: this.CONTROLLER_WIDTH,
-        //     height: this.CONTROLLER_HEIGHT,
-        // });
-        // zoomGroup.zoomOut = zoomGroup.svgZoom.elem('image', {
-        //     href: `${Entry.mediaFilePath}btn_zoom_out.svg`,
-        //     x: 4,
-        //     y: 3,
-        //     width: 32,
-        //     height: 32,
-        //     filter: 'url(#entryButtonShadowFilter)',
-        //     style: 'cursor: zoom-out;',
-        // });
-        // zoomGroup.zoomReset = zoomGroup.svgZoom.elem('image', {
-        //     id: 'zoom_reset',
-        //     href: `${Entry.mediaFilePath}btn_zoom_reset.svg`,
-        //     x: 44,
-        //     y: 3,
-        //     width: 40,
-        //     height: 32,
-        //     filter: 'url(#entryButtonShadowFilter)',
-        //     style: 'cursor: pointer;',
-        // });
-        // zoomGroup.zoomIn = zoomGroup.svgZoom.elem('image', {
-        //     href: `${Entry.mediaFilePath}btn_zoom_in.svg`,
-        //     x: 92,
-        //     y: 3,
-        //     width: 32,
-        //     height: 32,
-        //     filter: 'url(#entryButtonShadowFilter)',
-        //     style: 'cursor: zoom-in;',
-        // });
+
+        if(global.Entry.deviceModel == "SM-T536" && global.Entry.guideList.length > 0) {
+
+            const positionX = 170;
+            const positionY = -670;
+           
+            zoomGroup.svgZoom.elem('image', {
+                href: `${Entry.mediaFilePath}btn_zoom_bg.svg`,
+                x: positionX,
+                y: positionY-3,
+                width: this.CONTROLLER_WIDTH,
+                height: this.CONTROLLER_HEIGHT,
+            });
+            zoomGroup.zoomOut = zoomGroup.svgZoom.elem('image', {
+                href: `${Entry.mediaFilePath}btn_zoom_out.svg`,
+                x: 4 + positionX,
+                y: positionY,
+                width: 32,
+                height: 32,
+                filter: 'url(#entryButtonShadowFilter)',
+                style: 'cursor: zoom-out;',
+            });
+            zoomGroup.zoomReset = zoomGroup.svgZoom.elem('image', {
+                id: 'zoom_reset',
+                href: `${Entry.mediaFilePath}btn_zoom_reset.svg`,
+                x: 44 + positionX,
+                y: positionY,
+                width: 40,
+                height: 32,
+                filter: 'url(#entryButtonShadowFilter)',
+                style: 'cursor: pointer;',
+            });
+            zoomGroup.zoomIn = zoomGroup.svgZoom.elem('image', {
+                href: `${Entry.mediaFilePath}btn_zoom_in.svg`,
+                x: 92 + positionX,
+                y: positionY,
+                width: 32,
+                height: 32,
+                filter: 'url(#entryButtonShadowFilter)',
+                style: 'cursor: zoom-in;',
+            });
+
+            
+        }
+       
+      
     }
 
     addControl(zoomGroup) {
         if (this.nowBoard) {
-            $(zoomGroup.refresh).bind('mousedown touchstart', (e) => {
+            $(zoomGroup.reset).bind('mousedown touchstart', (e) => {
                 this.doAction('RESET');
             });
             $(zoomGroup.export).bind('mousedown touchstart', (e) => {
                 this.doAction('EXPORT');
             });
-            $(zoomGroup.plus).bind('mousedown touchstart', (e) => {
+            $(zoomGroup.remote).bind('mousedown touchstart', (e) => {
                 this.doAction('REMOTE');
             });
         
-            // $(zoomGroup.svgZoom).bind('mousedown touchstart', (e) => {
-            //     e.stopImmediatePropagation();
-            // });
-            // $(zoomGroup.zoomOut).bind('mousedown touchstart', (e) => {
-            //     this.zoomChange(this.ZOOM_MODE.OUT);
-            // });
-            // $(zoomGroup.zoomReset).bind('mousedown touchstart', (e) => {
-            //     this.zoomChange(this.ZOOM_MODE.RESET);
-            // });
-            // $(zoomGroup.zoomIn).bind('mousedown touchstart', (e) => {
-            //     this.zoomChange(this.ZOOM_MODE.IN);
-            // });
+            $(zoomGroup.svgZoom).bind('mousedown touchstart', (e) => {
+                e.stopImmediatePropagation();
+            });
+            $(zoomGroup.zoomOut).bind('mousedown touchstart', (e) => {
+                this.zoomChange(this.ZOOM_MODE.OUT);
+            });
+            $(zoomGroup.zoomReset).bind('mousedown touchstart', (e) => {
+                this.zoomChange(this.ZOOM_MODE.RESET);
+            });
+            $(zoomGroup.zoomIn).bind('mousedown touchstart', (e) => {
+                this.zoomChange(this.ZOOM_MODE.IN);
+            });
         }
     }
 
