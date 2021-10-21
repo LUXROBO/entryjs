@@ -749,11 +749,11 @@ Entry.Playground = class {
           
             // JYJ - jquery는 여기에
 
-            if(global.Entry.deviceModel != "SM-T536") {
+            if(global.Entry.deviceModel != "SM-T536" && global.Entry.mode == "guide") {
                 this.createVideoPlayer();
             }
             
-            console.log('device model', `${global.Entry.deviceModel}`);
+            console.log('device model', `${global.Entry.deviceModel} ${global.Entry.deviceModel}`);
             $(".engineContainer").hide();
         }
     }

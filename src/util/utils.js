@@ -215,30 +215,32 @@ Entry.loadInterfaceState = function(interfaceState) {
             };
         }
 
-        if(global.Entry.deviceModel == "SM-T536") {
+        if(global.Entry.deviceModel == "SM-T536" && global.Entry.mode == "guide" ) {
 
             const menuWidth = 550;
     
-            const width = menuWidth;
-
             // console.log("menuWidth", menuWidth);
             // console.log("canvasSize", canvasSize);
             // console.log("width", global.Entry.deviceModel);
 
             $('.entryWorkspaceBlockMenu').css({top:`${menuWidth*285/427}px`});  //285
             $('.entryMenuTop').css({top:`-${(menuWidth*285/427)+0.6}px`,height:`${(menuWidth*285/427)+0.6}px`});
-            
+
 
             $('.entryWorkspaceBoard').css({ left: `${menuWidth + 20}px` }); //`${menuWidth + 20 }px`
             Entry.playground.resizeHandle_.style.left = `${550}px`;
             Entry.playground.variableViewWrapper_.style.width = `${menuWidth - 4}px`;
             
-            console.log("loadInterfaceState", Entry.playground.resizeHandle_.style.left);
+            console.log("global.Entry.mode", global.Entry.mode);
 
             Entry.windowResized.notify();
         }
 
-        // this.resizeElement(interfaceState);
+        else {
+            this.resizeElement(interfaceState);
+        }
+
+        
     }
 };
 
@@ -403,25 +405,41 @@ Entry.resizeElement = function(interfaceModel) {
 
         // console.log("menuWidth", menuWidth);
         // console.log("canvasSize", canvasSize);
-        // console.log("width", global.Entry.deviceModel);
+       
+
+       
+      
+
+        // 가로 기링에 따라 동영상 플레이어 사이즈 및 위치 수정
+        if(global.Entry.mode == "guide"){
+
+            if(global.Entry.deviceModel == "SM-T536") {
+
+                return;
+        
+            }
+
+            else {
+
+                $('.entryWorkspaceBlockMenu').css({top:`${menuWidth*285/427}px`});  //285
+                $('.entryMenuTop').css({top:`-${(menuWidth*285/427)+0.6}px`,height:`${(menuWidth*285/427)+0.6}px`});
+                
+            }
+        
+        }
 
         $('.wrap').css({ width: `${width}px` });
         $('.blockMenuContainer').css({ width: `${menuWidth + adjust}px` });
         $('.blockMenuContainer>div').css({ width: `${menuWidth + adjust - 2}px` });
-      
         blockMenu.setWidth();
-
-        // 가로 기링에 따라 동영상 플레이어 사이즈 및 위치 수정
-        if(Entry.mode > 0){
-            $('.entryWorkspaceBlockMenu').css({top:`${menuWidth*285/427}px`});  //285
-            $('.entryMenuTop').css({top:`-${(menuWidth*285/427)+0.6}px`,height:`${(menuWidth*285/427)+0.6}px`});
-        }
-
+        
         $('.entryWorkspaceBoard').css({ left: `${menuWidth + 20 }px` }); //`${menuWidth + 20 }px`
         Entry.playground.resizeHandle_.style.left = `${menuWidth}px`;
         Entry.playground.variableViewWrapper_.style.width = `${menuWidth - 4}px`;
 
+       
         this.interfaceState = interfaceModel;
+       
     }
 
     Entry.windowResized.notify();
