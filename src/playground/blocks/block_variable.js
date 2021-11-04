@@ -19,10 +19,15 @@ module.exports = {
                     mousedown: [
                         function() {
                             // 변수 만들기 버튼 클릭
-                            $("#entryVariableAddSpaceInputWorkspace").val('');
-                            $("#variableModal").show();
+                           
+                            // $("#entryVariableAddSpaceInputWorkspace").val('');
+                            // $("#variableModal").show();
                             // $("#variableModal").addClass('entryRemove');
-                            $("#variableModal").removeClass('entryRemove');
+                            // $("#variableModal").removeClass('entryRemove');
+
+                            console.log('변수 만들기 버튼 클릭 : ', JSON.stringify(Entry.variableContainer.variables_));
+                            window.android.showEntryVariablePopUp( JSON.stringify(Entry.variableContainer.variables_));
+
                             // Entry.variableContainer.openVariableAddPanel('variable');
                         },
                     ],

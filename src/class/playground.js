@@ -804,6 +804,7 @@ Entry.Playground = class {
                 blurCallback();
             }    
 
+             blurCallback();
             this.resetVariableAddPanel('variable');
 
         } catch(e) {
@@ -948,7 +949,36 @@ Entry.Playground = class {
 
         const target = `${type}s_`;
 
-        // console.log(this.checkAllVariableName(name, target));
+        console.log('kstlove _makeVariableData',name);
+        // name = this.checkAllVariableName(name, target)
+        //     ? Entry.getOrderedName(name, this[target], 'name_')
+        //     : name;
+
+        // console.log(2);
+
+        return {
+            name,
+            isCloud,
+            object,
+            variableType: type,
+        };
+    }
+
+    makeVariableDataFromNavtive(type = 'variable',name) {
+        
+        type = 'variable';
+
+        if (_.isEmpty(name)) {
+            name = Lang.Workspace[type];
+        }
+
+        name = this._truncName(name, type, this._maxNameLength);
+        const isCloud = false;
+        const object = null;
+
+        const target = `${type}s_`;
+
+        console.log('kstlove makeVariableDataFromNavtive',name);
         // name = this.checkAllVariableName(name, target)
         //     ? Entry.getOrderedName(name, this[target], 'name_')
         //     : name;

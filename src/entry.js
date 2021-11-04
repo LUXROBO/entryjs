@@ -22,8 +22,6 @@ global.Entry.isPlayVideo = false;
 global.Entry.currentTime = 0;
 global.Entry.isFactoryMode = false;
 
-
-
 require('core-js/fn/object/values');
 require('./graphicEngine/FakePIXI');
 require('./css/entry.less');
