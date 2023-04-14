@@ -32,7 +32,7 @@ module.exports = {
                     js: [],
                     py: [
                         {
-                            syntax: 'def when_start():',
+                            syntax: 'temp__\n',
                             blockType: 'event',
                         },
                     ],

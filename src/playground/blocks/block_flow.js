@@ -75,7 +75,7 @@ module.exports = {
                     js: [],
                     py: [
                         {
-                            syntax: 'Entry.wait_for_sec(%1)',
+                            syntax: 'time.sleep(%1)',
                         },
                     ],
 

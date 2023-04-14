@@ -206,111 +206,50 @@ Entry.MODI.blockMenuBlocks = [];
 //region modi 모디
 Entry.MODI.getBlocks = function () {
     return {
-        modi_microphone_value: {
-            color: EntryStatic.colorSet.block.default.HARDWARE,
-            outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
+        HW_BTN_VALUE: {
+            color: EntryStatic.colorSet.block.modi.INPUT,
+            outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic_string_field',
-            template: '마이크의 볼륨',
+            template: '%1 버튼의 %2',
             params: [
                 {
-                    type: 'DropdownDynamic',
-                    value: null,
-                    fontSize: 11,
-                    menuName: Entry.MODI.microphoneList,
-                    bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                },
-            ],
-            def: {
-                params: [null],
-                type: 'modi_microphone_value',
-            },
-            paramsKeyMap: {
-                name: 0,
-            },
-            class: 'microphone',
-            isNotFor: ['modi'],
-            func: function (sprite, script) {
-                var key = script.getStringField('name');
-
-                var pd = JSON.parse(Entry.hw.portData.module['mic'][key]);
-                var moduleID = pd.id;
-
-                if (!Entry.hw.sendQueue['getProperty']) {
-                    Entry.MODI.initSend();
-                }
-
-                if (!pd.value[2]) {
-                    pd.value[2] = 0;
-
-                    // send GETPROPERTY
-                    /*if(Entry.MODI.getModule.id != moduleID || Object.keys(Entry.hw.sendQueue["getProperty"]).length == 0){
-                Entry.hw.sendQueue["getProperty"][moduleID] = JSON.stringify({module: 2, id: moduleID});
-                Entry.MODI.getModule.id = moduleID;
-            }*/
-                }
-
-                return pd.value[2];
-            },
-
-            syntax: {
-                js: [], py: [''],
-
-                c: [
-                    {
-                        syntax: 'microphone0.setReset();',
-                        template: 'microphone0.setReset();',
-                    },
-                ],
-            },
-        },
-        modi_environment_value: {
-            color: EntryStatic.colorSet.block.default.HARDWARE,
-            outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
-            fontColor: '#fff',
-            skeleton: 'basic_string_field',
-            template: '환경센서의 %2',
-            params: [
-                {
-                    type: 'DropdownDynamic',
-                    value: null,
-                    fontSize: 11,
-                    menuName: Entry.MODI.environmentList,
-                    bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/button2.svg',
+                    size: 11,
                 },
                 {
                     type: 'Dropdown',
                     options: [
-                        [Lang.Blocks.modi_enviroment_temperature, 6],
-                        [Lang.Blocks.modi_enviroment_humidity, 7],
-                        [Lang.Blocks.modi_enviroment_illuminance, 2],
-                        [Lang.Blocks.modi_enviroment_red, 3],
-                        [Lang.Blocks.modi_enviroment_bule, 5],
-                        [Lang.Blocks.modi_enviroment_green, 4],
+                        ['클릭', '2'],
+                        ['두 번 클릭', '3'],
+                        ['누른 상태', '4'],
+                        ['스위치', '5'],
                     ],
                     fontSize: 11,
-                    bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
+                    bgColor: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
                     arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
                 },
             ],
             def: {
-                params: [null, 6],
-                type: 'modi_environment_value',
+                params: [null, '2'],
+                type: 'HW_BTN_VALUE',
             },
             paramsKeyMap: {
-                name: 0,
-                property: 1,
+
+                property: 0,
             },
-            class: 'environment',
+            class: 'button',
             isNotFor: ['modi'],
             func: function (sprite, script) {
-                var key = script.getStringField('name');
-                var property = script.getNumberField('property');
+                if (!Entry.hw.sendQueue.moduleValue || !Entry.hw.sendQueue['getProperty']) {
+                    Entry.MODI.initSend();
+                }
 
-                var pd = JSON.parse(Entry.hw.portData.module['environment'][key]);
-                var moduleID = pd.id;
+                // var key = script.getStringField('name');
+                var property = script.getNumberField('property');
+                // var moduleID = JSON.parse(Entry.hw.portData.module['button'][key]).id;
+                // var pd = JSON.parse(Entry.hw.portData.module['button'][key]);
 
                 if (!Entry.hw.sendQueue['getProperty']) {
                     Entry.MODI.initSend();
@@ -325,12 +264,27 @@ Entry.MODI.getBlocks = function () {
                 Entry.MODI.getModule.id = moduleID;
                 Entry.MODI.getModule.property = property;
             }*/
+                    return 0;
                 }
 
                 return pd.value[property];
             },
 
-
+            syntax: {
+                js: [],
+                py:[
+                    {
+                        syntax: 'button.%2',
+                        template: 'button.%2',
+                    },
+                ],
+                c: [
+                    {
+                        syntax: 'button.%2',
+                        template: 'button.%2',
+                    },
+                ],
+            },
         },
         HW_DIAL_VALUE: {
             color: EntryStatic.colorSet.block.modi.INPUT,
@@ -461,81 +415,7 @@ Entry.MODI.getBlocks = function () {
         //         return pd.value[property];
         //     },
         // },
-        HW_BTN_VALUE: {
-            color: EntryStatic.colorSet.block.modi.INPUT,
-            outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
-            fontColor: '#fff',
-            skeleton: 'basic_string_field',
-            template: '%1 버튼의 %2',
-            params: [
-                {
-                    type: 'Indicator',
-                    img: 'block_icon/modi_icon/button2.svg',
-                    size: 11,
-                },
-                {
-                    type: 'Dropdown',
-                    options: [
-                        ['클릭', '2'],
-                        ['두 번 클릭', '3'],
-                        ['누른 상태', '4'],
-                        ['스위치', '5'],
-                    ],
-                    fontSize: 11,
-                    bgColor: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                },
-            ],
-            def: {
-                params: [null, '2'],
-                type: 'HW_BTN_VALUE',
-            },
-            paramsKeyMap: {
-
-                property: 0,
-            },
-            class: 'button',
-            isNotFor: ['modi'],
-            func: function (sprite, script) {
-                if (!Entry.hw.sendQueue.moduleValue || !Entry.hw.sendQueue['getProperty']) {
-                    Entry.MODI.initSend();
-                }
-
-                // var key = script.getStringField('name');
-                var property = script.getNumberField('property');
-                // var moduleID = JSON.parse(Entry.hw.portData.module['button'][key]).id;
-                // var pd = JSON.parse(Entry.hw.portData.module['button'][key]);
-
-                if (!Entry.hw.sendQueue['getProperty']) {
-                    Entry.MODI.initSend();
-                }
-
-                if (!pd.value[property]) {
-                    pd.value[property] = 0;
-
-                    // send GETPROPERTY
-                    /*if(Entry.MODI.getModule.id != moduleID || Entry.MODI.getModule.property != property || Object.keys(Entry.hw.sendQueue["getProperty"]).length == 0){
-                Entry.hw.sendQueue["getProperty"][moduleID] = JSON.stringify({module: property, id: moduleID});
-                Entry.MODI.getModule.id = moduleID;
-                Entry.MODI.getModule.property = property;
-            }*/
-                    return 0;
-                }
-
-                return pd.value[property];
-            },
-
-            syntax: {
-                js: [],
-                py: [],
-                c: [
-                    {
-                        syntax: 'button0.%2',
-                        template: 'button0.%2',
-                    },
-                ],
-            },
-        },
+       
         HW_BTN_MENU: {
             color: EntryStatic.colorSet.block.modi.INPUT,
             outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,

@@ -201,7 +201,7 @@ Entry.BlockToCParser = class {
                 resultTextCode += token;
             }
 
-            
+            console.log("repeat_while_true syntaxObj : ", syntaxObj);
 
             // 특수 블록 처리
             // TODO 이와 같은 처리는 블록에 정보가 있고, 정보에 따라 처리해야 한다.

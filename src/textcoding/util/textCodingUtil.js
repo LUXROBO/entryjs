@@ -802,12 +802,10 @@ class TextCodingUtil {
                     optIndex = i;
                 }
             }
-
-            console.log("repeat_while_true blockToken : ", blockToken);
-            console.log("repeat_while_true option : ", option);
+    
 
             if (option == 'until') {
-                const condition = 'true !=';
+                const condition = 'True !=';
                 blockToken.splice(1, 0, condition);
                 optIndex += 1;
                 blockToken.splice(optIndex, 1);
@@ -1000,7 +998,7 @@ class TextCodingUtil {
 
             if (option == '2') {
 
-                const condition = 'getClick()';
+                const condition = 'clicked';
                 blockToken.splice(lastIndex, 0, condition);
                 lastIndex += 1;
                 blockToken.splice(lastIndex, 1);
@@ -1009,7 +1007,7 @@ class TextCodingUtil {
 
             } else if (option == '3') {
 
-                const condition = 'getDoubleClick()';
+                const condition = 'double_clicked';
                 blockToken.splice(lastIndex, 0, condition);
                 lastIndex += 1;
                 blockToken.splice(lastIndex, 1);
@@ -1020,7 +1018,7 @@ class TextCodingUtil {
 
             else if (option == '4') {
 
-                const condition = 'getPressStatus()';
+                const condition = 'pressed';
                 blockToken.splice(lastIndex, 0, condition);
                 lastIndex += 1;
                 blockToken.splice(lastIndex, 1);
@@ -1030,7 +1028,7 @@ class TextCodingUtil {
             }
 
             else {
-                const condition = 'getToggle()';
+                const condition = 'toggled';
                 blockToken.splice(lastIndex, 0, condition);
                 lastIndex += 1;
                 blockToken.splice(lastIndex, 1);
