@@ -5,173 +5,173 @@ var EntryStatic = {};
 
 EntryStatic.objectTypes = ['sprite', 'textBox'];
 
-EntryStatic.usageList = [
-    'usage_sequence',
-    'usage_repeat',
-    'usage_condition_repeat',
-    'usage_condition',
-    'usage_parallel',
-    'usage_event',
-    'usage_signal',
-    'usage_random',
-    'usage_variable',
-    'usage_ask_answer',
-    'usage_comp_operation',
-    'usage_math_operation',
-    'usage_logical_operation',
-    'usage_list',
-    'usage_function',
-    'usage_arrow_move',
-    'usage_coordinate',
-    'usage_rotation',
-    'usage_speak',
-    'usage_picture_effect',
-    'usage_shape',
-    'usage_sound',
-    'usage_draw',
-    'usage_confirm',
-    'usage_timer',
-    'usage_textBox',
-    'usage_scene',
-    'usage_clone',
-    'usage_hw',
-    'usage_expansion',
-];
+// EntryStatic.usageList = [
+//     'usage_sequence',
+//     'usage_repeat',
+//     'usage_condition_repeat',
+//     'usage_condition',
+//     'usage_parallel',
+//     'usage_event',
+//     'usage_signal',
+//     'usage_random',
+//     'usage_variable',
+//     'usage_ask_answer',
+//     'usage_comp_operation',
+//     'usage_math_operation',
+//     'usage_logical_operation',
+//     'usage_list',
+//     'usage_function',
+//     'usage_arrow_move',
+//     'usage_coordinate',
+//     'usage_rotation',
+//     'usage_speak',
+//     'usage_picture_effect',
+//     'usage_shape',
+//     'usage_sound',
+//     'usage_draw',
+//     'usage_confirm',
+//     'usage_timer',
+//     'usage_textBox',
+//     'usage_scene',
+//     'usage_clone',
+//     'usage_hw',
+//     'usage_expansion',
+// ];
 
-EntryStatic.conceptList = [
-    'concept_resource_analytics',
-    'concept_individual',
-    'concept_abstractive',
-    'concept_procedual',
-    'concept_automation',
-    'concept_simulation',
-    'concept_parallel',
-];
+// EntryStatic.conceptList = [
+//     'concept_resource_analytics',
+//     'concept_individual',
+//     'concept_abstractive',
+//     'concept_procedual',
+//     'concept_automation',
+//     'concept_simulation',
+//     'concept_parallel',
+// ];
 
-EntryStatic.subjectList = [
-    'subject_korean',
-    'subject_mathmatics',
-    'subject_social',
-    'subject_science',
-    'subject_english',
-    'subject_courtesy',
-    'subject_music',
-    'subject_paint',
-    'subject_athletic',
-    'subject_progmatic',
-];
+// EntryStatic.subjectList = [
+//     'subject_korean',
+//     'subject_mathmatics',
+//     'subject_social',
+//     'subject_science',
+//     'subject_english',
+//     'subject_courtesy',
+//     'subject_music',
+//     'subject_paint',
+//     'subject_athletic',
+//     'subject_progmatic',
+// ];
 
-EntryStatic.lectureLevels = [1, 2, 3];
+// EntryStatic.lectureLevels = [1, 2, 3];
 
 // EntryStatic.lectureLevels = ['level_high', 'level_mid','level_row'];
 
-EntryStatic.lectureGrades = [
-    'e_1',
-    'e_2',
-    'e_3',
-    'e_4',
-    'e_5',
-    'e_6',
-    'm_1',
-    'm_2',
-    'm_3',
-    'general',
-];
+// EntryStatic.lectureGrades = [
+//     'e_1',
+//     'e_2',
+//     'e_3',
+//     'e_4',
+//     'e_5',
+//     'e_6',
+//     'm_1',
+//     'm_2',
+//     'm_3',
+//     'general',
+// ];
 
-EntryStatic.categoryList = [
-    'category_game',
-    'category_animation',
-    'category_media_art',
-    'category_physical',
-    'category_etc',
-];
+// EntryStatic.categoryList = [
+//     'category_game',
+//     'category_animation',
+//     'category_media_art',
+//     'category_physical',
+//     'category_etc',
+// ];
 
-EntryStatic.variableBlockList = [
-    'get_variable',
-    'change_variable',
-    'set_variable',
-    'show_variable',
-    'hide_variable',
-    'value_of_index_from_list',
-    'add_value_to_list',
-    'remove_value_from_list',
-    'insert_value_to_list',
-    'change_value_list_index',
-    'length_of_list',
-    'is_included_in_list',
-    'show_list',
-    'hide_list',
-];
+// EntryStatic.variableBlockList = [
+//     'get_variable',
+//     'change_variable',
+//     'set_variable',
+//     'show_variable',
+//     'hide_variable',
+//     'value_of_index_from_list',
+//     'add_value_to_list',
+//     'remove_value_from_list',
+//     'insert_value_to_list',
+//     'change_value_list_index',
+//     'length_of_list',
+//     'is_included_in_list',
+//     'show_list',
+//     'hide_list',
+// ];
 
 EntryStatic.messageBlockList = ['when_message_cast', 'message_cast', 'message_cast_wait'];
 
 EntryStatic.requiredTimes = [1, 2, 3, 4, 5];
 
-EntryStatic.searchProjectOption = [
-    {
-        key: 'search_updated',
-        lang: 'search_updated',
-        value: 'updated',
-    },
-    {
-        key: 'search_recent',
-        lang: 'search_recent',
-        value: 'recent',
-    },
-    {
-        key: 'search_complexity',
-        lang: 'search_complexity',
-        value: 'complexity',
-    },
-    {
-        key: 'search_staffPicked',
-        lang: 'search_staffPicked',
-        value: 'staffPicked',
-    },
-    {
-        key: 'search_childCnt',
-        lang: 'search_childCnt',
-        value: 'childCnt',
-    },
-    {
-        key: 'search_likeCnt',
-        lang: 'search_likeCnt',
-        value: 'recentLikeCnt',
-    },
-];
+// EntryStatic.searchProjectOption = [
+//     {
+//         key: 'search_updated',
+//         lang: 'search_updated',
+//         value: 'updated',
+//     },
+//     {
+//         key: 'search_recent',
+//         lang: 'search_recent',
+//         value: 'recent',
+//     },
+//     {
+//         key: 'search_complexity',
+//         lang: 'search_complexity',
+//         value: 'complexity',
+//     },
+//     {
+//         key: 'search_staffPicked',
+//         lang: 'search_staffPicked',
+//         value: 'staffPicked',
+//     },
+//     {
+//         key: 'search_childCnt',
+//         lang: 'search_childCnt',
+//         value: 'childCnt',
+//     },
+//     {
+//         key: 'search_likeCnt',
+//         lang: 'search_likeCnt',
+//         value: 'recentLikeCnt',
+//     },
+// ];
 
-EntryStatic.categoryProjectOption = [
-    {
-        key: 'search_genre_all',
-        lang: 'search_전체',
-        value: '전체',
-    },
-    {
-        key: 'search_genre_game',
-        lang: 'search_게임',
-        value: '게임',
-    },
-    {
-        key: 'search_genre_animation',
-        lang: 'search_애니메이션',
-        value: '애니메이션',
-    },
-    {
-        key: 'search_genre_media',
-        lang: 'search_미디어아트',
-        value: '미디어아트',
-    },
-    {
-        key: 'search_genre_physical',
-        lang: 'search_피지컬',
-        value: '피지컬',
-    },
-    {
-        key: 'search_genre_etc',
-        lang: 'search_기타',
-        value: '기타',
-    },
-];
+// EntryStatic.categoryProjectOption = [
+//     {
+//         key: 'search_genre_all',
+//         lang: 'search_전체',
+//         value: '전체',
+//     },
+//     {
+//         key: 'search_genre_game',
+//         lang: 'search_게임',
+//         value: '게임',
+//     },
+//     {
+//         key: 'search_genre_animation',
+//         lang: 'search_애니메이션',
+//         value: '애니메이션',
+//     },
+//     {
+//         key: 'search_genre_media',
+//         lang: 'search_미디어아트',
+//         value: '미디어아트',
+//     },
+//     {
+//         key: 'search_genre_physical',
+//         lang: 'search_피지컬',
+//         value: '피지컬',
+//     },
+//     {
+//         key: 'search_genre_etc',
+//         lang: 'search_기타',
+//         value: '기타',
+//     },
+// ];
 
 EntryStatic.speakerMelody = { data: {}, list: [] }
 
@@ -298,10 +298,8 @@ EntryStatic.getAllBlocks = function () {
 
     // console.log('getAllBlocks HwBlocks : ', HwBlocks)
 
-    blocks.push({ category: 'arduino', blocks: HwBlocks })
+    blocks.push({ category: 'input', blocks: HwBlocks })
     // blocks.push(EntryStatic.moduleToBlocks["NETWORK"])
-
-    // console.log('getAllBlocks blocks:HwBlocks : ', { category: 'arduino', blocks: HwBlocks })
     // console.log('getAllBlocks blocks : ', blocks)
 
     let melodyBlock = blocks.filter(el => (el.category === "CONTENTS_MELODY_BASIC"))[0]
@@ -310,7 +308,7 @@ EntryStatic.getAllBlocks = function () {
         .filter(el => (el.category !== "CONTENTS_MELODY_BASIC" && el.category !== "CONTENTS_IMG_BASIC"))
         .map(el => {
             if (el.category === "HW") {
-                el.category = 'arduino'
+                el.category = 'input'
             }
             return el
         })
@@ -628,31 +626,30 @@ EntryStatic.defaultModiBlocks = [
 ];
 
 EntryStatic.defaultModiList = [
-    "DIAL",
     "BUTTON",
-    "IR",
-    "MOTOR",
+    "DIAL",
+    "TOF",
     "LED",
     "SPEAKER",
-    "DISPLAY",
+    "MOTOR",
+    "DISPLAY"
 ]
 
 EntryStatic.NetworkModule = ["NETWORK"]
 
 EntryStatic.moduleToBlocks = {
-    DIAL: [
-        'HW_DIAL_VALUE',
-    ],
     BUTTON: [
         'HW_BTN_VALUE',
         'HW_BTN_MENU',
         'HW_BTN_JUDGEMENT',
     ],
-    IR: [
-        'HW_IR_VALUE',
+
+    DIAL: [
+        'HW_DIAL_VALUE',
     ],
-    MOTOR: [
-        'HW_MOTOR_BOTH',
+   
+    TOF: [
+        'HW_IR_VALUE',
     ],
     LED: [
         'HW_LED_OFF',
@@ -664,6 +661,12 @@ EntryStatic.moduleToBlocks = {
         'HW_SPEAKER_TUNE',
         'HW_SPEAKER_MELODY',
     ],
+    
+    MOTOR: [
+        'HW_MOTOR_BOTH',
+    ],
+   
+   
     DISPLAY: [
         'HW_DISPLAY_TEXT',
         'HW_DISPLAY_DATA',
@@ -686,144 +689,144 @@ EntryStatic.moduleToBlocks = {
         'HW_NETWORK_BELL',
     ]
 }
-EntryStatic.discussCategories = [
-    // 'notice',
-    'qna',
-    'tips',
-    'free',
-    'report',
-    'notice',
-];
+// EntryStatic.discussCategories = [
+//     // 'notice',
+//     'qna',
+//     'tips',
+//     'free',
+//     'report',
+//     'notice',
+// ];
 
-EntryStatic.artCategories = [
-    {
-        key: 'art_category_',
-        lang: 'art_category_all',
-        value: '',
-    },
-    {
-        key: 'art_category_게임',
-        lang: 'art_category_game',
-        value: '게임',
-    },
-    {
-        key: 'art_category_애니메이션',
-        lang: 'art_category_animation',
-        value: '애니메이션',
-    },
-    {
-        key: 'art_category_미디어아트',
-        lang: 'art_category_media',
-        value: '미디어아트',
-    },
-    {
-        key: 'art_category_피지컬',
-        lang: 'art_category_physical',
-        value: '피지컬',
-    },
-    {
-        key: 'art_category_기타',
-        lang: 'art_category_etc',
-        value: '기타',
-    },
-];
+// EntryStatic.artCategories = [
+//     {
+//         key: 'art_category_',
+//         lang: 'art_category_all',
+//         value: '',
+//     },
+//     {
+//         key: 'art_category_게임',
+//         lang: 'art_category_game',
+//         value: '게임',
+//     },
+//     {
+//         key: 'art_category_애니메이션',
+//         lang: 'art_category_animation',
+//         value: '애니메이션',
+//     },
+//     {
+//         key: 'art_category_미디어아트',
+//         lang: 'art_category_media',
+//         value: '미디어아트',
+//     },
+//     {
+//         key: 'art_category_피지컬',
+//         lang: 'art_category_physical',
+//         value: '피지컬',
+//     },
+//     {
+//         key: 'art_category_기타',
+//         lang: 'art_category_etc',
+//         value: '기타',
+//     },
+// ];
 
-EntryStatic.artSortOptions = [
-    {
-        key: 'art_sort_updated',
-        lang: 'art_sort_updated',
-        value: 'updated',
-    },
-    {
-        key: 'art_sort_visit',
-        lang: 'art_sort_visit',
-        value: 'visit',
-    },
-    {
-        key: 'art_sort_likeCnt',
-        lang: 'art_sort_likeCnt',
-        value: 'likeCnt',
-    },
-    {
-        key: 'art_sort_comment',
-        lang: 'art_sort_comment',
-        value: 'comment',
-    },
-];
+// EntryStatic.artSortOptions = [
+//     {
+//         key: 'art_sort_updated',
+//         lang: 'art_sort_updated',
+//         value: 'updated',
+//     },
+//     {
+//         key: 'art_sort_visit',
+//         lang: 'art_sort_visit',
+//         value: 'visit',
+//     },
+//     {
+//         key: 'art_sort_likeCnt',
+//         lang: 'art_sort_likeCnt',
+//         value: 'likeCnt',
+//     },
+//     {
+//         key: 'art_sort_comment',
+//         lang: 'art_sort_comment',
+//         value: 'comment',
+//     },
+// ];
 
-EntryStatic.discussSortOptions = [
-    {
-        lang: 'discuss_sort_created',
-        value: 'created',
-    },
-    {
-        lang: 'discuss_sort_visit',
-        value: 'visit',
-    },
-    {
-        lang: 'discuss_sort_likesLength',
-        value: 'likesLength',
-    },
-    {
-        lang: 'discuss_sort_commentsLength',
-        value: 'commentsLength',
-    },
-];
-EntryStatic.discussPeriodOptions = [
-    {
-        key: 'discuss_period_',
-        lang: 'discuss_period_all',
-        value: '',
-    },
-    {
-        key: 'discuss_period_1',
-        lang: 'discuss_period_day',
-        value: '1',
-    },
-    {
-        key: 'discuss_period_7',
-        lang: 'discuss_period_week',
-        value: '7',
-    },
-    {
-        key: 'discuss_period_30',
-        lang: 'discuss_period_month',
-        value: '30',
-    },
-    {
-        key: 'discuss_period_90',
-        lang: 'discuss_period_three_month',
-        value: '90',
-    },
-];
+// EntryStatic.discussSortOptions = [
+//     {
+//         lang: 'discuss_sort_created',
+//         value: 'created',
+//     },
+//     {
+//         lang: 'discuss_sort_visit',
+//         value: 'visit',
+//     },
+//     {
+//         lang: 'discuss_sort_likesLength',
+//         value: 'likesLength',
+//     },
+//     {
+//         lang: 'discuss_sort_commentsLength',
+//         value: 'commentsLength',
+//     },
+// ];
+// EntryStatic.discussPeriodOptions = [
+//     {
+//         key: 'discuss_period_',
+//         lang: 'discuss_period_all',
+//         value: '',
+//     },
+//     {
+//         key: 'discuss_period_1',
+//         lang: 'discuss_period_day',
+//         value: '1',
+//     },
+//     {
+//         key: 'discuss_period_7',
+//         lang: 'discuss_period_week',
+//         value: '7',
+//     },
+//     {
+//         key: 'discuss_period_30',
+//         lang: 'discuss_period_month',
+//         value: '30',
+//     },
+//     {
+//         key: 'discuss_period_90',
+//         lang: 'discuss_period_three_month',
+//         value: '90',
+//     },
+// ];
 
-EntryStatic.artPeriodOptions = [
-    {
-        key: 'art_period_',
-        lang: 'art_period_all',
-        value: '',
-    },
-    {
-        key: 'art_period_1',
-        lang: 'art_period_day',
-        value: '1',
-    },
-    {
-        key: 'art_period_7',
-        lang: 'art_period_week',
-        value: '7',
-    },
-    {
-        key: 'art_period_30',
-        lang: 'art_period_month',
-        value: '30',
-    },
-    {
-        key: 'art_period_90',
-        lang: 'art_period_three_month',
-        value: '90',
-    },
-];
+// EntryStatic.artPeriodOptions = [
+//     {
+//         key: 'art_period_',
+//         lang: 'art_period_all',
+//         value: '',
+//     },
+//     {
+//         key: 'art_period_1',
+//         lang: 'art_period_day',
+//         value: '1',
+//     },
+//     {
+//         key: 'art_period_7',
+//         lang: 'art_period_week',
+//         value: '7',
+//     },
+//     {
+//         key: 'art_period_30',
+//         lang: 'art_period_month',
+//         value: '30',
+//     },
+//     {
+//         key: 'art_period_90',
+//         lang: 'art_period_three_month',
+//         value: '90',
+//     },
+// ];
 
 EntryStatic.getCategoryByBlock = function (blockName) {
     if (!blockName) {
@@ -839,40 +842,40 @@ EntryStatic.getCategoryByBlock = function (blockName) {
     return false;
 };
 
-EntryStatic.objectMainCategories = [
-    'entrybot_friends',
-    'people',
-    'animal',
-    'plant',
-    'vehicles',
-    'architect',
-    'food',
-    'environment',
-    'stuff',
-    'fantasy',
-    'interface',
-    'background',
-];
+// EntryStatic.objectMainCategories = [
+//     'entrybot_friends',
+//     'people',
+//     'animal',
+//     'plant',
+//     'vehicles',
+//     'architect',
+//     'food',
+//     'environment',
+//     'stuff',
+//     'fantasy',
+//     'interface',
+//     'background',
+// ];
 
-EntryStatic.objectSubCategories = {
-    entrybot_friends: [],
-    people: [],
-    animal: ['animal_flying', 'animal_land', 'animal_water', 'animal_others'],
-    plant: ['plant_flower', 'plant_grass', 'plant_tree', 'plant_others'],
-    vehicles: ['vehicles_flying', 'vehicles_land', 'vehicles_water', 'vehicles_others'],
-    architect: ['architect_building', 'architect_monument', 'architect_others'],
-    food: ['food_vegetables', 'food_meat', 'food_drink', 'food_others'],
-    environment: ['environment_nature', 'environment_space', 'environment_others'],
-    stuff: ['stuff_living', 'stuff_hobby', 'stuff_others'],
-    fantasy: [],
-    interface: [],
-    background: [
-        'background_outdoor',
-        'background_indoor',
-        'background_nature',
-        'background_others',
-    ],
-};
+// EntryStatic.objectSubCategories = {
+//     entrybot_friends: [],
+//     people: [],
+//     animal: ['animal_flying', 'animal_land', 'animal_water', 'animal_others'],
+//     plant: ['plant_flower', 'plant_grass', 'plant_tree', 'plant_others'],
+//     vehicles: ['vehicles_flying', 'vehicles_land', 'vehicles_water', 'vehicles_others'],
+//     architect: ['architect_building', 'architect_monument', 'architect_others'],
+//     food: ['food_vegetables', 'food_meat', 'food_drink', 'food_others'],
+//     environment: ['environment_nature', 'environment_space', 'environment_others'],
+//     stuff: ['stuff_living', 'stuff_hobby', 'stuff_others'],
+//     fantasy: [],
+//     interface: [],
+//     background: [
+//         'background_outdoor',
+//         'background_indoor',
+//         'background_nature',
+//         'background_others',
+//     ],
+// };
 
 Object.defineProperty(EntryStatic, 'fonts', {
     get: function () {
