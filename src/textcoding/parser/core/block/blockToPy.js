@@ -16,6 +16,8 @@ Entry.BlockToPyParser = class {
         this._variableDeclaration = null;
         this._listDeclaration = null;
         this._forIdCharIndex = 0;
+        this._blockCount = 0; 
+        this._secondBlock = {};
     }
 
     Code(code, parseMode) {
@@ -66,14 +68,21 @@ Entry.BlockToPyParser = class {
             blocks.forEach((block, index) => {
                 if (index === 0 && Entry.TextCodingUtil.isEventBlock(block)) {
                     rootResult = `${this.Block(block)}\n`;
+                    this._blockCount++;
                 } else {
                     contentResult += `${this.Block(block)}\n`;
+                    this._blockCount++;
+
+                    if(this._blockCount == 2) {
+                        this._secondBlock = block;
+                    }
+
                 }
             });
 
-            if (rootResult !== '') {
-                contentResult = Entry.TextCodingUtil.indent(contentResult);
-            }
+            // if (rootResult !== '') {
+            //     contentResult = Entry.TextCodingUtil.indent(contentResult);
+            // }
 
             return `${(rootResult + contentResult).trim()}\n`;
         }
@@ -152,6 +161,7 @@ Entry.BlockToPyParser = class {
                     );
                 });
             }
+           
 
             // 일반 블록 처리
             if (!statements && !paramsTemplate) {
@@ -163,6 +173,7 @@ Entry.BlockToPyParser = class {
             if (syntaxObj) {
                 switch (syntaxObj.key) {
                     case 'repeat_while_true':
+                        
                         resultTextCode = Entry.TextCodingUtil.assembleRepeatWhileTrueBlock(
                             block,
                             resultTextCode
@@ -186,6 +197,149 @@ Entry.BlockToPyParser = class {
                             tokens[0] = `"${tokens[0]}"`;
                         }
                         resultTextCode = tokens.join('');
+                        break;
+                    }
+
+                    case 'boolean_basic_operator' : {
+                        resultTextCode = Entry.TextCodingUtil.assembleBasicOperatorBlock(
+                            block,
+                            resultTextCode
+                        );
+                        break;
+                        
+                    }
+
+                    // case 'boolean_and_or': {
+                    //     resultTextCode = Entry.TextCodingUtil.assembleBoolenAndOrBlock(
+                    //         block,
+                    //         resultTextCode
+                    //     );
+                    //     break;
+                    // }
+
+                    case 'boolean_not': {
+                        resultTextCode = Entry.TextCodingUtil.assembleBoolenNot(
+                            block,
+                            resultTextCode
+                        );
+                        break;
+                    }
+
+                    case 'HW_BTN_VALUE' : {
+                        
+
+                        resultTextCode = Entry.TextCodingUtil.assembleModiButtonValueBlock(
+                            block,
+                            resultTextCode
+                        );
+
+                        break;
+                    }
+
+                    case 'modi_button_true' : {
+                        
+
+                        resultTextCode = 'TRUE'
+
+                        break;
+                    }
+
+                    case 'modi_button_false' : {
+                        
+
+                        resultTextCode = 'FALSE'
+
+                        break;
+                    }
+
+                    case 'HW_DIAL_VALUE' : {
+
+                        resultTextCode = Entry.TextCodingUtil.assembleModiDialValueBlock(
+                            block,
+                            resultTextCode
+                        );
+
+                        break;
+                    }
+
+                   
+                    case 'HW_LED_BASIC' : {
+                        resultTextCode = Entry.TextCodingUtil.assembleSetLedColoreBlock(
+                            block,
+                            resultTextCode
+                        );
+
+                        break;
+                    }
+
+                    case 'HW_MOTOR_BOTH': {
+                        resultTextCode = Entry.TextCodingUtil.assembleModiSetMotorValueBlock(
+                            block,
+                            resultTextCode
+                        );
+
+                        break;
+                    }
+                    
+                    // case 'modi_change_motor_upper_value': {
+                    //     resultTextCode = Entry.TextCodingUtil.assembleModiChangeMotorUpperValueBlock(
+                    //         block,
+                    //         resultTextCode
+                    //     );
+                    //     break;
+                    // }
+
+                    // case 'modi_change_motor_bottom_value': {
+                    //     resultTextCode = Entry.TextCodingUtil.assembleModiSetChangeMotorBottomValueBlock(
+                    //         block,
+                    //         resultTextCode
+                    //     );
+                    //     break;
+                    // }
+
+                    case 'HW_SPEAKER_TUNE' : {
+                        resultTextCode = Entry.TextCodingUtil.assembleModiSetBasicSpeakerBlock(
+                            block,
+                            resultTextCode
+                        );
+
+                        break;
+                        
+                    }
+                    case 'HW_SPEAKER_MELODY' : {
+                        resultTextCode = Entry.TextCodingUtil.assembleModiMelodySpeakerBlock(
+                            block,
+                            resultTextCode
+                        );
+                        break;
+                    }
+                    
+                    case 'HW_DISPLAY_TEXT' : {
+                        resultTextCode = Entry.TextCodingUtil.assembleModiDisplayBlock(
+                            block,
+                            resultTextCode
+                        );
+                        break;
+                    }
+
+                    case 'HW_DISPLAY_IMAGE' : {
+                        resultTextCode = Entry.TextCodingUtil.assembleModiDisplayImgBlock(
+                            block,
+                            resultTextCode
+                        );
+                        break;
+                    }
+
+                    case 'HW_DISPLAY_RESET' : {
+                        resultTextCode = Entry.TextCodingUtil.assembleModiDisplayClearBlock();
+                        break;
+                    }
+                    
+                    case 'HW_DISPLAY_MOVE' : {
+                        resultTextCode = Entry.TextCodingUtil.assembleModiDisplayMoveBlock(
+                            block,
+                            resultTextCode
+                        );
                         break;
                     }
                 }

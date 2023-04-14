@@ -416,7 +416,7 @@ Entry.Parser = function(mode, type, cm, syntax) {
                 }
             } else if (mode === Entry.Vim.WORKSPACE_MODE) {
                 var key = type;
-                var cSyntax = block.syntax && block.syntax.c;
+                var cSyntax = block.syntax && block.syntax.py;
 
                 if (!cSyntax) continue;
 

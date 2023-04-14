@@ -224,43 +224,45 @@ Entry.ZoomController = class ZoomController {
     
                         const block = this.keyBlock;
 
-                        // console.log('block : ',block);
+        
                         // window.android.log('block : ' + JSON.stringify(block));
 
                         let parser = new Entry.Parser(Entry.Vim.WORKSPACE_MODE);
                         let syntax = parser.mappingSyntax(Entry.Vim.WORKSPACE_MODE);
         
-                        // console.log('block : ',block.getThread);
+                        // console.log('parser : ',parser);
+                        console.log('syntax : ',syntax);
                         // window.android.log('block getThread: '+JSON.stringify(block.getThread()));
                         // console.log('block getThread: ', typeof block.getThread());
                        
-        
-                        // var blockToPyParser = new Entry.BlockToPyParser(syntax);
-                        let blockToCParser = new Entry.BlockToCParser(syntax);
+                    
+                        var blockToPyParser = new Entry.BlockToPyParser(syntax);
+                        // let blockToPyParser = new Entry.BlockToCParser(syntax);
                         // var pyToBlockParser = new Entry.PyToBlockParser(syntax);
-        
-                        blockToCParser._parseMode = Entry.Parser.PARSE_GENERAL;
-
-                        let cOutput = blockToCParser.Thread(block.getThread());
-
-                        if(blockToCParser._blockCount == 2 && blockToCParser._secondBlock.data.type =='repeat_inf') {
+            
+                        blockToPyParser._parseMode = Entry.Parser.PARSE_GENERAL;
+                    
+                       
+                        let output = blockToPyParser.Thread(block.getThread());
+                    
+                        if(blockToPyParser._blockCount == 2 && blockToPyParser._secondBlock.data.type =='repeat_inf') {
                             console.log('failUpload2');
                             window.android.failUpload('DEFAULT_CODE');
                             throw new Error('기본 코딩입니다.');
                         }
 
-                        else if (blockToCParser._blockCount == 1) {
+                        else if (blockToPyParser._blockCount == 1) {
                             console.log('failUpload1');
                             window.android.failUpload('DEFAULT_CODE');
                             throw new Error('기본 코딩입니다.');
                         }
                         
-                        let binary = '#include "user.hpp"\n\nusing namespace math;\n\n';
+                        let binary = 'import time\nimport modi_plus\n\nbundle = modi_plus.MODIPlus()\n';
                         console.log('binary1', JSON.stringify(binary));
-                        console.log('cOutput' , JSON.stringify(cOutput));
+                        console.log('cOutput' , JSON.stringify(output));
 
                         // 이미지 데이터
-                        let images = cOutput.match(/(?<=drawPicture\().*(?=\))/g)||[]
+                        let images = output.match(/(?<=drawPicture\().*(?=\))/g)||[]
                         let imgData = Entry.TextCodingUtil.imgData
 
                         console.log('binary1-3');
@@ -270,7 +272,6 @@ Entry.ZoomController = class ZoomController {
                             binary += `const char picture${i}[${imgData[i].split(',').length + 1}] = {\n${imgData[i]}\n};\n\n`
                         }
                         
-                        binary += 'void doUserTask()\n';
                         console.log('binary2', JSON.stringify(binary));
                         let moduleList = ''
                         const variables = Entry.variableContainer.variables_
@@ -314,13 +315,13 @@ Entry.ZoomController = class ZoomController {
                        
                         // 코드
                         // console.log("cOutput",cOutput)
-                        binary += `${cOutput}\n`;
+                        binary += `${output}\n`;
                         binary += '}\n'
                         binary = binary.replace(/temp__/g, moduleList)
                         binary = binary.replace(/\t/g, "    ")
         
                         // 모듈 연결 상태를 체크
-                        const designatedModules = cOutput.match(/[a-z]*(?=0\.)\d/g) || []
+                        const designatedModules = output.match(/[a-z]*(?=0\.)\d/g) || []
                         // const connectedModules = moduleList.match(/[a-z]*(?=0\()\d/g) || []
                         const connectedModules = Entry.module.match(/[a-z]*(?=0\()\d/g) || []
                         const unconnectedModules = 
@@ -358,45 +359,6 @@ Entry.ZoomController = class ZoomController {
                             throw new Error(numberMatch[0])
                         }
 
-                        let binaryOutput = Interpreter.makeFrame(binary);
-
-                        if(unconnectedModules.length){
-                            console.log('unconnectedModules',unconnectedModules);
-                            // console.log(unconnectedModules)
-        
-                            if(unconnectedModules.length == 1 && unconnectedModules[0] == '0') {
-                                // console.log('unconnectedModules == 0')
-                                this.retryCount = 0;
-
-                                if (binaryOutput.errorCode != 0)
-                                {
-                                    console.log("interpreter generate error : " + binaryOutput.errorCode);
-                                    // window.android.failUpload("코드를 만들 수 없어요.");
-                                    // throw binaryOutput.errorCode;
-                                }
-                               
-                                window.android.uploadCode(binaryOutput.block);
-                            }
-                                
-                            else {
-                                window.android.checkModules(JSON.stringify(unconnectedModules)) // app에 리스트를 전달
-                            }
-                        } else {
-                            
-        
-                            if (binaryOutput.errorCode != 0)
-                            {
-                                console.log("interpreter generate error : " + binaryOutput.errorCode);
-                                // window.android.failUpload("코드를 만들 수 없어요.");
-                                // throw binaryOutput.errorCode;
-                            }
-
-                            this.retryCount = 0;
-                            window.android.uploadCode(binaryOutput.block);
-                    
-                        }
-
-                        Entry.binaryOutput = binaryOutput.block
         
                         // data 초기화
                         Entry.TextCodingUtil.imgData = []
