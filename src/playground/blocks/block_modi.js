@@ -40,34 +40,7 @@ Entry.MODI = {
         id: 0,
         property: 0,
     },
-    microphoneList: function () {
-        var list;
-        var moduleData = Entry.hw.portData['module'] || {};
-
-        if (moduleData['mic'] === undefined) {
-            return [[Lang.Blocks.no_target, 'null']];
-        }
-
-        list = [];
-        for (var i = 0; i < moduleData['mic'].length; i++) {
-            if (moduleData['mic'][i]) list.push([i.toString(), i.toString()]);
-        }
-        return list;
-    },
-    environmentList: function () {
-        var list;
-        var moduleData = Entry.hw.portData['module'] || {};
-
-        if (moduleData['environment'] === undefined) {
-            return [[Lang.Blocks.no_target, 'null']];
-        }
-
-        list = [];
-        for (var i = 0; i < moduleData['environment'].length; i++) {
-            if (moduleData['environment'][i]) list.push([i.toString(), i.toString()]);
-        }
-        return list;
-    },
+   
     dialList: function () {
         var list;
         var moduleData = Entry.hw.portData['module'] || {};
@@ -82,20 +55,7 @@ Entry.MODI = {
         }
         return list;
     },
-    gyroscopeList: function () {
-        var list;
-        var moduleData = Entry.hw.portData['module'] || {};
-
-        if (moduleData['gyro'] === undefined) {
-            return [[Lang.Blocks.no_target, 'null']];
-        }
-
-        list = [];
-        for (var i = 0; i < moduleData['gyro'].length; i++) {
-            if (moduleData['gyro'][i]) list.push([i.toString(), i.toString()]);
-        }
-        return list;
-    },
+  
     buttonList: function () {
         var list;
         var moduleData = Entry.hw.portData['module'] || {};
@@ -110,34 +70,7 @@ Entry.MODI = {
         }
         return list;
     },
-    infraredList: function () {
-        var list;
-        var moduleData = Entry.hw.portData['module'] || {};
-
-        if (moduleData['ir'] === undefined) {
-            return [[Lang.Blocks.no_target, 'null']];
-        }
-
-        list = [];
-        for (var i = 0; i < moduleData['ir'].length; i++) {
-            if (moduleData['ir'][i]) list.push([i.toString(), i.toString()]);
-        }
-        return list;
-    },
-    ultrasonicList: function () {
-        var list;
-        var moduleData = Entry.hw.portData['module'] || {};
-
-        if (moduleData['ultrasonic'] === undefined) {
-            return [[Lang.Blocks.no_target, 'null']];
-        }
-
-        list = [];
-        for (var i = 0; i < moduleData['ultrasonic'].length; i++) {
-            if (moduleData['ultrasonic'][i]) list.push([i.toString(), i.toString()]);
-        }
-        return list;
-    },
+  
     motorList: function () {
         var list;
         var moduleData = Entry.hw.portData['module'] || {};
@@ -197,10 +130,7 @@ Entry.MODI = {
         let list = EntryStatic.displayImage.list;
         return list;
     },
-    speakerMelodyList: function () {
-        let list = EntryStatic.speakerMelody.list;
-        return list;
-    }
+  
 };
 Entry.MODI.blockMenuBlocks = [];
 //region modi 모디
@@ -349,7 +279,7 @@ Entry.MODI.getBlocks = function () {
             params: [
                 {
                     type: 'Indicator',
-                    img: 'block_icon/modi_icon/button2.svg',
+                    img: 'block_icon/modi_icon/dial2.svg',
                     size: 11,
                 },
                 {
@@ -419,7 +349,7 @@ Entry.MODI.getBlocks = function () {
             params: [
                 {
                     type: 'Indicator',
-                    img: 'block_icon/modi_icon/button2.svg',
+                    img: 'block_icon/modi_icon/dial2.svg',
                     size: 11,
                 },
                 {
@@ -566,70 +496,115 @@ Entry.MODI.getBlocks = function () {
                 ],
             },
         },
-        // modi_gyroscope_value: {
-        //     color: EntryStatic.colorSet.block.default.HARDWARE,
-        //     outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
-        //     fontColor: '#fff',
-        //     skeleton: 'basic_string_field',
-        //     template: '자이로센서 %1번의 %2',
-        //     params: [
-        //         {
-        //             type: 'DropdownDynamic',
-        //             value: null,
-        //             fontSize: 11,
-        //             menuName: Entry.MODI.gyroscopeList,
-        //             bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
-        //             arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-        //         },
-        //         {
-        //             type: 'Dropdown',
-        //             options: [
-        //                 ['Roll', 2],
-        //                 ['Pitch', 3],
-        //                 ['Yaw', 4],
-        //                 [Lang.Blocks.modi_gyroscope_xAcceleratior, 8],
-        //                 [Lang.Blocks.modi_gyroscope_yAcceleratior, 9],
-        //                 [Lang.Blocks.modi_gyroscope_zAcceleratior, 10],
-        //             ],
-        //             fontSize: 11,
-        //             bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
-        //             arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-        //         },
-        //     ],
-        //     def: {
-        //         params: [null, 2],
-        //         type: 'modi_gyroscope_value',
-        //     },
-        //     paramsKeyMap: {
-        //         name: 0,
-        //         property: 1,
-        //     },
-        //     class: 'gyroscope',
-        //     isNotFor: ['modi'],
-        //     func: function(sprite, script) {
-        //         var key = script.getStringField('name');
-        //         var property = script.getNumberField('property');
+        HW_TOF_JUDGEMENT: {
+            color: EntryStatic.colorSet.block.modi.INPUT,
+            outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic_boolean_field',
+            template: '%1 거리의 거리 %2 %3cm',
+            params: [
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/button2.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Dropdown',
+                    options: [
+                        ['>', '>'],
+                        ['<', '<['<',>'],
+                        ['≥', '>='],
+                        ['≤', '<=>'],
+                        ['=', '=='],
+                        ['≠', '!='],
+                       
+                    ],
+                    value: '>',
+                    fontSize: 11,
+                    bgColor: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
+                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                },
+            ],
+            def: {
+                params: [
+                    {
+                        type: 'text',
+                        params: ['0'],
+                    },
+                    '>',
+                    {
+                        type: 'text',
+                        params: ['0'],
+                    },
+                ],
+                type: 'HW_TOF_JUDGEMENT',
+            },
+            paramsKeyMap: {
+                property: 0,
+            },
+            class: 'TOF',
+            isNotFor: ['modi'],
 
-        //         var pd = JSON.parse(Entry.hw.portData.module['gyro'][key]);
-        //         var moduleID = pd.id;
+            syntax: {
+                js: [],
+                py: [
+                    {
+                        syntax: '(Tof.distance %2 %3)',
+                        template: 'Tof.distance %2 %3',
+                    }
+                ],
+                c: [
+                    {
+                        syntax: '(button0.%2() == %3)',
+                        template: '(button0.%2() == %3)',
+                    },
+                ],
+            },
+        },
+        HW_TOF_VALUE: {
+            color: EntryStatic.colorSet.block.modi.INPUT,
+            outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic_string_field',
+            template: '%1 거리의 거리 cm ',
+            params: [
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/button2.svg',
+                    size: 11,
+                },
+               
+            ],
+            def: {
+                params: [null, 2],
+                type: 'HW_TOF_VALUE',
+            },
+            paramsKeyMap: {
+                property: 0,
+            },
+            class: 'TOF',
+            isNotFor: ['modi'],
 
-        //         if (!Entry.hw.sendQueue['getProperty']) {
-        //             Entry.MODI.initSend();
-        //         }
-        //         if (!pd.value[property]) {
-        //             pd.value[property] = 0;
-
-        //             // send GETPROPERTY
-        //             /*if(Entry.MODI.getModule.id != moduleID || Entry.MODI.getModule.property != property || Object.keys(Entry.hw.sendQueue["getProperty"]).length == 0){
-        //         Entry.hw.sendQueue["getProperty"][moduleID] = JSON.stringify({module: property, id: moduleID});
-        //         Entry.MODI.getModule.id = moduleID;
-        //         Entry.MODI.getModule.property = property;
-        //     }*/
-        //         }
-
-        //         return pd.value[property];
-        //     },
-        // },
+            syntax: {
+                js: [],
+                py: [
+                    {
+                        syntax: 'Tof.distance',
+                        template: 'Tof.distance',
+                    }
+                ],
+                c: [
+                    {
+                        syntax: '(button0.%2() == %3)',
+                        template: '(button0.%2() == %3)',
+                    },
+                ],
+            },
+        },
        
         HW_BTN_MENU: {
             color: EntryStatic.colorSet.block.modi.INPUT,
@@ -725,71 +700,7 @@ Entry.MODI.getBlocks = function () {
                 ],
             },
         },
-        HW_IR_VALUE: {
-            // color: EntryStatic.colorSet.block.default.HARDWARE,
-            // outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
-            color: EntryStatic.colorSet.block.modi.INPUT,
-            outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
-
-            fontColor: '#fff',
-            skeleton: 'basic_string_field',
-            template: '%1 적외선의 빛 반사량  ',
-            params: [
-                {
-                    type: 'Indicator',
-                    img: 'block_icon/modi_icon/ir2.svg',
-                    size: 11,
-                },
-                {
-                    type: 'DropdownDynamic',
-                    value: null,
-                    fontSize: 11,
-                    menuName: Entry.MODI.infraredList,
-                    bgColor: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                },
-            ],
-            def: {
-                params: [null],
-                type: 'HW_IR_VALUE',
-            },
-            paramsKeyMap: {
-                name: 0,
-            },
-            class: 'infrared',
-            isNotFor: ['modi'],
-            func: function (sprite, script) {
-                var key = script.getStringField('name');
-
-                var pd = JSON.parse(Entry.hw.portData.module['ir'][key]);
-                var moduleID = pd.id;
-
-                if (!Entry.hw.sendQueue['getProperty']) {
-                    Entry.MODI.initSend();
-                }
-
-                if (!pd.value[2]) {
-                    pd.value[2] = 0;
-
-                    // send GETPROPERTY
-                    /*if(Entry.MODI.getModule.id != moduleID || Object.keys(Entry.hw.sendQueue["getProperty"]).length == 0){
-                Entry.hw.sendQueue["getProperty"][moduleID] = JSON.stringify({module: 2, id: moduleID});
-                Entry.MODI.getModule.id = moduleID;
-            }*/
-                }
-
-                return pd.value[2];
-            },
-
-            syntax: {
-                c: [
-                    {
-                        syntax: 'ir0.getProximity()',
-                        template: 'ir0.getProximity()',
-                    },
-                ],
-            },
-        },
+      
         // modi_ultrasonic_value: {
         //     color: EntryStatic.colorSet.block.default.HARDWARE,
         //     outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
@@ -1178,7 +1089,7 @@ Entry.MODI.getBlocks = function () {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             skeleton: 'basic',
-            template: '%5 불빛을 빨간빛 %2 초록빛 %3 파란빛 %4 으로 정하기   ',
+            template: '%5 불빛을 빨간빛 %2% 초록빛 %3% 파란빛 %4%로 정하기   ',
             params: [
                 {
                     type: 'DropdownDynamic',
@@ -1387,6 +1298,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
+                py:[
+                    {
+                        syntax: 'speaker.reset()',
+                        template: 'speaker.reset()',
+                    }
+                ],
                 c: [
                     {
                         syntax: 'speaker0.setTune(0,0);',
@@ -1399,7 +1316,7 @@ Entry.MODI.getBlocks = function () {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             skeleton: 'basic',
-            template: '%4 스피커의 음을 %2 크기는 %3(으)로 정하기   ',
+            template: '%4 스피커의 음%2를 크기%3로 정하기   ',
             params: [
                 {
                     type: 'DropdownDynamic',
@@ -1492,6 +1409,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
+                py:[
+                    {
+                        syntax: 'speaker.tune = "%2", %3',
+                        template: 'speaker.tune = %2, %3',
+                    }
+                ],
                 c: [
                     {
                         syntax: 'speaker0.?%2?%3',
@@ -1505,22 +1428,87 @@ Entry.MODI.getBlocks = function () {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             skeleton: 'basic',
-            template: '%4 스피커의 멜로디는 %1 크기는 %3 (으)로 재생하기     ',
+            template: '%1 스피커의 멜로디%2을(를) 크기%3%로 재생하기',
             params: [
                 {
-                    type: 'DropdownDynamic',
-                    value: null,
-                    fontSize: 11,
-                    menuName: Entry.MODI.speakerMelodyList,
-                    bgColor: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/speaker1.svg',
+                    size: 11,
                 },
                 {
                     type: 'Dropdown',
                     options: [
-                        ['송어', '송어'],
-                        ['은파', '은파'],
-                        ['엘리제를 위하여', '엘리제를 위하여'],
+                        ["들리브  '실비아:피치카토'", 'res/Delibes.mid'],
+                        ["런던 다리가 무너지네", 'res/London.mid'],
+                        ["맥도날드 노인", 'res/OldMac.mid'],
+                        ["모차르트 '피아노 협주곡 21번 2악장'", 'res/Mozart21.mid'],
+                        ["베르디 '여자의 마음'", 'res/Verdi.mid'],
+                        ["비발디 '사계:봄'", "res/Vivaldi.mid"],
+                        ["비제 '카르맨:투우사'", "res/Bizet.mid"],
+                        ["수자 '워싱턴 포스트 행진곡'", "res/Sousa.mid"],
+                        ["슈베르트 '송어'", "res/SchubeD.mid"],
+                        ["요나손 '뻐국 왈츠'","res/Jonasson.mid"],
+                        ["푸치크 '검투사의 입장'", "res/Fucik.mid"],
+                        ["Mary had a Little Lamb(떳다 떳다 비행기)", "res/Mary.mid"],
+                        ["드보르작 '교향곡 제 9번'", "res/Dvorak.mid"],
+                        ["로시니 '윌리엄 텔 서곡'", "res/Rossini.mid"],
+                        ["모차르트 '교향곡 제 40번'", "res/Mozart40.mid"],
+                        ["모차르트 '밤의여왕'", "res/MozartQ.mid"],
+                        ["오펜바흐 '지옥의 오르페우스'", "res/BachO.mid"],
+                        ["그리그 '피아노 협주곡'","res/Grieg.mid"],
+                        ["바흐 '토카다와 푸가 D단조'","res/BachD.mid"],
+                        ["베토벤 '교향곡 제 5번'","res/Beeth5.mid"],
+                        ["베토벤 '엘리제를 위하여'","res/BeethF.mid"],
+                        ["슈트라우스 '아름다운 도나우강'","res/Straus.mid"],
+                        ["오르프 '카르미나 부라나:오! 운명의 여신이여'","res/Orff.mid"],
+                        ["차이코프스키 '피아노 협주곡 1번'","res/Tchaiko1.mid"],
+                        ["네케 '크시코스의 우편마차'","res/Necke.mid"],
+                        ["모차르트 '터키 행진곡'", "res/MozartR.mid"],
+                        ["브람스 '헝가리 무곡 5번'","res/Brahms5.mid"],
+                        ["차이코프스키 '사탕요정의 춤'","res/TchaikoD.mid"],
+                        ["거미가 줄을 타고 올라갑니다","res/Spider.mid"],
+                        ["델의 농부","res/Farmer.mid"],
+                        ["리스트 '사랑의 꿈 3번'","res/Liszt.mid"],
+                        ["모차르트 '피아노 소나타 16번'", "res/Mozart16.mid"],
+                        ["바흐 '미뉴에트 G장조'", "res/BachG.mid"],
+                        ["반짝반짝 작은 별", "res/twinkle.mid"],
+                        ["베토벤 '미뉴에트 G장조'", "res/BeethG.mid"],
+                        ["보케리니 '미뉴에트'", "res/Bocc.mid"],
+                        ["브람스 '왈츠'", "res/Brahms16.mid"],
+                        ["브람스 '자장가'", "res/BrahmsL.mid"],
+                        ["슈베르트 '자장가'", "res/SchubeW.mid"],
+                        ["양키 두들", "res/yankee.mid"],
+                        ["엘가 '사랑의 인사'", "res/ElgarS.mid"],
+                        ["와이먼 '은파'", "res/Wyman.mid"],
+                        ["차이코프스키 '꽃의 왈츠'", "res/TchaikoW.mid"],
+                        ["차이코프스키 '백조의 호수:정경'", "res/TchaikoS.mid"],
+                        ["멘델스존 '결혼 행진곡'", "res/Mendel.mid"],
+                        ["바그너 '결혼 행진곡'", "res/Wagner.mid"],
+                        ["엘가 '위풍당당 행진곡'", "res/ElgarP.mid"],
+                        ["생일축하 합니다", "res/Birthday.mid"],
+                        ["징글벨", "res/Jingle.mid"],
+                        ["메리크리스마스", "res/Merry.mid"],
+                        ["감정음 1 (신남)", "res/Emotion1.mid"],
+                        ["감정음 2 (우울)", "res/Emotion2.mid"],
+                        ["감정음 3 (기쁨)", "res/Emotion3.mid"],
+                        ["경고음 1", "res/Warning1.mid"],
+                        ["경고음 2", "res/Warning2.mid"],
+                        ["시작음 1", "res/Start1.mid"],
+                        ["시작음 2", "res/Start2.mid"],
+                        ["완료음 1", "res/Complet1.mid"],
+                        ["완료음 2", "res/Complet2.mid"],
+                        ["시작", "res/Start.wav"],
+                        ["완료", "res/Complete.wav"],
+                        ["승리", "res/Win.wav"],
+                        ["카메라", "res/Camera.wav"],
+                        ["폭탄", "res/Bomb.wav"],                
+                        ["자동차", "res/Car.wav"],
+                        ["사이렌", "res/Siren.wav"],
+                        ["알람", "res/Alarm.wav"],
+                        ["신나는", "res/Exciting.wav"],
+                        ["통통 튀는", "res/bouncing.wav"],
+                        ["로봇", "res/Robot.wav"],
+                        ["성공", "res/Success.wav"],
                     ],
                     fontSize: 11,
                     bgColor: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
@@ -1531,21 +1519,17 @@ Entry.MODI.getBlocks = function () {
                     accept: 'string',
                     defaultType: 'number',
                 },
-                {
-                    type: 'Indicator',
-                    img: 'block_icon/modi_icon/speaker1.svg',
-                    size: 11,
-                },
+               
             ],
             events: {},
             def: {
                 params: [
-                    null,
-                    '송어',
-                    {
-                        type: 'number',
-                        params: ['100'],
-                    },
+                    "들리브  '실비아:피치카토'",
+                   'res/Delibes.mid',
+                   {
+                    type: 'number',
+                    params: ['100'],
+                }
                 ],
                 type: 'HW_SPEAKER_MELODY',
             },
@@ -1575,6 +1559,12 @@ Entry.MODI.getBlocks = function () {
                 return script.callReturn();
             },
             syntax: {
+                py:[
+                    {
+                        syntax: 'speaker.play_music = "%2", %3',
+                        template: 'speaker.play_music = %2, %3',
+                    }
+                ],
                 c: [
                     {
                         syntax: 'speacker0.?%1?%3',

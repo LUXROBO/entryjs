@@ -651,17 +651,18 @@ EntryStatic.moduleToBlocks = {
     ],
    
     TOF: [
-        'HW_IR_VALUE',
+        'HW_TOF_JUDGEMENT',
+        'HW_TOF_VALUE'
     ],
     LED: [
-        'HW_LED_OFF',
-        'HW_LED_CUSTOM',
         'HW_LED_BASIC',
+        'HW_LED_CUSTOM',
+        'HW_LED_OFF',
     ],
     SPEAKER: [
-        'HW_SPEAKER_OFF',
         'HW_SPEAKER_TUNE',
         'HW_SPEAKER_MELODY',
+        'HW_SPEAKER_OFF',
     ],
 
     MOTOR: [

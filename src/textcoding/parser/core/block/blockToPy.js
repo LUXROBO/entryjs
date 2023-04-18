@@ -281,38 +281,7 @@ Entry.BlockToPyParser = class {
                         break;
                     }
                     
-                    // case 'modi_change_motor_upper_value': {
-                    //     resultTextCode = Entry.TextCodingUtil.assembleModiChangeMotorUpperValueBlock(
-                    //         block,
-                    //         resultTextCode
-                    //     );
-                    //     break;
-                    // }
-
-                    // case 'modi_change_motor_bottom_value': {
-                    //     resultTextCode = Entry.TextCodingUtil.assembleModiSetChangeMotorBottomValueBlock(
-                    //         block,
-                    //         resultTextCode
-                    //     );
-                    //     break;
-                    // }
-
-                    case 'HW_SPEAKER_TUNE' : {
-                        resultTextCode = Entry.TextCodingUtil.assembleModiSetBasicSpeakerBlock(
-                            block,
-                            resultTextCode
-                        );
-
-                        break;
-                        
-                    }
-                    case 'HW_SPEAKER_MELODY' : {
-                        resultTextCode = Entry.TextCodingUtil.assembleModiMelodySpeakerBlock(
-                            block,
-                            resultTextCode
-                        );
-                        break;
-                    }
+        
                     
                     case 'HW_DISPLAY_TEXT' : {
                         resultTextCode = Entry.TextCodingUtil.assembleModiDisplayBlock(

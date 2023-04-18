@@ -1,18 +1,5 @@
 'use strict';
 
-function getMelodyCode(name, vol) {
-
-    const melodyLibrary = EntryStatic.speakerMelody.data
-    const melodyRaw = melodyLibrary[name].replace(/__melodyVolume/g, `${vol}`)
-    const mainRegex = /(?<=while\s*\(\s*true\s*\)\s*\n*{\n*)[\n\t\s\w\d\;\=\*\+\-\/\_\.\,\(\)]*/g
-    const tempoVariablesRegex = /[\n\t\s\w\d\;\=\*\/\_\.\,\(\)]*(?=while\s*\(\s*true\s*\)\s*\n*{\n*)/g
-    const melodyMain = melodyRaw.match(mainRegex)[0].replace(/\t/g, "")
-    const melodytempoVariables = melodyRaw.match(tempoVariablesRegex)[0]
-
-    return { melodyMain, melodytempoVariables }
-}
-
-
 class txtToImg {
     constructor(txt, size, options) {
         this.txt = txt
@@ -1192,18 +1179,7 @@ class TextCodingUtil {
         return result;
 
     }
-
-    assembleModiMelodySpeakerBlock(block, syntax) {
-        const blockToken = syntax.split('?');
-        const melodyName = blockToken[1]
-        const melodyVolume = blockToken[2] || 50;
-        console.log("assembleModiMelodySpeakerBlock", blockToken)
-        const melodyCode = getMelodyCode(melodyName, melodyVolume)
-        this.melodyTempo.push(melodyCode.melodytempoVariables)
-        return melodyCode.melodyMain
-    }
-
-
+    
     assembleModiDisplayBlock(block, syntax) {
         // 영문, (영+수), |  숫자, 변수, 인풋, | 한글, (한글+수), (영+한글)
         const blockToken = syntax.split('(?lXrObo8m_1#?)');
