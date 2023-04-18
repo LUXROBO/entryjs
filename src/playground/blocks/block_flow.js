@@ -264,8 +264,8 @@ module.exports = {
                     {
                         type: 'Dropdown',
                         options: [
-                            [Lang.Blocks.FLOW_repeat_while_true_until, 'until'],
                             [Lang.Blocks.FLOW_repeat_while_true_while, 'while'],
+                            [Lang.Blocks.FLOW_repeat_while_true_until, 'until']
                         ],
                         value: 'while',
                         fontSize: 10,

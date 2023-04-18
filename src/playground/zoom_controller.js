@@ -244,6 +244,7 @@ Entry.ZoomController = class ZoomController {
                     
                        
                         let output = blockToPyParser.Thread(block.getThread());
+                        // let output =  blockToPyParser.Thread(new Entry.Thread([blockSchema.def], code));
                     
                         if(blockToPyParser._blockCount == 2 && blockToPyParser._secondBlock.data.type =='repeat_inf') {
                             console.log('failUpload2');
@@ -257,7 +258,7 @@ Entry.ZoomController = class ZoomController {
                             throw new Error('기본 코딩입니다.');
                         }
                         
-                        let binary = 'import time\nimport modi_plus\n\nbundle = modi_plus.MODIPlus()\n';
+                        let binary = 'import time\nimport modi_plus\nimport math\n\nbundle = modi_plus.MODIPlus()\n';
                         console.log('binary1', JSON.stringify(binary));
                         console.log('cOutput' , JSON.stringify(output));
 

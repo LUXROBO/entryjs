@@ -206,12 +206,65 @@ Entry.MODI.blockMenuBlocks = [];
 //region modi 모디
 Entry.MODI.getBlocks = function () {
     return {
+
+        HW_BTN_JUDGEMENT: {
+            color: EntryStatic.colorSet.block.modi.INPUT,
+            outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic_boolean_field',
+            template: '%1 버튼이 %2 ',
+            params: [
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/button2.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Dropdown',
+                    options: [
+                        ['클릭', 'clicked'],
+                        ['두 번 클릭', 'double_clicked'],
+                        ['누른 상태', 'pressed'],
+                        ['스위치', 'toggled'],
+                    ],
+                    fontSize: 11,
+                    bgColor: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
+                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
+                },
+            ],
+            def: {
+                params: ['클릭', 'clicked', 'TRUE'],
+                type: 'HW_BTN_JUDGEMENT',
+            },
+            paramsKeyMap: {
+                property: 0,
+            },
+            class: 'button',
+            isNotFor: ['modi'],
+
+            syntax: {
+                js: [],
+                py:[
+                    {
+                        syntax: 'button.%2',
+                        template: 'button.%2',
+                    },
+                ],
+                c: [
+                    {
+                        syntax: '(button0.%2() == %3)',
+                        template: '(button0.%2() == %3)',
+                    },
+                ],
+            },
+        },
+
         HW_BTN_VALUE: {
             color: EntryStatic.colorSet.block.modi.INPUT,
             outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic_string_field',
-            template: '%1 버튼의 %2',
+            template: '%1 버튼이 %2',
             params: [
                 {
                     type: 'Indicator',
@@ -286,12 +339,164 @@ Entry.MODI.getBlocks = function () {
                 ],
             },
         },
+
+        HW_DIAL_JUDGEMENT: {
+            color: EntryStatic.colorSet.block.modi.INPUT,
+            outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic_boolean_field',
+            template: '%1 다이얼의 위치 %2 %3',
+            params: [
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/button2.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Dropdown',
+                    options: [
+                        ['>', '>'],
+                        ['<', '<['<',>'],
+                        ['≥', '>='],
+                        ['≤', '<=>'],
+                        ['=', '=='],
+                        ['≠', '!='],
+                       
+                    ],
+                    value: '>',
+                    fontSize: 11,
+                    bgColor: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
+                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                },
+            ],
+            def: {
+                params: [
+                    {
+                        type: 'text',
+                        params: ['0'],
+                    },
+                    '>',
+                    {
+                        type: 'text',
+                        params: ['0'],
+                    },
+                ],
+                type: 'HW_DIAL_JUDGEMENT',
+            },
+            paramsKeyMap: {
+                property: 0,
+            },
+            class: 'dial',
+            isNotFor: ['modi'],
+
+            syntax: {
+                js: [],
+                py: [
+                    {
+                        syntax: '(dial.turn %2 %3)',
+                        template: 'dial.turn %2 %3',
+                    }
+                ],
+                c: [
+                    {
+                        syntax: '(button0.%2() == %3)',
+                        template: '(button0.%2() == %3)',
+                    },
+                ],
+            },
+        },
+
+        HW_DIAL_MARK_JUDGEMENT: {
+            color: EntryStatic.colorSet.block.modi.INPUT,
+            outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic_boolean_field',
+            template: '%1 다이얼의 칸 %2 %3',
+            params: [
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/button2.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Dropdown',
+                    options: [
+                        ['>', '>'],
+                        ['<', '<['<',>'],
+                        ['≥', '>='],
+                        ['≤', '<=>'],
+                        ['=', '=='],
+                        ['≠', '!='],
+                       
+                    ],
+                    value: '>',
+                    fontSize: 11,
+                    bgColor: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
+                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
+                },
+
+                {
+                    type: 'Dropdown',
+                    options: [
+                        ['원점', '0'],
+                        ['첫 번째 칸', '10'],
+                        ['두 번째 칸', '20'],
+                        ['세 번째 칸', '30'],
+                        ['네 번째 칸', '40'],
+                        ['다섯 번째 칸', '50'],
+                        ['여섯 번째 칸', '60'],
+                        ['일곱 번째 칸', '70'],
+                        ['여덟 번째 칸', '80'],
+                        ['아홉 번째 칸', '90'],
+                        ['열 번째 칸', '100'],
+                       
+                    ],
+                    value: '0',
+                    fontSize: 11,
+                    bgColor: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
+                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
+                },
+            ],
+            def: {
+                def: {
+                    params: ['원점', '0', 'TRUE'],
+                    type: 'HW_DIAL_MARK_JUDGEMENT',
+                },
+                type: 'HW_DIAL_MARK_JUDGEMENT',
+            },
+            paramsKeyMap: {
+                property: 0,
+            },
+            class: 'dial',
+            isNotFor: ['modi'],
+
+            syntax: {
+                js: [],
+                py: [
+                    {
+                        syntax: '(dial.turn %2 %3)',
+                        template: 'dial.turn %2 %3',
+                    }
+                ],
+                c: [
+                    {
+                        syntax: '(button0.%2() == %3)',
+                        template: '(button0.%2() == %3)',
+                    },
+                ],
+            },
+        },
+
         HW_DIAL_VALUE: {
             color: EntryStatic.colorSet.block.modi.INPUT,
             outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic_string_field',
-            template: '%1 다이얼의 위치  ',
+            template: '%1 다이얼의 위치 %2 ',
             params: [
                 {
                     type: 'Indicator',
@@ -300,7 +505,10 @@ Entry.MODI.getBlocks = function () {
                 },
                 {
                     type: 'Dropdown',
-                    options: [['위치', 2]],
+                    options: [
+                        ['위치', 2],
+                        ['칸', 3]
+                    ],
                     fontSize: 11,
                     bgColor: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
                     arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
@@ -343,6 +551,13 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
+                py: [
+                    {
+                        syntax: '(%2)',
+                        template: '(%2)',
+                    },
+                ],
+
                 c: [
                     {
                         syntax: 'dial0.%2',
@@ -1678,62 +1893,7 @@ Entry.MODI.getBlocks = function () {
                 ],
             }
         },
-        HW_BTN_JUDGEMENT: {
-            color: EntryStatic.colorSet.block.modi.INPUT,
-            outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
-            fontColor: '#fff',
-            skeleton: 'basic_boolean_field',
-            template: '%1 버튼의 %2이(가) %3 ',
-            params: [
-                {
-                    type: 'Indicator',
-                    img: 'block_icon/modi_icon/button2.svg',
-                    size: 11,
-                },
-                {
-                    type: 'Dropdown',
-                    options: [
-                        ['클릭', 'getClick'],
-                        ['두 번 클릭', 'getDoubleClick'],
-                        ['누른 상태', 'getPressStatus'],
-                        ['스위치', 'getToggle'],
-                    ],
-                    fontSize: 11,
-                    bgColor: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                },
-                {
-                    type: 'Dropdown',
-                    options: [
-                        ['눌림', 'TRUE'],
-                        ['안 눌림', 'FALSE'],
-                    ],
-                    fontSize: 11,
-                    bgColor: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                },
-            ],
-            def: {
-                params: [null, 'getClick', 'TRUE'],
-                type: 'HW_BTN_JUDGEMENT',
-            },
-            paramsKeyMap: {
-                property: 0,
-            },
-            class: 'button',
-            isNotFor: ['modi'],
-
-            syntax: {
-                js: [],
-                py: [],
-                c: [
-                    {
-                        syntax: '(button0.%2() == %3)',
-                        template: '(button0.%2() == %3)',
-                    },
-                ],
-            },
-        },
+     
         HW_NETWORK_BTN: {
             color: EntryStatic.colorSet.block.modi.SETUP,
             outerLine: EntryStatic.colorSet.block.modi.SETUP_OUTLINE,

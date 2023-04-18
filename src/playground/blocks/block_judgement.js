@@ -339,12 +339,13 @@ module.exports = {
                     {
                         type: 'Dropdown',
                         options: [
-                            ['=', 'EQUAL'],
-                            // ['!=', 'NOTEQUAL'],
                             ['>', 'GREATER'],
                             ['<', 'LESS'],
                             ['≥', 'GREATER_OR_EQUAL'],
                             ['≤', 'LESS_OR_EQUAL'],
+                            ['=', 'EQUAL'],
+                            ['≠', 'NOTEQUAL'],
+                          
                         ],
                         value: 'EQUAL',
                         fontSize: 10,
@@ -363,7 +364,7 @@ module.exports = {
                             type: 'text',
                             params: ['10'],
                         },
-                        'EQUAL',
+                        'GREATER',
                         {
                             type: 'text',
                             params: ['10'],
@@ -377,7 +378,7 @@ module.exports = {
                             type: 'text',
                             params: ['A&value'],
                         },
-                        'EQUAL',
+                        'GREATER',
                         {
                             type: 'text',
                             params: ['B&value'],
@@ -386,34 +387,7 @@ module.exports = {
                     type: 'boolean_basic_operator',
                 },
                 defs: [
-                    {
-                        params: [
-                            {
-                                type: 'text',
-                                params: ['10'],
-                            },
-                            'EQUAL',
-                            {
-                                type: 'text',
-                                params: ['10'],
-                            },
-                        ],
-                        type: 'boolean_basic_operator',
-                    },
-                    // {
-                    //     params: [
-                    //         {
-                    //             type: 'text',
-                    //             params: ['10'],
-                    //         },
-                    //         'NOTEQUAL',
-                    //         {
-                    //             type: 'text',
-                    //             params: ['10'],
-                    //         },
-                    //     ],
-                    //     type: 'boolean_basic_operator',
-                    // },
+                    
                     {
                         params: [
                             {
@@ -428,6 +402,7 @@ module.exports = {
                         ],
                         type: 'boolean_basic_operator',
                     },
+            
                     {
                         params: [
                             {
@@ -463,6 +438,34 @@ module.exports = {
                                 params: ['10'],
                             },
                             'LESS_OR_EQUAL',
+                            {
+                                type: 'text',
+                                params: ['10'],
+                            },
+                        ],
+                        type: 'boolean_basic_operator',
+                    },
+                    {
+                        params: [
+                            {
+                                type: 'text',
+                                params: ['10'],
+                            },
+                            'EQUAL',
+                            {
+                                type: 'text',
+                                params: ['10'],
+                            },
+                        ],
+                        type: 'boolean_basic_operator',
+                    },
+                    {
+                        params: [
+                            {
+                                type: 'text',
+                                params: ['10'],
+                            },
+                            'NOTEQUAL',
                             {
                                 type: 'text',
                                 params: ['10'],
@@ -528,13 +531,15 @@ module.exports = {
                                 {
                                     type: 'Dropdown',
                                     options: [
-                                        ['=', 'EQUAL'],
                                         ['>', 'GREATER'],
                                         ['<', 'LESS'],
                                         ['≥', 'GREATER_OR_EQUAL'],
                                         ['≤', 'LESS_OR_EQUAL'],
+                                        ['=', 'EQUAL'],
+                                        ['≠', 'NOTEQUAL']
+                                       
                                     ],
-                                    value: 'EQUAL',
+                                    value: 'GREATER',
                                     fontSize: 11,
                                     noArrow: true,
                                     converter: Entry.block.converters.returnOperator,

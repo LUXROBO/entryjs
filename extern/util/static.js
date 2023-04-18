@@ -639,12 +639,14 @@ EntryStatic.NetworkModule = ["NETWORK"]
 
 EntryStatic.moduleToBlocks = {
     BUTTON: [
-        'HW_BTN_VALUE',
-        'HW_BTN_MENU',
         'HW_BTN_JUDGEMENT',
+        'HW_BTN_VALUE',
+        // 'HW_BTN_MENU',
     ],
 
     DIAL: [
+        'HW_DIAL_JUDGEMENT',
+        'HW_DIAL_MARK_JUDGEMENT',
         'HW_DIAL_VALUE',
     ],
    
@@ -661,7 +663,7 @@ EntryStatic.moduleToBlocks = {
         'HW_SPEAKER_TUNE',
         'HW_SPEAKER_MELODY',
     ],
-    
+
     MOTOR: [
         'HW_MOTOR_BOTH',
     ],

@@ -806,6 +806,7 @@ class TextCodingUtil {
 
             if (option == 'until') {
                 const condition = 'True !=';
+                
                 blockToken.splice(1, 0, condition);
                 optIndex += 1;
                 blockToken.splice(optIndex, 1);
@@ -1060,18 +1061,18 @@ class TextCodingUtil {
 
         if (block.data.type === 'HW_DIAL_VALUE') {
 
-            if (option == '2') {
+            if (option == '(2)') {
 
-                const condition = 'getTurn()';
+                const condition = 'dial.turn';
                 blockToken.splice(lastIndex, 0, condition);
                 lastIndex += 1;
                 blockToken.splice(lastIndex, 1);
 
                 result = blockToken.join('.').replace('2', condition);
 
-            } else if (option == '3') {
+            } else if (option == '(3)') {
 
-                const condition = 'getTurnSpeed()';
+                const condition = '(math.floor((dial.turn - 1) / 10) + 1)';
                 blockToken.splice(lastIndex, 0, condition);
                 lastIndex += 1;
                 blockToken.splice(lastIndex, 1);
