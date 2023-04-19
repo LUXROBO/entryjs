@@ -666,7 +666,14 @@ EntryStatic.moduleToBlocks = {
     ],
 
     MOTOR: [
-        'HW_MOTOR_BOTH',
+        'HW_MOTOR_A',
+        'HW_MOTOR_A_ANGLE',
+        'HW_MOTOR_A_ANGLE_CHANGE',
+        'HW_MOTOR_A_STOP',
+        'HW_MOTOR_B',
+        'HW_MOTOR_B_ANGLE',
+        'HW_MOTOR_B_ANGLE_CHANGE',
+        'HW_MOTOR_B_STOP',
     ],
    
    

@@ -700,150 +700,7 @@ Entry.MODI.getBlocks = function () {
                 ],
             },
         },
-      
-        // modi_ultrasonic_value: {
-        //     color: EntryStatic.colorSet.block.default.HARDWARE,
-        //     outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
-        //     fontColor: '#fff',
-        //     skeleton: 'basic_string_field',
-        //     template: '초음파 %1번 센서의 거리(%)',
-        //     params: [
-        //         {
-        //             type: 'DropdownDynamic',
-        //             value: null,
-        //             fontSize: 11,
-        //             menuName: Entry.MODI.ultrasonicList,
-        //             bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
-        //             arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-        //         },
-        //     ],
-        //     def: {
-        //         params: [null],
-        //         type: 'modi_ultrasonic_value',
-        //     },
-        //     paramsKeyMap: {
-        //         name: 0,
-        //     },
-        //     class: 'ultrasonic',
-        //     isNotFor: ['modi'],
-        //     func: function(sprite, script) {
-        //         var key = script.getStringField('name');
 
-        //         var pd = JSON.parse(Entry.hw.portData.module['ultrasonic'][key]);
-        //         var moduleID = pd.id;
-
-        //         if (!Entry.hw.sendQueue['getProperty']) {
-        //             Entry.MODI.initSend();
-        //         }
-
-        //         if (!pd.value[2]) {
-        //             pd.value[2] = 0;
-
-        //             // send GETPROPERTY
-        //             /*if(Entry.MODI.getModule.id != moduleID || Object.keys(Entry.hw.sendQueue["getProperty"]).length == 0){
-        //         Entry.hw.sendQueue["getProperty"][moduleID] = JSON.stringify({module: 2, id: moduleID});
-        //         Entry.MODI.getModule.id = moduleID;
-        //     }*/
-        //         }
-
-        //         return pd.value[2];
-        //     },
-        // },
-        HW_MOTOR_BOTH: {
-            color: EntryStatic.colorSet.block.modi.OUTPUT,
-            outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
-            fontColor: '#fff',
-            skeleton: 'basic',
-            template: '%5 모터 %2의 1번은 %3 2번은 %4 (으)로 정하기    ',
-            params: [
-                {
-                    type: 'DropdownDynamic',
-                    value: null,
-                    fontSize: 11,
-                    menuName: Entry.MODI.motorList,
-                    bgColor: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                },
-                {
-                    type: 'Dropdown',
-                    options: [
-                        [Lang.Blocks.modi_motor_angle, 'MOTOR_ANGLE'],
-                        [Lang.Blocks.modi_motor_speed, 'MOTOR_SPEED'],
-                        // [Lang.Blocks.modi_motor_torque, 'MOTOR_TORQUE'],
-                    ],
-                    fontSize: 11,
-                    bgColor: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                },
-                {
-                    type: 'Block',
-                    accept: 'string',
-                },
-                {
-                    type: 'Block',
-                    accept: 'string',
-                },
-                {
-                    type: 'Indicator',
-                    img: 'block_icon/modi_icon/motor1.svg',
-                    size: 11,
-                },
-            ],
-            def: {
-                params: [
-                    null,
-                    'MOTOR_ANGLE',
-                    {
-                        type: 'number',
-                        params: ['0'],
-                    },
-                    {
-                        type: 'number',
-                        params: ['0'],
-                    },
-                ],
-                type: 'HW_MOTOR_BOTH',
-            },
-            paramsKeyMap: {
-                name: 0,
-                property: 1,
-                upper: 2,
-                bottom: 3,
-            },
-            class: 'motor',
-            isNotFor: ['modi'],
-            func: function (sprite, script) {
-                if (!Entry.hw.sendQueue.moduleValue) {
-                    Entry.MODI.initSend();
-                }
-                var key = script.getStringField('name'),
-                    property = script.getStringField('property'),
-                    upper = script.getNumberValue('upper'),
-                    bottom = script.getNumberValue('bottom');
-                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
-
-                var sq = Entry.hw.sendQueue.moduleValue;
-                sq['motor'][key] = JSON.stringify({
-                    module: property,
-                    id: moduleID,
-                    value1: upper,
-                    value2: bottom,
-                });
-
-                return script.callReturn();
-            },
-
-            syntax: {
-                js: [], py: [''],
-
-                c: [
-                    {
-                        syntax: 'motor0.?%2?%3?%4',
-                        template: 'motor0.?%2?%3?%4',
-                    },
-                ],
-            },
-        },
         modi_change_motor_upper_value: {
             color: EntryStatic.colorSet.block.default.HARDWARE,
             outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
@@ -1460,7 +1317,6 @@ Entry.MODI.getBlocks = function () {
                         ["베토벤 '교향곡 제 5번'","res/Beeth5.mid"],
                         ["베토벤 '엘리제를 위하여'","res/BeethF.mid"],
                         ["슈트라우스 '아름다운 도나우강'","res/Straus.mid"],
-                        ["오르프 '카르미나 부라나:오! 운명의 여신이여'","res/Orff.mid"],
                         ["차이코프스키 '피아노 협주곡 1번'","res/Tchaiko1.mid"],
                         ["네케 '크시코스의 우편마차'","res/Necke.mid"],
                         ["모차르트 '터키 행진곡'", "res/MozartR.mid"],
@@ -1497,6 +1353,7 @@ Entry.MODI.getBlocks = function () {
                         ["시작음 2", "res/Start2.mid"],
                         ["완료음 1", "res/Complet1.mid"],
                         ["완료음 2", "res/Complet2.mid"],
+                        ["알림음 1", "res/Bell1.mid"],
                         ["시작", "res/Start.wav"],
                         ["완료", "res/Complete.wav"],
                         ["승리", "res/Win.wav"],
@@ -1574,6 +1431,617 @@ Entry.MODI.getBlocks = function () {
             },
 
         },
+
+        HW_MOTOR_A: {
+            color: EntryStatic.colorSet.block.modi.OUTPUT,
+            outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic',
+            template: '%1 모터A의 속도를 %2%로 정하기',
+            params: [  
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/motor1.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                    defaultType: 'number'
+                },
+              
+            ],
+            def: {
+                params: [ 
+                    null,
+                    {
+                        type: 'number',
+                        params: ['100'],
+                    },
+                ],
+                type: 'HW_MOTOR_A',
+            },
+            paramsKeyMap: {
+                name: 0,
+                property: 1,
+                upper: 2,
+                bottom: 3,
+            },
+            class: 'motor',
+            isNotFor: ['modi'],
+            func: function (sprite, script) {
+                if (!Entry.hw.sendQueue.moduleValue) {
+                    Entry.MODI.initSend();
+                }
+                var key = script.getStringField('name'),
+                    property = script.getStringField('property'),
+                    upper = script.getNumberValue('upper'),
+                    bottom = script.getNumberValue('bottom');
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+
+                var sq = Entry.hw.sendQueue.moduleValue;
+                sq['motor'][key] = JSON.stringify({
+                    module: property,
+                    id: moduleID,
+                    value1: upper,
+                    value2: bottom,
+                });
+
+                return script.callReturn();
+            },
+
+            syntax: {
+                js: [], 
+                py: [
+                    {
+                        syntax: '(motorA.speed = %2)',
+                        template: '(motorA.speed = %2)',
+                    },
+                ],
+
+                c: [
+                    {
+                        syntax: 'motor0.?%2?%3?%4',
+                        template: 'motor0.?%2?%3?%4',
+                    },
+                ],
+            },
+        },
+
+        HW_MOTOR_A_ANGLE: {
+            color: EntryStatic.colorSet.block.modi.OUTPUT,
+            outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic',
+            template: '%1 모터A의 각도를 %2°로 정하기',
+            params: [  
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/motor1.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                    defaultType: 'number'
+                },
+              
+            ],
+            def: {
+                params: [ 
+                    null,
+                    {
+                        type: 'number',
+                        params: ['100'],
+                    },
+                ],
+                type: 'HW_MOTOR_A_ANGLE',
+            },
+            paramsKeyMap: {
+                name: 0,
+                property: 1,
+                upper: 2,
+                bottom: 3,
+            },
+            class: 'motor',
+            isNotFor: ['modi'],
+            func: function (sprite, script) {
+                if (!Entry.hw.sendQueue.moduleValue) {
+                    Entry.MODI.initSend();
+                }
+                var key = script.getStringField('name'),
+                    property = script.getStringField('property'),
+                    upper = script.getNumberValue('upper'),
+                    bottom = script.getNumberValue('bottom');
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+
+                var sq = Entry.hw.sendQueue.moduleValue;
+                sq['motor'][key] = JSON.stringify({
+                    module: property,
+                    id: moduleID,
+                    value1: upper,
+                    value2: bottom,
+                });
+
+                return script.callReturn();
+            },
+
+            syntax: {
+                js: [], 
+                py: [
+                    {
+                        syntax: '(motorA.angle = %2)',
+                        template: '(motorA.angle = %2)',
+                    },
+                ],
+
+                c: [
+                    {
+                        syntax: 'motor0.?%2?%3?%4',
+                        template: 'motor0.?%2?%3?%4',
+                    },
+                ],
+            },
+        },
+
+        HW_MOTOR_A_ANGLE_CHANGE: {
+            color: EntryStatic.colorSet.block.modi.OUTPUT,
+            outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic',
+            template: '%1 모터A의 각도를 %2 방향으로 %3°만큼 바꾸기',
+            params: [  
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/motor1.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Dropdown',
+                    options: [
+                        ['시계', 2],
+                        ['반시계', 3]
+                    ],
+                    fontSize: 11,
+                    bgColor: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                    defaultType: 'number'
+                },
+              
+            ],
+            def: {
+                params: [
+                    null, 
+                    2,
+                    {
+                        type: 'number',
+                        params: ['100'],
+                    },
+                ],
+                type: 'HW_MOTOR_A_ANGLE_CHANGE',
+            },
+            paramsKeyMap: {
+                name: 0,
+                property: 1,
+                upper: 2,
+                bottom: 3,
+            },
+            class: 'motor',
+            isNotFor: ['modi'],
+            func: function (sprite, script) {
+                if (!Entry.hw.sendQueue.moduleValue) {
+                    Entry.MODI.initSend();
+                }
+                var key = script.getStringField('name'),
+                    property = script.getStringField('property'),
+                    upper = script.getNumberValue('upper'),
+                    bottom = script.getNumberValue('bottom');
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+
+                var sq = Entry.hw.sendQueue.moduleValue;
+                sq['motor'][key] = JSON.stringify({
+                    module: property,
+                    id: moduleID,
+                    value1: upper,
+                    value2: bottom,
+                });
+
+                return script.callReturn();
+            },
+
+            syntax: {
+                js: [], 
+                py: [
+                    {
+                       syntax: '(motorA.append_angle = %3)',
+                        template: '(motorA.append_angle = %3)',
+                    },
+                ],
+
+                c: [
+                    {
+                        syntax: 'motor0.?%2?%3?%4',
+                        template: 'motor0.?%2?%3?%4',
+                    },
+                ],
+            },
+        },
+        
+        HW_MOTOR_A_STOP: {
+            color: EntryStatic.colorSet.block.modi.OUTPUT,
+            outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic',
+            template: '%1 모터A 멈추기',
+            params: [  
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/motor1.svg',
+                    size: 11,
+                },
+            
+              
+            ],
+            def: {
+            
+                type: 'HW_MOTOR_A_STOP',
+            },
+            paramsKeyMap: {
+                name: 0,
+                property: 1,
+                upper: 2,
+                bottom: 3,
+            },
+            class: 'motor',
+            isNotFor: ['modi'],
+            func: function (sprite, script) {
+                if (!Entry.hw.sendQueue.moduleValue) {
+                    Entry.MODI.initSend();
+                }
+                var key = script.getStringField('name'),
+                    property = script.getStringField('property'),
+                    upper = script.getNumberValue('upper'),
+                    bottom = script.getNumberValue('bottom');
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+
+                var sq = Entry.hw.sendQueue.moduleValue;
+                sq['motor'][key] = JSON.stringify({
+                    module: property,
+                    id: moduleID,
+                    value1: upper,
+                    value2: bottom,
+                });
+
+                return script.callReturn();
+            },
+
+            syntax: {
+                js: [], 
+                py: [
+                    {
+                        syntax: 'motorA.stop()',
+                        template: 'motorA.stop()',
+                    },
+                ],
+
+                c: [
+                    {
+                        syntax: 'motor0.?%2?%3?%4',
+                        template: 'motor0.?%2?%3?%4',
+                    },
+                ],
+            },
+        },
+
+        HW_MOTOR_B: {
+            color: EntryStatic.colorSet.block.modi.OUTPUT,
+            outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic',
+            template: '%1 모터B의 속도를 %2%로 정하기',
+            params: [  
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/motor1.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                    defaultType : 'number'
+                },
+              
+            ],
+            def: {
+                params: [ 
+                    null,
+                    {
+                        type: 'number',
+                        params: ['100'],
+                    },
+                ],
+                type: 'HW_MOTOR_B',
+            },
+            paramsKeyMap: {
+                name: 0,
+                property: 1,
+                upper: 2,
+                bottom: 3,
+            },
+            class: 'motor',
+            isNotFor: ['modi'],
+            func: function (sprite, script) {
+                if (!Entry.hw.sendQueue.moduleValue) {
+                    Entry.MODI.initSend();
+                }
+                var key = script.getStringField('name'),
+                    property = script.getStringField('property'),
+                    upper = script.getNumberValue('upper'),
+                    bottom = script.getNumberValue('bottom');
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+
+                var sq = Entry.hw.sendQueue.moduleValue;
+                sq['motor'][key] = JSON.stringify({
+                    module: property,
+                    id: moduleID,
+                    value1: upper,
+                    value2: bottom,
+                });
+
+                return script.callReturn();
+            },
+
+            syntax: {
+                js: [], 
+                py: [
+                    {
+                        syntax: '(motorB.speed = %2)',
+                        template: '(motorB.speed = %2)',
+                    },
+                ],
+
+                c: [
+                    {
+                        syntax: 'motor0.?%2?%3?%4',
+                        template: 'motor0.?%2?%3?%4',
+                    },
+                ],
+            },
+        },
+
+        HW_MOTOR_B_ANGLE: {
+            color: EntryStatic.colorSet.block.modi.OUTPUT,
+            outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic',
+            template: '%1 모터B의 각도를 %2°로 정하기',
+            params: [  
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/motor1.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                    defaultType: 'number'
+                },
+              
+            ],
+            def: {
+                params: [ 
+                    null,
+                    {
+                        type: 'number',
+                        params: ['100'],
+                    },
+                ],
+                type: 'HW_MOTOR_B_ANGLE',
+            },
+            paramsKeyMap: {
+                name: 0,
+                property: 1,
+                upper: 2,
+                bottom: 3,
+            },
+            class: 'motor',
+            isNotFor: ['modi'],
+            func: function (sprite, script) {
+                if (!Entry.hw.sendQueue.moduleValue) {
+                    Entry.MODI.initSend();
+                }
+                var key = script.getStringField('name'),
+                    property = script.getStringField('property'),
+                    upper = script.getNumberValue('upper'),
+                    bottom = script.getNumberValue('bottom');
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+
+                var sq = Entry.hw.sendQueue.moduleValue;
+                sq['motor'][key] = JSON.stringify({
+                    module: property,
+                    id: moduleID,
+                    value1: upper,
+                    value2: bottom,
+                });
+
+                return script.callReturn();
+            },
+
+            syntax: {
+                js: [], 
+                py: [
+                    {
+                        syntax: '(motorB.angle = %2)',
+                        template: '(motorB.angle = %2)',
+                    },
+                ],
+
+                c: [
+                    {
+                        syntax: 'motor0.?%2?%3?%4',
+                        template: 'motor0.?%2?%3?%4',
+                    },
+                ],
+            },
+        },
+
+        HW_MOTOR_B_ANGLE_CHANGE: {
+            color: EntryStatic.colorSet.block.modi.OUTPUT,
+            outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic',
+            template: '%1 모터B의 각도를 %2 방향으로 %3°만큼 바꾸기',
+            params: [  
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/motor1.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Dropdown',
+                    options: [
+                        ['시계', 2],
+                        ['반시계', 3]
+                    ],
+                    fontSize: 11,
+                    bgColor: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                    defaultType: 'number'
+                },
+              
+            ],
+            def: {
+                params: [
+                    null, 
+                    2,
+                    {
+                        type: 'number',
+                        params: ['100'],
+                    },
+                ],
+                type: 'HW_MOTOR_B_ANGLE_CHANGE',
+            },
+            paramsKeyMap: {
+                name: 0,
+                property: 1,
+                upper: 2,
+                bottom: 3,
+            },
+            class: 'motor',
+            isNotFor: ['modi'],
+            func: function (sprite, script) {
+                if (!Entry.hw.sendQueue.moduleValue) {
+                    Entry.MODI.initSend();
+                }
+                var key = script.getStringField('name'),
+                    property = script.getStringField('property'),
+                    upper = script.getNumberValue('upper'),
+                    bottom = script.getNumberValue('bottom');
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+
+                var sq = Entry.hw.sendQueue.moduleValue;
+                sq['motor'][key] = JSON.stringify({
+                    module: property,
+                    id: moduleID,
+                    value1: upper,
+                    value2: bottom,
+                });
+
+                return script.callReturn();
+            },
+
+            syntax: {
+                js: [], 
+                py: [
+                    {
+                       syntax: '(motorB.append_angle = %3)',
+                        template: '(motorB.append_angle = %3)',
+                    },
+                ],
+
+                c: [
+                    {
+                        syntax: 'motor0.?%2?%3?%4',
+                        template: 'motor0.?%2?%3?%4',
+                    },
+                ],
+            },
+        },
+        
+        HW_MOTOR_B_STOP: {
+            color: EntryStatic.colorSet.block.modi.OUTPUT,
+            outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic',
+            template: '%1 모터B 멈추기',
+            params: [  
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/motor1.svg',
+                    size: 11,
+                },
+            
+              
+            ],
+            def: {
+            
+                type: 'HW_MOTOR_B_STOP',
+            },
+            paramsKeyMap: {
+                name: 0,
+                property: 1,
+                upper: 2,
+                bottom: 3,
+            },
+            class: 'motor',
+            isNotFor: ['modi'],
+            func: function (sprite, script) {
+                if (!Entry.hw.sendQueue.moduleValue) {
+                    Entry.MODI.initSend();
+                }
+                var key = script.getStringField('name'),
+                    property = script.getStringField('property'),
+                    upper = script.getNumberValue('upper'),
+                    bottom = script.getNumberValue('bottom');
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+
+                var sq = Entry.hw.sendQueue.moduleValue;
+                sq['motor'][key] = JSON.stringify({
+                    module: property,
+                    id: moduleID,
+                    value1: upper,
+                    value2: bottom,
+                });
+
+                return script.callReturn();
+            },
+
+            syntax: {
+                js: [], 
+                py: [
+                    {
+                        syntax: 'motorB.stop()',
+                        template: 'motorB.stop()',
+                    },
+                ],
+
+                c: [
+                    {
+                        syntax: 'motor0.?%2?%3?%4',
+                        template: 'motor0.?%2?%3?%4',
+                    },
+                ],
+            },
+        },
+
         HW_DISPLAY_TEXT: {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
