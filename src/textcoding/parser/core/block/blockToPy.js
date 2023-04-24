@@ -281,23 +281,14 @@ Entry.BlockToPyParser = class {
                         break;
                     }
                     
-        
-                    
-                    case 'HW_DISPLAY_TEXT' : {
-                        resultTextCode = Entry.TextCodingUtil.assembleModiDisplayBlock(
-                            block,
-                            resultTextCode
-                        );
-                        break;
-                    }
 
-                    case 'HW_DISPLAY_IMAGE' : {
-                        resultTextCode = Entry.TextCodingUtil.assembleModiDisplayImgBlock(
-                            block,
-                            resultTextCode
-                        );
-                        break;
-                    }
+                    // case 'HW_DISPLAY_IMAGE' : {
+                    //     resultTextCode = Entry.TextCodingUtil.assembleModiDisplayImgBlock(
+                    //         block,
+                    //         resultTextCode
+                    //     );
+                    //     break;
+                    // }
 
                     case 'HW_DISPLAY_RESET' : {
                         resultTextCode = Entry.TextCodingUtil.assembleModiDisplayClearBlock();

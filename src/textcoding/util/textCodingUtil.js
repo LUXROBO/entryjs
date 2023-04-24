@@ -1179,7 +1179,7 @@ class TextCodingUtil {
         return result;
 
     }
-    
+
     assembleModiDisplayBlock(block, syntax) {
         // 영문, (영+수), |  숫자, 변수, 인풋, | 한글, (한글+수), (영+한글)
         const blockToken = syntax.split('(?lXrObo8m_1#?)');
@@ -1265,10 +1265,27 @@ class TextCodingUtil {
 
     assembleModiDisplayMoveBlock(block, syntax) {
         const blockToken = syntax.split('?');
-        const direction = blockToken[1];
-        const sign = blockToken[2];
-        const distance = blockToken[3];
-        const result = `display0.set${direction}(${sign}*${distance});`;
+
+        const directionH = blockToken[0];
+        const directionV = blockToken[2];
+        
+        var hSign = '';
+        var vSign = '';
+
+        
+        if (directionV == 'V-') {
+            vSign = '-';
+        }
+
+        if (directionH == 'H-') {
+            hSign = '-';
+        }
+
+        console.log('assembleModiDisplayMoveBlock syntax : ', syntax)
+        console.log('assembleModiDisplayMoveBlock blockToken : ', blockToken)
+
+
+        const result = `display.move_screen = ${hSign}${blockToken[1]}, ${vSign}${blockToken[3]}`;
         return result
     }
 

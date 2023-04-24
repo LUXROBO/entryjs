@@ -678,11 +678,11 @@ EntryStatic.moduleToBlocks = {
    
    
     DISPLAY: [
+        'HW_DISPLAY_IMAGE',
         'HW_DISPLAY_TEXT',
         'HW_DISPLAY_DATA',
-        'HW_DISPLAY_IMAGE',
-        'HW_DISPLAY_RESET',
         'HW_DISPLAY_MOVE',
+        'HW_DISPLAY_RESET',
     ],
     NETWORK: [
         'HW_NETWORK_BTN',

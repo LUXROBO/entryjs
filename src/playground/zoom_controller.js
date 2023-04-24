@@ -259,60 +259,20 @@ Entry.ZoomController = class ZoomController {
                         }
                         
                         let binary = 'import time\nimport modi_plus\nimport math\n\nbundle = modi_plus.MODIPlus()\n';
-                        console.log('binary1', JSON.stringify(binary));
-                        console.log('cOutput' , JSON.stringify(output));
-
-                        // 이미지 데이터
-                        let images = output.match(/(?<=drawPicture\().*(?=\))/g)||[]
-                        let imgData = Entry.TextCodingUtil.imgData
-
-                        console.log('binary1-3');
-
-
-                        for(let i =0 ; i < images.length ; i++){
-                            binary += `const char picture${i}[${imgData[i].split(',').length + 1}] = {\n${imgData[i]}\n};\n\n`
-                        }
-                        
-                        console.log('binary2', JSON.stringify(binary));
+                   
                         let moduleList = ''
                         const variables = Entry.variableContainer.variables_
                         variables.forEach((el)=>{
                             moduleList += `float ${el.getId()} = 0.0;\n`
                         })
-        
-                        // 멜로디 템포 변수 선언
-                        if(Entry.TextCodingUtil.melodyTempo.length){
-                            let melodyTempoVariable = ''
-                            Entry.TextCodingUtil.melodyTempo.forEach(el =>{
-                                melodyTempoVariable += el 
-                            })
-                            let melArr = melodyTempoVariable
-                            .replace(/[\n\t]*/g,"")
-                            .replace(/\s*(?=float)/g,"")
-                            .split(';')
-                            .reduce((accArr,el)=>{
-                                if(!accArr.includes(el)){
-                                    accArr.push(el)
-                                }
-                                return accArr
-                            },[])
-                            .join(';\n')
-                            moduleList += melArr
-                        }
+                       
                         console.log('binary3', JSON.stringify(binary));
                         // 모듈 블럭 선언
                         moduleList += `\n${Entry.module}\n`;
         
                         // moduleList += 'Network network0(0x0000E07B45C3);\n'
                         // moduleList += 'Display display0(0x4020A3A5DB74);\n'
-                        // moduleList += 'Dial dial0(0x4020A3A5DB74);\n'
-
-                        // 이미지 변수 선언
-                        for(let i =0 ; i < images.length ; i++){
-                            moduleList += `\ndisplay0.addPicture(${images[i]},picture${i});\n`;
-                        }
-        
-                       
+                        // moduleList += 'Dial dial0(0x4020A3A5DB74);\n   
                        
                         // 코드
                         // console.log("cOutput",cOutput)
@@ -380,9 +340,6 @@ Entry.ZoomController = class ZoomController {
                             console.log('export length error');
                             window.android.failUpload('숫자를 입력해 주세요.');
                         }
-                
-
-                        window.android.log(e);
         
                         if(e == 'thread') {
                             this.retryCount++;
