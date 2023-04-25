@@ -934,10 +934,10 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
-                c: [
+                py: [
                     {
-                        syntax: 'led0.setRgb(0,0,0);',
-                        template: 'led0.setRgb(0,0,0);',
+                        syntax: 'led.set_rgb(0,0,0);',
+                        template: 'led.set_rgb(0,0,0);',
                     },
                 ],
             },
@@ -1024,10 +1024,10 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
-                c: [
+                py: [
                     {
-                        syntax: 'led0.setRgb(%2,%3,%4);',
-                        template: 'led0.setRgb(%2,%3,%4);',
+                        syntax: 'led.set_rgb(%2,%3,%4);',
+                        template: 'led.set_rgb(%2,%3,%4);',
                     },
                 ],
             },
@@ -1092,10 +1092,10 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
-                c: [
+                py: [
                     {
-                        syntax: 'led0.%1',
-                        template: 'led0.%1',
+                        syntax: 'led.%1',
+                        template: 'led.%1',
                     },
                 ],
             },
