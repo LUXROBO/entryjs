@@ -2364,6 +2364,7 @@ Lang.Workspace = {
     "upload": "파일 업로드",
     "upload_addfile": "파일추가",
     "variable": "변수",
+    "modi": "하드웨어",
     "variable_add_calcel": "변수 추가 취소",
     "variable_add_calcel_msg": "변수 추가를 취소하였습니다.",
     "variable_add_fail": "변수 추가 실패",

@@ -7,7 +7,7 @@ import Visible from '@egjs/visible';
 import debounce from 'lodash/debounce';
 
 const VARIABLE = 'variable';
-const HW = 'arduino';
+const HW = 'input';
 const splitterHPadding = 20;
 
 function _buildCategoryCodes(blocks, category) {
@@ -965,6 +965,7 @@ class BlockMenu {
     }
 
     _generateCategoryView(data) {
+        
         if (!data) {
             return;
         }
@@ -1140,6 +1141,7 @@ class BlockMenu {
     }
 
     _generateCategoryElement(name, visible) {
+        console.log("_generateCategoryElement",name, visible );
         return (this._categoryElems[name] = Entry.Dom('li', {
             id: `entryCategory${name}`,
             classes: [
