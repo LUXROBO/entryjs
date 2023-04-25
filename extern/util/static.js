@@ -100,8 +100,7 @@ EntryStatic.defaultModiList = [
     "TOF",
     "LED",
     "SPEAKER",
-    "MOTOR_A",
-    "MOTOR_B",
+    "MOTOR",
     "DISPLAY"
 ]
 
