@@ -25,6 +25,7 @@ Entry.BlockView = class BlockView {
     };
 
     constructor(block, board, mode) {
+
         const that = this;
         Entry.Model(this, false);
         this.block = block;
@@ -170,7 +171,6 @@ Entry.BlockView = class BlockView {
             class: 'blockPath',
             blockId: this.id,
         };
-
         const blockSchema = this._schema;
         const { outerLine } = blockSchema;
         pathStyle.stroke = outerLine || skeleton.outerLine;
@@ -187,6 +187,7 @@ Entry.BlockView = class BlockView {
         if (this._board.disableMouseEvent !== true) {
             this._addControl();
         }
+        // debugger;
 
         const guide = this.guideSvgGroup;
         guide && svgGroup.insertBefore(guide, svgGroup.firstChild);
@@ -1286,6 +1287,7 @@ Entry.BlockView = class BlockView {
 
     getDataUrl(notClone, notPng) {
         return new Promise((resolve, reject) => {
+
             const svgGroup = notClone ? this.svgGroup : this.svgGroup.cloneNode(true);
             const svgCommentGroup = notClone
                 ? this.svgCommentGroup
@@ -1321,7 +1323,7 @@ Entry.BlockView = class BlockView {
                 "'NanumGothic', 'NanumGothic', '나눔고딕','NanumGothicWeb', '맑은 고딕', 'Malgun Gothic', Dotum";
             const boldTypes = ['≥', '≤'];
             const notResizeTypes = ['≥', '≤', '-', '>', '<', '=', '+', '-', 'x', '/'];
-
+            // debugger;
             _.toArray(texts).forEach((text) => {
                 text.setAttribute('font-family', fontFamily);
                 const size = parseInt(text.getAttribute('font-size'), 10);
@@ -1354,6 +1356,7 @@ Entry.BlockView = class BlockView {
                     });
             } else {
                 _.toArray(images).forEach((img) => {
+
                     const href = img.getAttribute('href');
                     this.loadImage(
                         href,
@@ -1361,16 +1364,55 @@ Entry.BlockView = class BlockView {
                         img.getAttribute('height'),
                         notPng
                     ).then((src) => {
-                        img.setAttribute('href', src);
-                        if (++counts == images.length) {
-                            this.processSvg(svgGroup, scale, defs, notPng)
-                                .then((data) => {
-                                    resolve(data);
-                                })
-                                .catch((err) => {
-                                    reject(err);
-                                });
-                        }
+                        // src = './images/'+src.split('/').pop()
+
+
+
+                        var converterEngine = function (input) { // fn BLOB => Binary => Base64 ?
+                            var uInt8Array = new Uint8Array(input),
+                                i = uInt8Array.length;
+                            var biStr = []; //new Array(i);
+                            while (i--) {
+                                biStr[i] = String.fromCharCode(uInt8Array[i]);
+                            }
+                            biStr = biStr.join('')
+                            console.log(3,biStr)
+                            var base64 = window.btoa(biStr);
+                            console.log("2. base64 produced >>> " + base64); // print-check conversion result
+                            return base64;
+                        };
+                        
+                        var getImageBase64 = function (url, callback) {
+                            // 1. Loading file from url:
+                            var xhr = new XMLHttpRequest(url);
+                            xhr.open('GET', url, true); // url is the url of a PNG image.
+                            xhr.responseType = 'arraybuffer';
+                            xhr.callback = callback;
+                            xhr.onload = function (e) {
+                                if (this.status == 200) { // 2. When loaded, do:
+                                    console.log("1:Loaded response >>> " + this.response); // print-check xhr response 
+                                    var imgBase64 = converterEngine(this.response); // convert BLOB to base64
+                                    this.callback(imgBase64); //execute callback function with data
+                                }
+                            };
+                            xhr.send();
+                        };
+                        getImageBase64(src,(data)=>{
+                            
+                            img.setAttribute('href', "data:image/svg+xml;base64," + data);
+                            if (++counts == images.length) {
+                                this.processSvg(svgGroup, scale, defs, notPng)
+                                    .then((data) => {
+                                        console.log('png',data)
+                                        resolve(data);
+                                    })
+                                    .catch((err) => {
+                                        reject(err);
+                                    });
+                            }
+                        })
+                        
+                        
                     });
                 });
             }
@@ -1378,14 +1420,15 @@ Entry.BlockView = class BlockView {
     }
 
     downloadAsImage(i) {
-        this.getDataUrl().then((data) => {
+        this.getDataUrl(0,1).then((data) => {
+            console.log('downloadAsImage',data)
             const download = document.createElement('a');
             download.href = data.src;
             let name = '엔트리 블록';
             if (i) {
                 name += i;
             }
-            download.download = `${name}.png`;
+            download.download = `${name}.svg`;
             download.click();
         });
     }
@@ -1667,17 +1710,24 @@ Entry.BlockView = class BlockView {
 
     processSvg(svgGroup, scale, defs, notPng) {
         return new Promise((resolve, reject) => {
-            let svgData =
-                '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %W %H">(svgGroup)(defs)</svg>';
-            const bBox = this.svgGroup.getBoundingClientRect();
-            svgData = svgData
-                .replace('(svgGroup)', new XMLSerializer().serializeToString(svgGroup))
-                .replace('%W', bBox.width * scale + 20)
+                let svgData =
+                    '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %W %H">(svgGroup)(defs)</svg>';
+                const bBox = this.svgGroup.getBoundingClientRect();
+            // debugger;
+
+                svgData = svgData
+                    .replace('(svgGroup)', new XMLSerializer().serializeToString(svgGroup))
+                .replace('%W', bBox.width * scale + 50)
                 .replace('%H', bBox.height * scale + 5)
                 .replace('(defs)', new XMLSerializer().serializeToString(defs[0]))
                 .replace(/>\s+/g, '>')
-                .replace(/\s+</g, '<');
+                .replace(/\s+</g, '<')
+                .replace(/alignment-baseline="middle"/g,'')
+                .replace(/xml:space="preserve"\s*/g,'')
+                .replace(/style="white-space: pre;"/g,'')
+                // .replace('style="white-space: pre;"','');
             let src = `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svgData)))}`;
+            console.log('svg',svgData)
             svgData = null;
             if (notPng) {
                 resolve({
@@ -1689,6 +1739,7 @@ Entry.BlockView = class BlockView {
             } else {
                 this.loadImage(src, bBox.width, bBox.height, notPng, 1.5).then(
                     (src) => {
+                        console.log('src',src)
                         svgGroup = null;
                         resolve({
                             src,
@@ -1730,7 +1781,17 @@ Entry.BlockView = class BlockView {
             const ctx = canvas.getContext('2d');
 
             img.onload = function() {
+            //     ctx.drawImage(img, 0, 0);
+            //     debugger
+            // var s = new XMLSerializer().serializeToString(canvas)
+
+            // var encodedData = window.btoa(s);
+
+            // console.log("encodedData",encodedData)
+            // return resolve(encodedData)
+
                 ctx.drawImage(img, 0, 0, width, height);
+
                 const data = canvas.toDataURL('image/png');
                 if (/\.png$/.test(src)) {
                     Entry.BlockView.pngMap[src] = data;
