@@ -277,7 +277,6 @@ Entry.ZoomController = class ZoomController {
                         // 코드
                         // console.log("cOutput",cOutput)
                         binary += `${output}\n`;
-                        binary += '}\n'
                         binary = binary.replace(/temp__/g, moduleList)
                         binary = binary.replace(/\t/g, "    ")
         
@@ -319,11 +318,6 @@ Entry.ZoomController = class ZoomController {
 
                             throw new Error(numberMatch[0])
                         }
-
-        
-                        // data 초기화
-                        Entry.TextCodingUtil.imgData = []
-                        Entry.TextCodingUtil.melodyTempo = []
         
                         // 프로젝트 저장
                         console.log('exportProject')
