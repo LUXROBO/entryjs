@@ -1095,7 +1095,7 @@ class TextCodingUtil {
             return Math.round((parseInt(el, 16) / 255) * 100)
         })
 
-        let rgbType = `led0.setRgb(${transferedValue[0]},${transferedValue[1]},${transferedValue[2]});`;
+        let rgbType = `led.set_rgb(${transferedValue[0]},${transferedValue[1]},${transferedValue[2]});`;
         return rgbType;
     }
 
