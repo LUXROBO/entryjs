@@ -155,7 +155,7 @@ Entry.MODI.getBlocks = function () {
                         ['클릭', 'clicked'],
                         ['두 번 클릭', 'double_clicked'],
                         ['누른 상태', 'pressed'],
-                        ['스위치', 'toggled'],
+                        ['스위치 켜짐', 'toggled'],
                     ],
                     fontSize: 11,
                     bgColor: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
@@ -570,7 +570,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic_string_field',
-            template: '%1 거리의 거리 cm ',
+            template: '%1 거리의 거리(cm) ',
             params: [
                 {
                     type: 'Indicator',
@@ -946,33 +946,26 @@ Entry.MODI.getBlocks = function () {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             skeleton: 'basic',
-            template: '%5 불빛을 빨간빛 %2% 초록빛 %3% 파란빛 %4%로 정하기   ',
+            template: '%1 불빛의 빨간빛을 %2% 초록빛을 %3% 파란빛을 %4%로 정하기   ',
             params: [
-                {
-                    type: 'DropdownDynamic',
-                    value: null,
-                    fontSize: 11,
-                    menuName: Entry.MODI.ledList,
-                    bgColor: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                },
-                {
-                    type: 'Block',
-                    accept: 'string',
-                },
-                {
-                    type: 'Block',
-                    accept: 'string',
-                },
-                {
-                    type: 'Block',
-                    accept: 'string',
-                },
                 {
                     type: 'Indicator',
                     img: 'block_icon/modi_icon/led.svg',
                     size: 11,
                 },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                },
+               
             ],
             def: {
                 params: [
@@ -1173,7 +1166,7 @@ Entry.MODI.getBlocks = function () {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             skeleton: 'basic',
-            template: '%1 스피커의 음%2를 크기%3로 정하기   ',
+            template: '%1 스피커의 음%2를 크기%3%로 정하기   ',
             params: [
                 {
                     type: 'Indicator',
@@ -1290,18 +1283,18 @@ Entry.MODI.getBlocks = function () {
                     options: [
                         ["들리브  '실비아:피치카토'", 'res/Delibes.mid'],
                         ["런던 다리가 무너지네", 'res/London.mid'],
-                        ["맥도날드 노인", 'res/OldMac.mid'],
+                        ["맥도널드 노인", 'res/OldMac.mid'],
                         ["모차르트 '피아노 협주곡 21번 2악장'", 'res/Mozart21.mid'],
                         ["베르디 '여자의 마음'", 'res/Verdi.mid'],
                         ["비발디 '사계:봄'", "res/Vivaldi.mid"],
                         ["비제 '카르맨:투우사'", "res/Bizet.mid"],
                         ["수자 '워싱턴 포스트 행진곡'", "res/Sousa.mid"],
                         ["슈베르트 '송어'", "res/SchubeD.mid"],
-                        ["요나손 '뻐국 왈츠'","res/Jonasson.mid"],
+                        ["요나손 '뻐꾹테 왈츠'","res/Jonasson.mid"],
                         ["푸치크 '검투사의 입장'", "res/Fucik.mid"],
                         ["Mary had a Little Lamb(떳다 떳다 비행기)", "res/Mary.mid"],
                         ["드보르작 '교향곡 제 9번'", "res/Dvorak.mid"],
-                        ["로시니 '윌리엄 텔 서곡'", "res/Rossini.mid"],
+                        ["로시니 '윌리암 텔 서곡'", "res/Rossini.mid"],
                         ["모차르트 '교향곡 제 40번'", "res/Mozart40.mid"],
                         ["모차르트 '밤의여왕'", "res/MozartQ.mid"],
                         ["오펜바흐 '지옥의 오르페우스'", "res/BachO.mid"],
@@ -1310,11 +1303,11 @@ Entry.MODI.getBlocks = function () {
                         ["베토벤 '교향곡 제 5번'","res/Beeth5.mid"],
                         ["베토벤 '엘리제를 위하여'","res/BeethF.mid"],
                         ["슈트라우스 '아름다운 도나우강'","res/Straus.mid"],
-                        ["차이코프스키 '피아노 협주곡 1번'","res/Tchaiko1.mid"],
+                        ["차이콥스키 '피아노 협주곡 1번'","res/Tchaiko1.mid"],
                         ["네케 '크시코스의 우편마차'","res/Necke.mid"],
                         ["모차르트 '터키 행진곡'", "res/MozartR.mid"],
                         ["브람스 '헝가리 무곡 5번'","res/Brahms5.mid"],
-                        ["차이코프스키 '사탕요정의 춤'","res/TchaikoD.mid"],
+                        ["차이콥스키 '사탕요정의 춤'","res/TchaikoD.mid"],
                         ["거미가 줄을 타고 올라갑니다","res/Spider.mid"],
                         ["델의 농부","res/Farmer.mid"],
                         ["리스트 '사랑의 꿈 3번'","res/Liszt.mid"],
@@ -1329,8 +1322,8 @@ Entry.MODI.getBlocks = function () {
                         ["양키 두들", "res/yankee.mid"],
                         ["엘가 '사랑의 인사'", "res/ElgarS.mid"],
                         ["와이먼 '은파'", "res/Wyman.mid"],
-                        ["차이코프스키 '꽃의 왈츠'", "res/TchaikoW.mid"],
-                        ["차이코프스키 '백조의 호수:정경'", "res/TchaikoS.mid"],
+                        ["차이콥스키 '꽃의 왈츠'", "res/TchaikoW.mid"],
+                        ["차이콥스키 '백조의 호수:정경'", "res/TchaikoS.mid"],
                         ["멘델스존 '결혼 행진곡'", "res/Mendel.mid"],
                         ["바그너 '결혼 행진곡'", "res/Wagner.mid"],
                         ["엘가 '위풍당당 행진곡'", "res/ElgarP.mid"],
@@ -1430,7 +1423,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic',
-            template: '%1 모터A의 속도를 %2%로 정하기',
+            template: '%1 모터 A의 속도를 %2%로 정하기',
             params: [  
                 {
                     type: 'Indicator',
@@ -1449,7 +1442,7 @@ Entry.MODI.getBlocks = function () {
                     null,
                     {
                         type: 'number',
-                        params: ['100'],
+                        params: ['0'],
                     },
                 ],
                 type: 'HW_MOTOR_A',
@@ -1506,7 +1499,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic',
-            template: '%1 모터A의 각도를 %2°로 정하기',
+            template: '%1 모터 A의 각도를 %2°로 정하기',
             params: [  
                 {
                     type: 'Indicator',
@@ -1525,7 +1518,7 @@ Entry.MODI.getBlocks = function () {
                     null,
                     {
                         type: 'number',
-                        params: ['100'],
+                        params: ['0'],
                     },
                 ],
                 type: 'HW_MOTOR_A_ANGLE',
@@ -1582,7 +1575,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic',
-            template: '%1 모터A의 각도를 %2 방향으로 %3°만큼 바꾸기',
+            template: '%1 모터 A의 각도를 %2 방향으로 %3°만큼 바꾸기',
             params: [  
                 {
                     type: 'Indicator',
@@ -1612,7 +1605,7 @@ Entry.MODI.getBlocks = function () {
                     2,
                     {
                         type: 'number',
-                        params: ['100'],
+                        params: ['0'],
                     },
                 ],
                 type: 'HW_MOTOR_A_ANGLE_CHANGE',
@@ -1669,7 +1662,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic',
-            template: '%1 모터A 멈추기',
+            template: '%1 모터 A 멈추기',
             params: [  
                 {
                     type: 'Indicator',
@@ -1735,7 +1728,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic',
-            template: '%1 모터B의 속도를 %2%로 정하기',
+            template: '%1 모터 B의 속도를 %2%로 정하기',
             params: [  
                 {
                     type: 'Indicator',
@@ -1754,7 +1747,7 @@ Entry.MODI.getBlocks = function () {
                     null,
                     {
                         type: 'number',
-                        params: ['100'],
+                        params: ['0'],
                     },
                 ],
                 type: 'HW_MOTOR_B',
@@ -1811,7 +1804,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic',
-            template: '%1 모터B의 각도를 %2°로 정하기',
+            template: '%1 모터 B의 각도를 %2°로 정하기',
             params: [  
                 {
                     type: 'Indicator',
@@ -1830,7 +1823,7 @@ Entry.MODI.getBlocks = function () {
                     null,
                     {
                         type: 'number',
-                        params: ['100'],
+                        params: ['0'],
                     },
                 ],
                 type: 'HW_MOTOR_B_ANGLE',
@@ -1887,7 +1880,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic',
-            template: '%1 모터B의 각도를 %2 방향으로 %3°만큼 바꾸기',
+            template: '%1 모터 B의 각도를 %2 방향으로 %3°만큼 바꾸기',
             params: [  
                 {
                     type: 'Indicator',
@@ -1917,7 +1910,7 @@ Entry.MODI.getBlocks = function () {
                     2,
                     {
                         type: 'number',
-                        params: ['100'],
+                        params: ['0'],
                     },
                 ],
                 type: 'HW_MOTOR_B_ANGLE_CHANGE',
@@ -1974,7 +1967,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic',
-            template: '%1 모터B 멈추기',
+            template: '%1 모터 B 멈추기',
             params: [  
                 {
                     type: 'Indicator',
@@ -2430,7 +2423,7 @@ Entry.MODI.getBlocks = function () {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             skeleton: 'basic',
-            template: '%1 화면을 %2(으)로 %3만큼, %4(으)로 %5만큼 이동하기    ',
+            template: '%1 화면을 %2(으)로 %3px만큼, %4(으)로 %5px만큼 이동하기    ',
             params: [
                 {
                     type: 'Indicator',
@@ -2511,7 +2504,7 @@ Entry.MODI.getBlocks = function () {
             color: EntryStatic.colorSet.block.modi.SETUP,
             outerLine: EntryStatic.colorSet.block.modi.SETUP_OUTLINE,
             skeleton: 'basic',
-            template: '%1 네트워크 벨 소리를 %2 으로 정하기   ',
+            template: '%1 네트워크 벨 소리 %2 으로 정하기   ',
             params: [
                 {
                     type: 'Indicator',
@@ -2576,7 +2569,7 @@ Entry.MODI.getBlocks = function () {
                         ['클릭', 'clicked'],
                         ['두 번 클릭', 'double_clicked'],
                         ['누른 상태', 'pressed'],
-                        ['스위치', 'toggled'],
+                       
                     ],
                     fontSize: 11,
                     bgColor: EntryStatic.colorSet.block.modi.SETUP_OUTLINE,
@@ -2616,7 +2609,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.SETUP_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic_string_field',
-            template: '%1 네트워크 버튼의 %2',
+            template: '%1 네트워크 버튼 %2',
             params: [
                 {
                     type: 'Indicator',
@@ -2629,7 +2622,7 @@ Entry.MODI.getBlocks = function () {
                         ['클릭', 'clicked'],
                         ['두 번 클릭', 'double_clicked'],
                         ['누른 상태', 'pressed'],
-                        ['스위치', 'toggled'],
+                        
                     ],
                     fontSize: 11,
                     bgColor: EntryStatic.colorSet.block.modi.SETUP_OUTLINE,
@@ -2871,7 +2864,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.SETUP_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic_boolean_field',
-            template: '%1 네트워크 조이스틱 %2',
+            template: '%1 네트워크 조이스틱이 %2',
             params: [
                 {
                     type: 'Indicator',
@@ -2965,7 +2958,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.SETUP_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic_boolean_field',
-            template: '%1 네트워크 슬라이더의 위치%2 %3%',
+            template: '%1 네트워크 슬라이드의 위치%2 %3%',
             params: [
                 {
                     type: 'Indicator',
@@ -3031,7 +3024,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.SETUP_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic_string_field',
-            template: '%1 네트워크 슬라이더의 위치(%)',
+            template: '%1 네트워크 슬라이드의 위치(%)',
             params: [
                 {
                     type: 'Indicator',

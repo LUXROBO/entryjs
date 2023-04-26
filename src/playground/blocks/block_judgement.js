@@ -362,12 +362,12 @@ module.exports = {
                     params: [
                         {
                             type: 'text',
-                            params: ['10'],
+                            params: ['0'],
                         },
                         'GREATER',
                         {
                             type: 'text',
-                            params: ['10'],
+                            params: ['0'],
                         },
                     ],
                     type: 'boolean_basic_operator',
@@ -392,12 +392,12 @@ module.exports = {
                         params: [
                             {
                                 type: 'text',
-                                params: ['10'],
+                                params: ['0'],
                             },
                             'GREATER',
                             {
                                 type: 'text',
-                                params: ['10'],
+                                params: ['0'],
                             },
                         ],
                         type: 'boolean_basic_operator',
@@ -407,12 +407,12 @@ module.exports = {
                         params: [
                             {
                                 type: 'text',
-                                params: ['10'],
+                                params: ['0'],
                             },
                             'LESS',
                             {
                                 type: 'text',
-                                params: ['10'],
+                                params: ['0'],
                             },
                         ],
                         type: 'boolean_basic_operator',
@@ -421,12 +421,12 @@ module.exports = {
                         params: [
                             {
                                 type: 'text',
-                                params: ['10'],
+                                params: ['0'],
                             },
                             'GREATER_OR_EQUAL',
                             {
                                 type: 'text',
-                                params: ['10'],
+                                params: ['0'],
                             },
                         ],
                         type: 'boolean_basic_operator',
@@ -435,12 +435,12 @@ module.exports = {
                         params: [
                             {
                                 type: 'text',
-                                params: ['10'],
+                                params: ['0'],
                             },
                             'LESS_OR_EQUAL',
                             {
                                 type: 'text',
-                                params: ['10'],
+                                params: ['0'],
                             },
                         ],
                         type: 'boolean_basic_operator',
@@ -449,12 +449,12 @@ module.exports = {
                         params: [
                             {
                                 type: 'text',
-                                params: ['10'],
+                                params: ['0'],
                             },
                             'EQUAL',
                             {
                                 type: 'text',
-                                params: ['10'],
+                                params: ['0'],
                             },
                         ],
                         type: 'boolean_basic_operator',
@@ -463,12 +463,12 @@ module.exports = {
                         params: [
                             {
                                 type: 'text',
-                                params: ['10'],
+                                params: ['0'],
                             },
                             'NOTEQUAL',
                             {
                                 type: 'text',
-                                params: ['10'],
+                                params: ['0'],
                             },
                         ],
                         type: 'boolean_basic_operator',

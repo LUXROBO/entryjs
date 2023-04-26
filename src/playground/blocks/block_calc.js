@@ -31,12 +31,12 @@ module.exports = {
                     params: [
                         {
                             type: 'number',
-                            params: ['10'],
+                            params: ['0'],
                         },
                         'PLUS',
                         {
                             type: 'number',
-                            params: ['10'],
+                            params: ['0'],
                         },
                     ],
                     type: 'calc_basic',
@@ -60,12 +60,12 @@ module.exports = {
                         params: [
                             {
                                 type: 'number',
-                                params: ['10'],
+                                params: ['0'],
                             },
                             'PLUS',
                             {
                                 type: 'number',
-                                params: ['10'],
+                                params: ['0'],
                             },
                         ],
                         type: 'calc_basic',
@@ -74,12 +74,12 @@ module.exports = {
                         params: [
                             {
                                 type: 'number',
-                                params: ['10'],
+                                params: ['0'],
                             },
                             'MINUS',
                             {
                                 type: 'number',
-                                params: ['10'],
+                                params: ['0'],
                             },
                         ],
                         type: 'calc_basic',
@@ -88,12 +88,12 @@ module.exports = {
                         params: [
                             {
                                 type: 'number',
-                                params: ['10'],
+                                params: ['0'],
                             },
                             'MULTI',
                             {
                                 type: 'number',
-                                params: ['10'],
+                                params: ['0'],
                             },
                         ],
                         type: 'calc_basic',
@@ -102,12 +102,12 @@ module.exports = {
                         params: [
                             {
                                 type: 'number',
-                                params: ['10'],
+                                params: ['0'],
                             },
                             'DIVIDE',
                             {
                                 type: 'number',
-                                params: ['10'],
+                                params: ['0'],
                             },
                         ],
                         type: 'calc_basic',
@@ -255,12 +255,12 @@ module.exports = {
                         null,
                         {
                             type: 'number',
-                            params: ['0'],
+                            params: ['1'],
                         },
                         null,
                         {
                             type: 'number',
-                            params: ['10'],
+                            params: ['2'],
                         },
                         null,
                     ],
