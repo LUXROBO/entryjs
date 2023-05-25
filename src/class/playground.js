@@ -753,7 +753,7 @@ Entry.Playground = class {
                 this.createVideoPlayer();
             }
             
-            console.log('device model', `${global.Entry.deviceModel} ${global.Entry.deviceModel}`);
+            console.log('device model', `${global.Entry.deviceModel}`);
             $(".engineContainer").hide();
         }
     }

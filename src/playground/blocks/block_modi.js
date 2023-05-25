@@ -154,7 +154,7 @@ Entry.MODI.getBlocks = function () {
                     options: [
                         ['클릭', 'clicked'],
                         ['두 번 클릭', 'double_clicked'],
-                        ['누른 상태', 'pressed'],
+                        ['누르기', 'pressed'],
                         ['스위치 켜짐', 'toggled'],
                     ],
                     fontSize: 11,
@@ -206,7 +206,7 @@ Entry.MODI.getBlocks = function () {
                     options: [
                         ['클릭', '2'],
                         ['두 번 클릭', '3'],
-                        ['누른 상태', '4'],
+                        ['누르기', '4'],
                         ['스위치', '5'],
                     ],
                     fontSize: 11,
@@ -1166,7 +1166,7 @@ Entry.MODI.getBlocks = function () {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             skeleton: 'basic',
-            template: '%1 스피커의 음%2를 크기%3%로 정하기   ',
+            template: '%1 스피커의 음%2을(를) 크기%3%로 정하기   ',
             params: [
                 {
                     type: 'Indicator',
@@ -2568,7 +2568,7 @@ Entry.MODI.getBlocks = function () {
                     options: [
                         ['클릭', 'clicked'],
                         ['두 번 클릭', 'double_clicked'],
-                        ['누른 상태', 'pressed'],
+                        ['누르기', 'pressed'],
                        
                     ],
                     fontSize: 11,
@@ -2621,7 +2621,7 @@ Entry.MODI.getBlocks = function () {
                     options: [
                         ['클릭', 'clicked'],
                         ['두 번 클릭', 'double_clicked'],
-                        ['누른 상태', 'pressed'],
+                        ['누르기', 'pressed'],
                         
                     ],
                     fontSize: 11,
@@ -2958,7 +2958,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.SETUP_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic_boolean_field',
-            template: '%1 네트워크 슬라이드의 위치%2 %3%',
+            template: '%1 네트워크 슬라이더의 위치%2 %3%',
             params: [
                 {
                     type: 'Indicator',
@@ -3024,7 +3024,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.SETUP_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic_string_field',
-            template: '%1 네트워크 슬라이드의 위치(%)',
+            template: '%1 네트워크 슬라이더의 위치(%)',
             params: [
                 {
                     type: 'Indicator',
