@@ -72,7 +72,11 @@ module.exports = {
                     }
                 },
                 syntax: {
-                    js: [],
+                    js: [
+                        {
+                            syntax: 'this.sleep(%1 * 1000);',
+                        },
+                    ],
                     py: [
                         {
                             syntax: 'time.sleep(%1)',
@@ -155,7 +159,13 @@ module.exports = {
                     }
                 },
                 syntax: {
-                    js: [],
+                    js: [
+                        {
+                            syntax: 'for(int i = 0; i < %1; i++)\n{\n$1\nsleep(3);\n}\nsleep(3);\n',
+                            template: 'for(int i = 0; i < %1; i++)\n{\nsleep(3);\n}\nsleep(3);\n',
+                            idChar: ['i', 'j', 'k'],
+                        },
+                    ],
                     py: [
                         {
                             syntax: 'for i in range(%1):\n$1',
@@ -219,7 +229,19 @@ module.exports = {
                     return script.getStatement('DO');
                 },
                 syntax: {
-                    js: [],
+                    js: [
+                        {
+                            syntax: 'while(true)\n{\n$1\nsleep(3);\n}\nsleep(3);\n',
+                            template: 'while(true)\n{\n$1\nsleep(3);\n}\nsleep(3);\n',
+                            textParams: [
+                                undefined,
+                                {
+                                    type: 'Block',
+                                    accept: 'boolean',
+                                },
+                            ],
+                        },
+                    ],
                     py: [
                         {
                             syntax: 'while True:\n$1',
@@ -320,7 +342,12 @@ module.exports = {
                     return value ? script.getStatement('DO', script) : script.callReturn();
                 },
                 syntax: {
-                    js: [],
+                    js: [
+                        {
+                            syntax: 'while( %1 %2 )\n{\n$1\nsleep(3);\n}\nsleep(3);\n',
+                            template: 'while( %1 %2 )\n{\nsleep(3);\n}\nsleep(3);\n',
+                        },
+                    ],
                     py: [
                         {
                             syntax: 'while %1 %2:\n$1',
@@ -358,7 +385,7 @@ module.exports = {
                     return this.executor.breakLoop();
                 },
                 syntax: { 
-                    js: [], 
+                    js: ['break;'], 
                     py: ['break'] ,
                     c: ['break;'],},
             },
@@ -424,7 +451,12 @@ module.exports = {
                     }
                 },
                 syntax: {
-                    js: [],
+                    js: [
+                        { 
+                            syntax: 'if(%1)\n{\n$1\n}',
+                            template: 'if(%1)\n{\n$1\n}' 
+                        }
+                    ],
                     py: [{ syntax: 'if %1:\n$1', template: 'if %1:' }],
                     c: [{ syntax: 'if(%1)\n{\n$1\nsleep(3);\n}', template: 'if\n(%1){\nsleep(3);\n}' }],
                 },
@@ -498,7 +530,22 @@ module.exports = {
                     }
                 },
                 syntax: {
-                    js: [],
+                    js: [
+                        {
+                            syntax: 'if(%1)\n{\n$1\n}\nelse\n{\n$2\n}',
+                            template: 'if(%1)\n{\n}\nelse\n{\n\n}',
+                            textParams: [
+                                {
+                                    type: 'Block',
+                                    accept: 'boolean',
+                                },
+                                undefined,
+                                {
+                                    type: 'LineBreak',
+                                },
+                            ],
+                        },
+                    ],
                     py: [
                         {
                             syntax: 'if %1:\n$1\nelse:\n$2',

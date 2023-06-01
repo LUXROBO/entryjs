@@ -1141,7 +1141,7 @@ class BlockMenu {
     }
 
     _generateCategoryElement(name, visible) {
-        console.log("_generateCategoryElement",name, visible );
+        // console.log("_generateCategoryElement",name, visible );
         return (this._categoryElems[name] = Entry.Dom('li', {
             id: `entryCategory${name}`,
             classes: [

@@ -236,13 +236,10 @@ Entry.ZoomController = class ZoomController {
                         // console.log('block getThread: ', typeof block.getThread());
                        
                     
-                        var blockToPyParser = new Entry.BlockToPyParser(syntax);
-                        // let blockToPyParser = new Entry.BlockToCParser(syntax);
-                        // var pyToBlockParser = new Entry.PyToBlockParser(syntax);
-            
+                        // var blockToPyParser = new Entry.BlockToPyParser(syntax);
+                        var blockToPyParser = new Entry.BlockToLuxJsParser(syntax);
                         blockToPyParser._parseMode = Entry.Parser.PARSE_GENERAL;
-                    
-                       
+                        
                         let output = blockToPyParser.Thread(block.getThread());
                         // let output =  blockToPyParser.Thread(new Entry.Thread([blockSchema.def], code));
                     

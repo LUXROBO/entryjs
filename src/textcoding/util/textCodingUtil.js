@@ -789,14 +789,18 @@ class TextCodingUtil {
                     optIndex = i;
                 }
             }
-    
+            console.log("blockToken ", blockToken);
+            console.log("option ", option);
 
             if (option == 'until') {
-                const condition = 'True !=';
+                const condition = 'true != (';
                 
                 blockToken.splice(1, 0, condition);
                 optIndex += 1;
                 blockToken.splice(optIndex, 1);
+                optIndex += 3;
+                blockToken.splice(optIndex, 0, ')');
+                    
                 result = blockToken.join(' ').replace(' ! ', '!');
                 result = result.replace(' )', ')');
 
@@ -986,7 +990,7 @@ class TextCodingUtil {
 
             if (option == '2') {
 
-                const condition = 'clicked';
+                const condition = 'getClick()';
                 blockToken.splice(lastIndex, 0, condition);
                 lastIndex += 1;
                 blockToken.splice(lastIndex, 1);
@@ -995,7 +999,7 @@ class TextCodingUtil {
 
             } else if (option == '3') {
 
-                const condition = 'double_clicked';
+                const condition = 'getDoubleClick()';
                 blockToken.splice(lastIndex, 0, condition);
                 lastIndex += 1;
                 blockToken.splice(lastIndex, 1);
@@ -1006,7 +1010,7 @@ class TextCodingUtil {
 
             else if (option == '4') {
 
-                const condition = 'pressed';
+                const condition = 'getPressStatus()';
                 blockToken.splice(lastIndex, 0, condition);
                 lastIndex += 1;
                 blockToken.splice(lastIndex, 1);
@@ -1016,7 +1020,7 @@ class TextCodingUtil {
             }
 
             else {
-                const condition = 'toggled';
+                const condition = 'getToggle()';
                 blockToken.splice(lastIndex, 0, condition);
                 lastIndex += 1;
                 blockToken.splice(lastIndex, 1);
@@ -1042,15 +1046,11 @@ class TextCodingUtil {
         let lastIndex = blockToken.length - 1;
         const option = blockToken[lastIndex];
 
-        console.log("HW_DIAL_VALUE blockToken : ", blockToken);
-        console.log("HW_DIAL_VALUE option : ", option);
-
-
         if (block.data.type === 'HW_DIAL_VALUE') {
 
             if (option == '(2)') {
 
-                const condition = 'dial.turn';
+                const condition = 'this.dial_01.getTurn()';
                 blockToken.splice(lastIndex, 0, condition);
                 lastIndex += 1;
                 blockToken.splice(lastIndex, 1);
@@ -1059,7 +1059,7 @@ class TextCodingUtil {
 
             } else if (option == '(3)') {
 
-                const condition = '(math.floor((dial.turn - 1) / 10) + 1)';
+                const condition = '(math.floor((this.dial_01.getTurn() - 1) / 10) + 1)';
                 blockToken.splice(lastIndex, 0, condition);
                 lastIndex += 1;
                 blockToken.splice(lastIndex, 1);
@@ -1095,24 +1095,52 @@ class TextCodingUtil {
             return Math.round((parseInt(el, 16) / 255) * 100)
         })
 
-        let rgbType = `led.set_rgb(${transferedValue[0]},${transferedValue[1]},${transferedValue[2]});`;
+        let rgbType = `this.led_01.setRgb(${transferedValue[0]},${transferedValue[1]},${transferedValue[2]});`;
         return rgbType;
     }
 
-    assembleModiSetMotorValueBlock(block, syntax) {
+    assembleMotorAAgngleChangeBlock(block, syntax) {
         let result = '';
         const blockToken = syntax.split('?'); // space 로 split 하되, : 도 자르지만 토큰에 포함
-        const option = blockToken[1];
-        const option1 = blockToken[2];
-        const option2 = blockToken[3];
+        const option1 = blockToken[0];
+        const option2 = blockToken[1];
+       
 
-        if (block.data.type === 'HW_MOTOR_BOTH') {
-            if (option == 'MOTOR_ANGLE') {
-                result = 'motor0.setAngle(' + option1 + ',' + option2 + ');';
-            } else if (option == 'MOTOR_SPEED') {
-                result = 'motor0.setSpeed(' + option1 + ',' + option2 + ');';
-            } else if (option == 'MOTOR_TORQUE') {
-                result = 'motor0.setTorque(' + option1 + ',' + option2 + ');';
+        console.log("HW_MOTOR_A_ANGLE_CHANGE blockToken : ", blockToken);
+        console.log("HW_MOTOR_A_ANGLE_CHANGE option : ", option1);
+
+
+        if (block.data.type === 'HW_MOTOR_A_ANGLE_CHANGE') {
+            if (option1 == '2') {
+                result = 'this.motora_01.appendAngle('+ option2 + ');';
+            }
+            else  {
+                result = 'this.motora_01.appendAngle(-' + option2 + ');';
+            }
+        } else {
+            result = syntax;
+        }
+
+        return result;
+    }
+
+    assembleMotorBAgngleChangeBlock(block, syntax) {
+        let result = '';
+        const blockToken = syntax.split('?'); // space 로 split 하되, : 도 자르지만 토큰에 포함
+        const option1 = blockToken[0];
+        const option2 = blockToken[1];
+       
+
+        console.log("HW_MOTOR_A_ANGLE_CHANGE blockToken : ", blockToken);
+        console.log("HW_MOTOR_A_ANGLE_CHANGE option : ", option1);
+
+
+        if (block.data.type === 'HW_MOTOR_B_ANGLE_CHANGE') {
+            if (option1 == '2') {
+                result = 'this.motorb_01.appendAngle('+ option2 + ');';
+            }
+            else  {
+                result = 'this.motorb_01.appendAngle(-' + option2 + ');';
             }
         } else {
             result = syntax;
@@ -1249,20 +1277,6 @@ class TextCodingUtil {
         return result
     }
 
-    assembleModiDisplayClearBlock() {
-
-        const clearImage = [];
-        for (let i = 0; i < 384; i++) {
-            clearImage[i] = 0;
-        }
-
-        this.imgData.push(clearImage.toString())
-
-        const result = `display0.drawPicture("clearImage");`;
-        return result
-    
-    }
-
     assembleModiDisplayMoveBlock(block, syntax) {
         const blockToken = syntax.split('?');
 
@@ -1285,7 +1299,7 @@ class TextCodingUtil {
         console.log('assembleModiDisplayMoveBlock blockToken : ', blockToken)
 
 
-        const result = `display.move_screen = ${hSign}${blockToken[1]}, ${vSign}${blockToken[3]}`;
+        const result = `this.display_01.moveScreen(${hSign}${blockToken[1]}, ${vSign}${blockToken[3]})`;
         return result
     }
 

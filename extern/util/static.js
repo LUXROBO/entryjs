@@ -22,7 +22,7 @@ EntryStatic.getAllBlocks = function () {
     }
     // moduleList = moduleList.concat(EntryStatic.NetworkModule) // network 모듈은 기본으로 추가
 
-    // console.log('getAllBlocks moduleList', moduleList)
+    console.log('getAllBlocks moduleList', moduleList)
     let HwBlocks = []
     moduleList.forEach(moduleItem => {
         if (moduleItem != "NETWORK") {

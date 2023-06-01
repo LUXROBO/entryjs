@@ -149,7 +149,38 @@ module.exports = {
                     }
                 },
                 syntax: {
-                    js: [],
+                    js: [
+                        {
+                            syntax: '(%1 %2 %3)',
+                            template: '%1 %2 %3',
+                            keyOption: 'calc_basic',
+                            blockType: 'param',
+                            textParams: [
+                                {
+                                    type: 'Block',
+                                    accept: 'string',
+                                },
+                                {
+                                    type: 'Dropdown',
+                                    options: [
+                                        ['+', 'PLUS'],
+                                        ['-', 'MINUS'],
+                                        ['x', 'MULTI'],
+                                        ['/', 'DIVIDE'],
+                                    ],
+                                    value: 'PLUS',
+                                    fontSize: 11,
+                                    noArrow: true,
+                                    converter: Entry.block.converters.returnOperator,
+                                    paramType: 'operator',
+                                },
+                                {
+                                    type: 'Block',
+                                    accept: 'string',
+                                },
+                            ],
+                        }
+                    ],
                     py: [
                         {
                             syntax: '(%1 %2 %3)',
@@ -302,7 +333,27 @@ module.exports = {
                     }
                 },
                 syntax: {
-                    js: [],
+                    js: [
+                        {
+                            syntax: 'this.random(%2, %4)',
+                            blockType: 'param',
+                            textParams: [
+                                null,
+                                {
+                                    type: 'Block',
+                                    accept: 'string',
+                                    paramType: 'float',
+                                },
+                                null,
+                                {
+                                    type: 'Block',
+                                    accept: 'string',
+                                    paramType: 'float',
+                                },
+                                null,
+                            ],
+                        },
+                    ],
                     py: [
                         {
                             syntax: 'random.randint(%2, %4)',

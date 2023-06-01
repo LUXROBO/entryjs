@@ -9,6 +9,7 @@ require("./parser/core/text/jsToBlock")
 require("./parser/core/block/blockToPy")
 require("./parser/core/block/blockToC")
 require("./parser/core/block/blockToJs")
+require("./parser/core/block/blockToLuxJs")
 
 Entry.Parser = function(mode, type, cm, syntax) {
     this._mode = mode; // maze ai workspace
@@ -111,6 +112,11 @@ Entry.Parser = function(mode, type, cm, syntax) {
                 this._execParser = new Entry.BlockToPyParser(this.syntax);
                 cm && cm.setOption("mode", {name: "python", globalVars: true});
                 this._execParserType = Entry.Vim.PARSER_TYPE_BLOCK_TO_PY;
+                break;
+            case Entry.Vim.PARSER_TYPE_BLOCK_TO_LUXJS:
+                this._execParser = new Entry.BlockToLuxJsParser(this.syntax);
+                cm && cm.setOption("mode", {name: "LUXJS", globalVars: true});
+                this._execParserType = Entry.Vim.PARSER_TYPE_BLOCK_TO_LUXJS;
                 break;
         }
     };
@@ -416,7 +422,7 @@ Entry.Parser = function(mode, type, cm, syntax) {
                 }
             } else if (mode === Entry.Vim.WORKSPACE_MODE) {
                 var key = type;
-                var cSyntax = block.syntax && block.syntax.py;
+                var cSyntax = block.syntax && block.syntax.js;
 
                 if (!cSyntax) continue;
 

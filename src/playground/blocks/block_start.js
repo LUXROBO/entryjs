@@ -29,7 +29,12 @@ module.exports = {
                 },
                 event: 'start',
                 syntax: {
-                    js: [],
+                    js: [
+                        {
+                            syntax: '{\nsleep(2000);\ntemp__',
+                            blockType: 'event'
+                        },
+                    ],
                     py: [
                         {
                             syntax: 'temp__\n',

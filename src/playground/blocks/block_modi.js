@@ -152,10 +152,10 @@ Entry.MODI.getBlocks = function () {
                 {
                     type: 'Dropdown',
                     options: [
-                        ['클릭', 'clicked'],
-                        ['두 번 클릭', 'double_clicked'],
-                        ['누르기', 'pressed'],
-                        ['스위치 켜짐', 'toggled'],
+                        ['클릭', 'getClick()'],
+                        ['두 번 클릭', 'getDoubleClick()'],
+                        ['누르기', 'getPressStatus()'],
+                        ['스위치 켜짐', 'getToggle()'],
                     ],
                     fontSize: 11,
                     bgColor: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
@@ -163,7 +163,7 @@ Entry.MODI.getBlocks = function () {
                 },
             ],
             def: {
-                params: ['클릭', 'clicked', 'TRUE'],
+                params: ['클릭', 'getClick()', 'TRUE'],
                 type: 'HW_BTN_JUDGEMENT',
             },
             paramsKeyMap: {
@@ -173,7 +173,12 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
-                js: [],
+                js: [
+                    {
+                        syntax: 'this.button_01.%2 == true',
+                        template: 'button.%2',
+                    },
+                ],
                 py:[
                     {
                         syntax: 'button.%2',
@@ -254,7 +259,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
-                js: [],
+                js: [
+                    {
+                        syntax: 'this.button_01.%2',
+                        template: 'button.%2',
+                    },
+                ],
                 py:[
                     {
                         syntax: 'button.%2',
@@ -286,9 +296,9 @@ Entry.MODI.getBlocks = function () {
                     type: 'Dropdown',
                     options: [
                         ['>', '>'],
-                        ['<', '<['<',>'],
+                        ['<', '<'],
                         ['≥', '>='],
-                        ['≤', '<=>'],
+                        ['≤', '<='],
                         ['=', '=='],
                         ['≠', '!='],
                        
@@ -324,7 +334,12 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
-                js: [],
+                js: [
+                    {
+                        syntax: '(this.dial_01.getTurn() %2 %3) == true',
+                        template: 'this.dial_01.getTurn() %2 %3 == true',
+                    }
+                ],
                 py: [
                     {
                         syntax: '(dial.turn %2 %3)',
@@ -356,9 +371,9 @@ Entry.MODI.getBlocks = function () {
                     type: 'Dropdown',
                     options: [
                         ['>', '>'],
-                        ['<', '<['<',>'],
+                        ['<', '<'],
                         ['≥', '>='],
-                        ['≤', '<=>'],
+                        ['≤', '<='],
                         ['=', '=='],
                         ['≠', '!='],
                        
@@ -405,7 +420,12 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
-                js: [],
+                js: [
+                    {
+                        syntax: '(this.dial_01.getTurn() %2 %3) == true',
+                        template: 'this.dial_01.turn %2 %3 == true',
+                    }
+                ],
                 py: [
                     {
                         syntax: '(dial.turn %2 %3)',
@@ -481,6 +501,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
+                 js: [
+                    {
+                        syntax: '(%2)',
+                        template: 'this.dial_01.turn %2 %3 == true',
+                    }
+                ],
                 py: [
                     {
                         syntax: '(%2)',
@@ -512,9 +538,9 @@ Entry.MODI.getBlocks = function () {
                     type: 'Dropdown',
                     options: [
                         ['>', '>'],
-                        ['<', '<['<',>'],
+                        ['<', '<'],
                         ['≥', '>='],
-                        ['≤', '<=>'],
+                        ['≤', '<='],
                         ['=', '=='],
                         ['≠', '!='],
                        
@@ -550,7 +576,12 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
-                js: [],
+                js: [
+                    {
+                        syntax: '(this.tof_01.getDistance() %2 %3) == true',
+                        template: 'this.tof_01.getDistance() %2 %3 == true',
+                    }
+                ],
                 py: [
                     {
                         syntax: '(Tof.distance %2 %3)',
@@ -590,7 +621,12 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
-                js: [],
+                js: [
+                    {
+                        syntax: 'this.tof_01.getDistance()',
+                        template: 'this.tof_01.getDistance() %2 %3 == true',
+                    }
+                ],
                 py: [
                     {
                         syntax: 'Tof.distance',
@@ -934,6 +970,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
+                js: [
+                    {
+                        syntax: 'this.led_01.setRgb(0,0,0);',
+                        template: 'led.set_rgb(0,0,0);',
+                    },
+                ],
                 py: [
                     {
                         syntax: 'led.set_rgb(0,0,0);',
@@ -1017,6 +1059,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
+                js: [
+                    {
+                        syntax: 'this.led_01.setRgb(%2,%3,%4);',
+                        template: 'led.set_rgb(0,0,0);',
+                    },
+                ],
                 py: [
                     {
                         syntax: 'led.set_rgb(%2,%3,%4);',
@@ -1085,6 +1133,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
+                js: [
+                    {
+                        syntax: 'this.led_01.%1;',
+                        template: 'led.set_rgb(0,0,0);',
+                    },
+                ],
                 py: [
                     {
                         syntax: 'led.%1',
@@ -1148,6 +1202,13 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
+
+                js: [
+                    {
+                        syntax: 'this.speaker_01.setTune(0, 0);',
+                        template: 'this.speaker_01.setTune(0, 0);',
+                    },
+                ],
                 py:[
                     {
                         syntax: 'speaker.reset()',
@@ -1252,6 +1313,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
+                js: [
+                    {
+                        syntax: 'this.speaker_01.setTune(%2, %3);',
+                        template: 'this.speaker_01.setTune(0, 0);',
+                    },
+                ],
                 py:[
                     {
                         syntax: 'speaker.tune = "%2", %3',
@@ -1402,6 +1469,12 @@ Entry.MODI.getBlocks = function () {
                 return script.callReturn();
             },
             syntax: {
+                js: [
+                    {
+                        syntax: 'this.speaker_01.playMelody(SPEAKER_START,"%2",%3);',
+                        template: 'this.speaker_01.setTune(0, 0);',
+                    },
+                ],
                 py:[
                     {
                         syntax: 'speaker.play_music = "%2", %3',
@@ -1477,7 +1550,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
-                js: [], 
+                js: [
+                    {
+                        syntax: 'this.motora_01.setSpeed(%2);',
+                        template: 'this.speaker_01.setTune(0, 0);',
+                    },
+                ],
                 py: [
                     {
                         syntax: '(motorA.speed = %2)',
@@ -1553,7 +1631,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
-                js: [], 
+                js: [
+                    {
+                        syntax: 'this.motora_01.setAngle(%2,70,1);',
+                        template: 'this.speaker_01.setTune(0, 0);',
+                    },
+                ],
                 py: [
                     {
                         syntax: '(motorA.angle = %2)',
@@ -1640,7 +1723,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
-                js: [], 
+                js: [
+                    {
+                        syntax: '%2?%3',
+                    
+                    },
+                ],
                 py: [
                     {
                        syntax: '(motorA.append_angle = %3)',
@@ -1706,7 +1794,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
-                js: [], 
+                js: [
+                    {
+                        syntax: 'this.motora_01.stop();',
+                        template: 'motorA.stop()',
+                    },
+                ], 
                 py: [
                     {
                         syntax: 'motorA.stop()',
@@ -1782,7 +1875,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
-                js: [], 
+                js: [
+                    {
+                        syntax: 'this.motorb_01.setSpeed(%2);',
+                        template: 'motorA.stop()',
+                    },
+                ], 
                 py: [
                     {
                         syntax: '(motorB.speed = %2)',
@@ -1858,7 +1956,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
-                js: [], 
+                js: [
+                    {
+                        syntax: 'this.motorb_01.setAngle(%2);',
+                    
+                    },
+                ], 
                 py: [
                     {
                         syntax: '(motorB.angle = %2)',
@@ -1945,7 +2048,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
-                js: [], 
+                js: [
+                    {
+                        syntax: '%2?%3',
+                    
+                    },
+                ],
                 py: [
                     {
                        syntax: '(motorB.append_angle = %3)',
@@ -2011,7 +2119,12 @@ Entry.MODI.getBlocks = function () {
             },
 
             syntax: {
-                js: [], 
+                js: [
+                    {
+                        syntax: 'this.motorb_01.stop();',
+                        template: 'this.motorb_01.stop();',
+                    },
+                ], 
                 py: [
                     {
                         syntax: 'motorB.stop()',
@@ -2093,6 +2206,13 @@ Entry.MODI.getBlocks = function () {
                 return script.callReturn();
             },
             syntax: {
+                js: [
+                    {
+                        syntax: 'this.display_01.writeText(%2);',
+                        template: 'this.display_01.writeText(%2);',
+                    },
+                ],
+
                 py:[
                     {
                         syntax: 'display.text = %2',
@@ -2155,6 +2275,13 @@ Entry.MODI.getBlocks = function () {
                 return script.callReturn();
             },
             syntax: {
+                js: [
+                    {
+                        syntax: 'this.display_01.writeVariable(1,%2,%3);',
+                        template: 'this.display_01.writeVariable(1,%2,%3);',
+                    },
+                ],
+
                 py : [
                     {
                         syntax: 'display.write_variable(1,%2,%3);',
@@ -2368,6 +2495,13 @@ Entry.MODI.getBlocks = function () {
                 return script.callReturn();
             },
             syntax: {
+                js: [
+                    {
+                        syntax: 'this.display_01.drawPicture(0, 0, "%2");',
+                        template: 'this.display_01.drawPicture(0, 0, "%2");',
+                    },
+                ],
+
                 py: [
                     {
                         syntax: 'display.draw_picture = 0, 0, "%2"',
@@ -2411,6 +2545,12 @@ Entry.MODI.getBlocks = function () {
                 return script.callReturn();
             },
             syntax: {
+                js: [
+                    {
+                        syntax: 'this.display_01.reset();',
+                        template: 'this.display_01.reset();',
+                    },
+                ],
                 c: [
                     {
                         syntax: 'display0.setReset();',
@@ -2492,6 +2632,15 @@ Entry.MODI.getBlocks = function () {
                 return script.callReturn();
             },
             syntax: {
+
+                js: [
+                    {
+                        syntax: '%2?%3?%4?%5',
+                        template: 'this.display_01.writeVariable(1,%2,%3);',
+                    },
+                ],
+
+
                 py: [
                     {
                         syntax: '%2?%3?%4?%5',
@@ -2514,8 +2663,8 @@ Entry.MODI.getBlocks = function () {
                 {
                     type: 'Dropdown',
                     options: [
-                        ['울림', 'buzzer_on()'],
-                        ['안 울림', 'buzzer_off()'],
+                        ['울림', 'setBuzzer(BUZZER_ON)'],
+                        ['안 울림', 'setBuzzer(BUZZER_OFF)'],
                     ],
                     fontSize: 11,
                     bgColor: EntryStatic.colorSet.block.modi.SETUP_OUTLINE,
@@ -2536,6 +2685,14 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
+
+                js: [
+                    {
+                        syntax: 'this.network_01.%2',
+                        template: 'network.%2',
+                    }
+                ],
+
                 py: [
                     {
                         syntax: '(network.%2)',
@@ -2566,9 +2723,9 @@ Entry.MODI.getBlocks = function () {
                 {
                     type: 'Dropdown',
                     options: [
-                        ['클릭', 'clicked'],
-                        ['두 번 클릭', 'double_clicked'],
-                        ['누르기', 'pressed'],
+                        ['클릭', 'getClick(0)'],
+                        ['두 번 클릭', 'getDoubleClick(0)'],
+                        ['누르기', 'getPressStatus(0)'],
                        
                     ],
                     fontSize: 11,
@@ -2578,7 +2735,7 @@ Entry.MODI.getBlocks = function () {
                
             ],
             def: {                
-                params: [null, 'clicked'],
+                params: [null, 'getClick(0)'],
                 type: 'HW_NETWORK_BTN_JUDGEMENT',
             },
             paramsKeyMap: {
@@ -2588,7 +2745,12 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
-                js: [],
+                js: [
+                    {
+                        syntax: 'this.network_01.%2 == true',
+                        template: 'network.%2',
+                    }
+                ],
                 py:[
                     {
                         syntax: 'network.%2',
@@ -2619,9 +2781,9 @@ Entry.MODI.getBlocks = function () {
                 {
                     type: 'Dropdown',
                     options: [
-                        ['클릭', 'clicked'],
-                        ['두 번 클릭', 'double_clicked'],
-                        ['누르기', 'pressed'],
+                        ['클릭', 'getClick(0)'],
+                        ['두 번 클릭', 'getDoubleClick(0)'],
+                        ['누르기', 'getPressStatus(0)'],
                         
                     ],
                     fontSize: 11,
@@ -2631,7 +2793,7 @@ Entry.MODI.getBlocks = function () {
              
             ],
             def: {
-                params: [null, 'clicked'],
+                params: [null, 'getClick(0)'],
                 type: 'HW_NETWORK_BTN',
             },
             paramsKeyMap: {
@@ -2641,7 +2803,12 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
-                js: [],
+                js: [
+                    {
+                        syntax: 'this.network_01.%2',
+                        template: 'this.network_01.%2',
+                    }
+                ],
                 py: [
                     {
                         syntax: 'network.%2',
@@ -2693,7 +2860,12 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
-                js: [],
+                js: [
+                    {
+                        syntax: 'this.network_01.getSwitchToggle(0) == %2',
+                        template: 'this.network_01.%2',
+                    }
+                ],
                 py:[
                     {
                         syntax: 'network.switch_toggled == %2',
@@ -2735,7 +2907,12 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
-                js: [],
+                js: [
+                    {
+                        syntax: 'this.network_01.getSwitchToggle(0)',
+                        template: 'this.network_01.%2',
+                    }
+                ],
                 py:[
                     {
                         syntax: 'network.switch_toggled',
@@ -2767,9 +2944,9 @@ Entry.MODI.getBlocks = function () {
                     type: 'Dropdown',
                     options: [
                         ['>', '>'],
-                        ['<', '<['<',>'],
+                        ['<', '<'],
                         ['≥', '>='],
-                        ['≤', '<=>'],
+                        ['≤', '<='],
                         ['=', '=='],
                         ['≠', '!='],
                     ],
@@ -2802,6 +2979,14 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
+
+                js: [
+                    {
+                        syntax: 'this.network_01.getDialTurn(0) %2 %3 == true',
+                        template: 'this.network_01.getDialTurn(0) %2 %3 == true',
+                    }
+                ],
+
                 py : [
                     {
                         syntax: '(network.dial_turn %2 %3)',
@@ -2843,6 +3028,12 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
+                js: [
+                    {
+                        syntax: 'this.network_01.getDialTurn(0)',
+                        template: 'this.network_01.getDialTurn(0)',
+                    }
+                ],
                 py: [
                     {
                         syntax: '(network.dial_turn)',
@@ -2898,7 +3089,12 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
-                js: [],
+                js: [
+                    {
+                        syntax: 'this.network_01.getJoystickDirection(0) == %2',
+                        template: 'this.network_01.getJoystickDirection(0)',
+                    }
+                ],
                 py: [
                     {
                         syntax: '(network.joystick_direction == %2)',
@@ -2937,7 +3133,12 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
-                js: [],
+                js: [
+                    {
+                        syntax: 'this.network_01.getJoystickDirection(0)',
+                        template: 'this.network_01.getJoystickDirection(0)',
+                    }
+                ],
                 py: [
                     {
                         syntax: 'network.joystick_direction',
@@ -2969,9 +3170,9 @@ Entry.MODI.getBlocks = function () {
                     type: 'Dropdown',
                     options: [
                         ['>', '>'],
-                        ['<', '<['<',>'],
+                        ['<', '<'],
                         ['≥', '>='],
-                        ['≤', '<=>'],
+                        ['≤', '<='],
                         ['=', '=='],
                         ['≠', '!='],
                     ],
@@ -3004,6 +3205,13 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
+                js: [
+                    {
+                        syntax: 'this.network_01.getSliderPosition(0) %2 %3 == true',
+                        template: 'this.network_01.getJoystickDirection(0)',
+                    }
+                ],
+
                 py: [
                     {
                         syntax: '(network.slider_position %2 %3)',
@@ -3045,6 +3253,14 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
+
+                js: [
+                    {
+                        syntax: 'this.network_01.getSliderPosition(0)',
+                        template: 'this.network_01.getJoystickDirection(0)',
+                    }
+                ],
+
                 py: [
                     {
                         syntax: 'network.slider_position',
@@ -3099,6 +3315,15 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
+
+                js: [
+                    {
+                        syntax: 'this.network_01.getTimerReached() == %2 ',
+                        template: 'this.network_01.getTimerReached)',
+                    }
+                ],
+
+
                 py: [
                     {
                         syntax: '(network.time_up  == %2)',
@@ -3133,6 +3358,14 @@ Entry.MODI.getBlocks = function () {
             isNotFor: ['modi'],
 
             syntax: {
+
+                js: [
+                    {
+                        syntax: 'this.network_01.getTimerReached()',
+                        template: 'this.network_01.getTimerReached)',
+                    }
+                ],
+
                 py: [
                     {
                         syntax: '(network.time_up)',
