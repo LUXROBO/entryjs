@@ -154,7 +154,7 @@ Entry.MODI.getBlocks = function () {
                     options: [
                         ['클릭', 'getClick()'],
                         ['두 번 클릭', 'getDoubleClick()'],
-                        ['누르기', 'getPressStatus()'],
+                        ['누른상태', 'getPressStatus()'],
                         ['스위치 켜짐', 'getToggle()'],
                     ],
                     fontSize: 11,
@@ -199,7 +199,7 @@ Entry.MODI.getBlocks = function () {
             outerLine: EntryStatic.colorSet.block.modi.INPUT_OUTLINE,
             fontColor: '#fff',
             skeleton: 'basic_string_field',
-            template: '%1 버튼이 %2',
+            template: '%1 버튼 %2',
             params: [
                 {
                     type: 'Indicator',
@@ -2676,7 +2676,7 @@ Entry.MODI.getBlocks = function () {
             def: {
                 params: [
                     null,
-                    'buzzer_on()'
+                    'setBuzzer(BUZZER_ON)'
                 ],
                 type: 'HW_NETWORK_BELL',
             },
@@ -2725,7 +2725,7 @@ Entry.MODI.getBlocks = function () {
                     options: [
                         ['클릭', 'getClick(0)'],
                         ['두 번 클릭', 'getDoubleClick(0)'],
-                        ['누르기', 'getPressStatus(0)'],
+                        ['누른상태', 'getPressStatus(0)'],
                        
                     ],
                     fontSize: 11,

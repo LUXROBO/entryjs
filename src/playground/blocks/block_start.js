@@ -31,7 +31,7 @@ module.exports = {
                 syntax: {
                     js: [
                         {
-                            syntax: '{\nsleep(2000);\ntemp__',
+                            syntax: '\n',
                             blockType: 'event'
                         },
                     ],

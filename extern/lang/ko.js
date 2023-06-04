@@ -1833,7 +1833,7 @@ Lang.Blocks = {
     "LOOKS_change_object_index_sub_2": "앞으로",
     "LOOKS_change_object_index_sub_3": "뒤로",
     "LOOKS_change_object_index_sub_4": "맨 뒤로",
-    "FLOW_repeat_while_true_until": "이 될 때까지",
+    "FLOW_repeat_while_true_until": "이(가) 될 때까지",
     "FLOW_repeat_while_true_while": "인 동안",
     "copy_block": "블록 복사",
     "delete_block": "블록 삭제",

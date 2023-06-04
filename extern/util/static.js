@@ -11,23 +11,34 @@ EntryStatic.requiredTimes = [1, 2, 3, 4, 5];
 
 // JYJ - 사이드 메뉴 항목 설정
 EntryStatic.getAllBlocks = function () {
+
     let blocks = EntryStatic.defaultModiBlocks
 
     let moduleList;
-    if (Entry.modiList && Entry.modiList.length) {
-        // console.log('getAllBlocks if', Entry.modiList)
+    // Entry.modiList = ['BATTERY', 'NETWORK', 'DIAL', 'MOTOR_A', 'MOTOR_B']
+
+    console.log('getAllBlocks Entry.modiList 1', Entry.modiList.length)
+
+    if (Entry.modiList && Entry.modiList.length > 0) {
+        console.log('getAllBlocks if1', JSON.stringify(Entry.modiList))
         moduleList = Entry.modiList //["BATTERY", "BUTTON", "IR", "LED"]
     } else {
         moduleList = EntryStatic.defaultModiList
+        console.log('getAllBlocks if2', JSON.stringify(Entry.modiList))
+        
     }
+
     // moduleList = moduleList.concat(EntryStatic.NetworkModule) // network 모듈은 기본으로 추가
 
-    console.log('getAllBlocks moduleList', moduleList)
     let HwBlocks = []
     moduleList.forEach(moduleItem => {
+
         if (moduleItem != "NETWORK") {
             HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks[moduleItem])
         }
+
+        console.log(moduleItem
+            )
 
     })
 
@@ -43,8 +54,11 @@ EntryStatic.getAllBlocks = function () {
     // console.log('getAllBlocks HwBlocks : ', HwBlocks)
 
     blocks.push({ category: 'modi', blocks: HwBlocks })
-    // blocks.push(EntryStatic.moduleToBlocks["NETWORK"])
-    console.log('getAllBlocks blocks : ', blocks)
+
+    console.log('getAllBlocks moduleList 3', blocks.length)
+
+    blocks.push(EntryStatic.moduleToBlocks["NETWORK"])
+    // console.log('getAllBlocks blocks : ', JSON.stringify(Entry.modiList) )
 
     return blocks
 };
@@ -100,13 +114,15 @@ EntryStatic.defaultModiList = [
     "TOF",
     "LED",
     "SPEAKER",
-    "MOTOR",
+    "MOTOR_A",
+    "MOTOR_B",
     "DISPLAY"
 ]
 
 EntryStatic.NetworkModule = ["NETWORK"]
 
 EntryStatic.moduleToBlocks = {
+    
     BUTTON: [
         'HW_BTN_JUDGEMENT',
         'HW_BTN_VALUE',
@@ -134,11 +150,15 @@ EntryStatic.moduleToBlocks = {
         'HW_SPEAKER_OFF',
     ],
 
-    MOTOR: [
+    MOTOR_A: [
         'HW_MOTOR_A',
         'HW_MOTOR_A_ANGLE',
         'HW_MOTOR_A_ANGLE_CHANGE',
         'HW_MOTOR_A_STOP',
+    
+    ],
+
+    MOTOR_B: [
         'HW_MOTOR_B',
         'HW_MOTOR_B_ANGLE',
         'HW_MOTOR_B_ANGLE_CHANGE',

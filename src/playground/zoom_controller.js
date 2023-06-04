@@ -1,6 +1,4 @@
 
-import Interpreter from './interpreter'
-
 // const interpreter = require('./playground/interpreter');
 // import Filbert from '../../extern/util/filbert.js'
 // import { threadId } from 'worker_threads';
@@ -255,7 +253,8 @@ Entry.ZoomController = class ZoomController {
                             throw new Error('기본 코딩입니다.');
                         }
                         
-                        let binary = 'import time\nimport modi_plus\nimport math\n\nbundle = modi_plus.MODIPlus()\n';
+                        // let binary = 'import time\nimport modi_plus\nimport math\n\nbundle = modi_plus.MODIPlus()\n';
+                        let binary = 'class UserTask extends ModiTask {\n\tconstructor(port) {\n\t\tsuper(port);\n\n\ndoTask() {\n\tthis.sleep(2000);\n';
                    
                         let moduleList = ''
                         const variables = Entry.variableContainer.variables_
@@ -263,19 +262,18 @@ Entry.ZoomController = class ZoomController {
                             moduleList += `float ${el.getId()} = 0.0;\n`
                         })
                        
-                        console.log('binary3', JSON.stringify(binary));
+                        
                         // 모듈 블럭 선언
                         moduleList += `\n${Entry.module}\n`;
-        
-                        // moduleList += 'Network network0(0x0000E07B45C3);\n'
-                        // moduleList += 'Display display0(0x4020A3A5DB74);\n'
-                        // moduleList += 'Dial dial0(0x4020A3A5DB74);\n   
                        
                         // 코드
                         // console.log("cOutput",cOutput)
-                        binary += `${output}\n`;
-                        binary = binary.replace(/temp__/g, moduleList)
+                        binary += `\t\t${output}\n`;
+                        binary = binary.replace(/module__/g, moduleList)
                         binary = binary.replace(/\t/g, "    ")
+
+                        console.log('binary3', JSON.stringify(binary));
+                    
         
                         // 모듈 연결 상태를 체크
                         const designatedModules = output.match(/[a-z]*(?=0\.)\d/g) || []
@@ -293,7 +291,7 @@ Entry.ZoomController = class ZoomController {
                             return accArr
                         },[]) // 중복 모듈 정리
                     
-                        console.log(binary)
+                        console.log(output)
 
                         // const emojiRegex = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/
                         const emojiRegex = /[\uD83C-\uDBFF\uDC00-\uDFFF]+/;
@@ -306,16 +304,17 @@ Entry.ZoomController = class ZoomController {
                             throw new Error(emojiMatch[0])
                         }
 
-                        const numberRegex = /([ㄱ-ㅎㅏ-ㅣ가-힣])/
-                        const numberMatch = binary.match(numberRegex)
+                        // const numberRegex = /([ㄱ-ㅎㅏ-ㅣ가-힣])/
+                        // const numberMatch = binary.match(numberRegex)
                         
-                        if(numberMatch){
+                        // if(numberMatch){
 
-                            window.android.failUpload('숫자를 입력해 주세요.');
+                        //     window.android.failUpload('숫자를 입력해 주세요.');
 
-                            throw new Error(numberMatch[0])
-                        }
+                        //     throw new Error(numberMatch[0])
+                        // }
         
+                        window.android.uploadCode(output)
                         // 프로젝트 저장
                         console.log('exportProject')
                         let project = Entry.exportProject();

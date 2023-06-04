@@ -74,7 +74,7 @@ module.exports = {
                 syntax: {
                     js: [
                         {
-                            syntax: 'this.sleep(%1 * 1000);',
+                            syntax: '\tthis.sleep(%1 * 1000);',
                         },
                     ],
                     py: [
@@ -161,7 +161,7 @@ module.exports = {
                 syntax: {
                     js: [
                         {
-                            syntax: 'for(int i = 0; i < %1; i++)\n{\n$1\nsleep(3);\n}\nsleep(3);\n',
+                            syntax: 'for(int i = 0; i < %1; i++)\n{\n\t$1\nthis.sleep(3);;\n}\nthis.sleep(3);\n',
                             template: 'for(int i = 0; i < %1; i++)\n{\nsleep(3);\n}\nsleep(3);\n',
                             idChar: ['i', 'j', 'k'],
                         },
@@ -231,7 +231,7 @@ module.exports = {
                 syntax: {
                     js: [
                         {
-                            syntax: 'while(true)\n{\n$1\nsleep(3);\n}\nsleep(3);\n',
+                            syntax: 'while(true)\n{\n$1\nthis.sleep(3);\n}\nthis.sleep(3);\n',
                             template: 'while(true)\n{\n$1\nsleep(3);\n}\nsleep(3);\n',
                             textParams: [
                                 undefined,
@@ -344,7 +344,7 @@ module.exports = {
                 syntax: {
                     js: [
                         {
-                            syntax: 'while( %1 %2 )\n{\n$1\nsleep(3);\n}\nsleep(3);\n',
+                            syntax: 'while( %1 %2 )\n{\n$1\nthis.sleep(3);\n}\nthis.sleep(3);\n',
                             template: 'while( %1 %2 )\n{\nsleep(3);\n}\nsleep(3);\n',
                         },
                     ],
