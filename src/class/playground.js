@@ -2418,26 +2418,7 @@ Entry.Playground = class {
         this.injectSound();
     }
 
-    downloadSound(soundId) {
-        const sound = Entry.playground.object.getSound(soundId);
-        if (sound.fileurl) {
-            if (sound.fileurl.indexOf('bark.mp3') > -1) {
-                window.open(
-                    `/api/sprite/download/entryjs/${btoa(sound.fileurl)}/${encodeURIComponent(
-                        `${sound.name}.mp3`
-                    )}`
-                );
-            } else {
-                window.open(sound.fileurl);
-            }
-        } else {
-            window.open(
-                `/api/sprite/download/sound/${encodeURIComponent(
-                    sound.filename
-                )}/${encodeURIComponent(sound.name)}`
-            );
-        }
-    }
+
 
     /**
      * select view mode

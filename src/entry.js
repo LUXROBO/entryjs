@@ -14,7 +14,6 @@ global.Entry.volume = '';
 global.Entry.guideList = undefined;
 global.Entry.modiList = [];
 global.Entry.mode = '';
-global.Entry.melodyList = undefined;
 global.Entry.deviceModel = '';
 
 global.Entry.videoNum = 0;
@@ -155,5 +154,6 @@ require('./textcoding/static/codeMap');
 require('./textcoding/static/keyboardCode');
 require('./textcoding/util/console');
 require('./textcoding/util/textCodingUtil');
+require('../extern/util/static');
 
 window.Entry = Entry;

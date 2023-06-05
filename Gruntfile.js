@@ -18,7 +18,7 @@ module.exports = function(grunt) {
                 ]
             },
             js: {
-                files: ['src/**'],
+                files: ['src/**','extern/util/static.js'],
                 tasks: [
                     'closureCompiler:targetName',
                     'karma',
@@ -85,7 +85,7 @@ module.exports = function(grunt) {
                 }
             },
             targetName: {
-                src: ['src/entry.js', 'src/**/*.js', '!src/workspace/block_entry.js'],
+                src: ['src/entry.js', 'src/**/*.js', '!src/workspace/block_entry.js','extern/util/static.js'],
                 dest: 'dist/entry.js'
             },
             dist: {
@@ -96,8 +96,9 @@ module.exports = function(grunt) {
                         language_out: 'ECMASCRIPT5'
                     }
                 },
+                
                 expand: false,
-                src: ['src/entry.js', 'src/**/*.js'],
+                src: ['src/entry.js', 'src/**/*.js','extern/util/static.js'],
                 dest: 'dist/entry.min.js',
                 ext: '.min.js'
             }

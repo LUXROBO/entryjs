@@ -71,16 +71,30 @@ Entry.MODI = {
         return list;
     },
   
-    motorList: function () {
+    motoraList: function () {
         var list;
         var moduleData = Entry.hw.portData['module'] || {};
 
-        if (moduleData['motor'] === undefined) {
+        if (moduleData['motor_a'] === undefined) {
             return [[Lang.Blocks.no_target, 'null']];
         }
         list = [];
-        for (var i = 0; i < moduleData['motor'].length; i++) {
-            if (moduleData['motor'][i]) list.push([i.toString(), i.toString()]);
+        for (var i = 0; i < moduleData['motor_a'].length; i++) {
+            if (moduleData['motor_a'][i]) list.push([i.toString(), i.toString()]);
+        }
+        return list;
+    },
+
+    motorbList: function () {
+        var list;
+        var moduleData = Entry.hw.portData['module'] || {};
+
+        if (moduleData['motor_b'] === undefined) {
+            return [[Lang.Blocks.no_target, 'null']];
+        }
+        list = [];
+        for (var i = 0; i < moduleData['motor_b'].length; i++) {
+            if (moduleData['motor_b'][i]) list.push([i.toString(), i.toString()]);
         }
         return list;
     },
@@ -737,189 +751,6 @@ Entry.MODI.getBlocks = function () {
             },
         },
 
-        modi_change_motor_upper_value: {
-            color: EntryStatic.colorSet.block.default.HARDWARE,
-            outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
-            skeleton: 'basic',
-            template: '모터 %2의 1번을 %3으로 정하기 %4   ',
-            params: [
-                {
-                    type: 'DropdownDynamic',
-                    value: null,
-                    fontSize: 11,
-                    menuName: Entry.MODI.motorList,
-                    bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                },
-                {
-                    type: 'Dropdown',
-                    options: [
-                        [Lang.Blocks.modi_motor_angle, 'MOTOR_ANGLE'],
-                        [Lang.Blocks.modi_motor_speed, 'MOTOR_SPEED'],
-                        // [Lang.Blocks.modi_motor_torque, 'MOTOR_TORQUE'],
-                    ],
-                    fontSize: 11,
-                    bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                },
-                {
-                    type: 'Block',
-                    accept: 'string',
-                },
-                {
-                    type: 'Indicator',
-                    img: 'block_icon/modi_icon/motor1.svg',
-                    size: 11,
-                },
-            ],
-            def: {
-                params: [
-                    null,
-                    'MOTOR_ANGLE',
-                    {
-                        type: 'number',
-                        params: ['100'],
-                    },
-                ],
-                type: 'modi_change_motor_upper_value',
-            },
-            paramsKeyMap: {
-                name: 0,
-                property: 1,
-                value: 2,
-            },
-            class: 'motor',
-            isNotFor: ['modi'],
-            func: function (sprite, script) {
-                if (!Entry.hw.sendQueue.moduleValue) {
-                    Entry.MODI.initSend();
-                }
-
-                var key = script.getStringField('name'),
-                    value = script.getNumberValue('value'),
-                    property = script.getStringField('property');
-
-                var pd = JSON.parse(Entry.hw.portData.module['motor'][key]);
-                var moduleID = pd.id;
-
-                var sq = Entry.hw.sendQueue.moduleValue;
-                var upper = value,
-                    bottom = 0;
-
-                if (upper > 100) upper = 100;
-                else if (upper < 0 && property == 'MOTOR_ANGLE') upper = 0;
-                else if (upper < -100 && property != 'MOTOR_ANGLE') upper = -100;
-
-                sq['motor'][key] = JSON.stringify({
-                    module: property,
-                    id: moduleID,
-                    value1: upper,
-                    value2: bottom,
-                });
-
-                return script.callReturn();
-            },
-            syntax: {
-                c: [
-                    {
-                        syntax: 'motor0.?%2?%3',
-                        template: 'motor0.?%2?%3',
-                    },
-                ],
-            },
-        },
-        modi_change_motor_bottom_value: {
-            color: EntryStatic.colorSet.block.default.HARDWARE,
-            outerLine: EntryStatic.colorSet.block.darken.HARDWARE,
-            skeleton: 'basic',
-            template: '모터 %2의 2번을 %3으로 정하기 %4   ',
-            params: [
-                {
-                    type: 'DropdownDynamic',
-                    value: null,
-                    fontSize: 11,
-                    menuName: Entry.MODI.motorList,
-                    bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                },
-                {
-                    type: 'Dropdown',
-                    options: [
-                        [Lang.Blocks.modi_motor_angle, 'MOTOR_ANGLE'],
-                        [Lang.Blocks.modi_motor_speed, 'MOTOR_SPEED'],
-                        // [Lang.Blocks.modi_motor_torque, 'MOTOR_TORQUE'],
-                    ],
-                    fontSize: 11,
-                    bgColor: EntryStatic.colorSet.block.darken.HARDWARE,
-                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
-                },
-                {
-                    type: 'Block',
-                    accept: 'string',
-                },
-                {
-                    type: 'Indicator',
-                    img: 'block_icon/modi_icon/motor1.svg',
-                    size: 11,
-                },
-            ],
-            events: {},
-            def: {
-                params: [
-                    null,
-                    'MOTOR_ANGLE',
-                    {
-                        type: 'text',
-                        params: ['100'],
-                    },
-                ],
-                type: 'modi_change_motor_bottom_value',
-            },
-            class: 'motor',
-            isNotFor: ['modi'],
-            paramsKeyMap: {
-                name: 0,
-                property: 1,
-                value: 2,
-            },
-            func: function (sprite, script) {
-                if (!Entry.hw.sendQueue.moduleValue) {
-                    Entry.MODI.initSend();
-                }
-
-                var key = script.getStringField('name'),
-                    value = script.getNumberValue('value'),
-                    property = script.getStringField('property');
-
-                var pd = JSON.parse(Entry.hw.portData.module['motor'][key]);
-                var moduleID = pd.id;
-
-                var sq = Entry.hw.sendQueue.moduleValue;
-                var upper = 0,
-                    bottom = value;
-
-                if (bottom > 100) bottom = 100;
-                else if (bottom < 0 && property == 'MOTOR_ANGLE') bottom = 0;
-                else if (bottom < -100 && property != 'MOTOR_ANGLE') bottom = -100;
-
-                sq['motor'][key] = JSON.stringify({
-                    module: property,
-                    id: moduleID,
-                    value1: upper,
-                    value2: bottom,
-                });
-
-                return script.callReturn();
-            },
-            syntax: {
-                c: [
-                    {
-                        syntax: 'motor0.?%2?%3',
-                        template: 'motor0.?%2?%3',
-                    },
-                ],
-            }
-        },
         HW_LED_OFF: {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
@@ -1526,7 +1357,7 @@ Entry.MODI.getBlocks = function () {
                 upper: 2,
                 bottom: 3,
             },
-            class: 'motor',
+            class: 'motor_a',
             isNotFor: ['modi'],
             func: function (sprite, script) {
                 if (!Entry.hw.sendQueue.moduleValue) {
@@ -1536,10 +1367,10 @@ Entry.MODI.getBlocks = function () {
                     property = script.getStringField('property'),
                     upper = script.getNumberValue('upper'),
                     bottom = script.getNumberValue('bottom');
-                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor_a'][key]).id;
 
                 var sq = Entry.hw.sendQueue.moduleValue;
-                sq['motor'][key] = JSON.stringify({
+                sq['motor_a'][key] = JSON.stringify({
                     module: property,
                     id: moduleID,
                     value1: upper,
@@ -1607,7 +1438,7 @@ Entry.MODI.getBlocks = function () {
                 upper: 2,
                 bottom: 3,
             },
-            class: 'motor',
+            class: 'motor_a',
             isNotFor: ['modi'],
             func: function (sprite, script) {
                 if (!Entry.hw.sendQueue.moduleValue) {
@@ -1617,10 +1448,10 @@ Entry.MODI.getBlocks = function () {
                     property = script.getStringField('property'),
                     upper = script.getNumberValue('upper'),
                     bottom = script.getNumberValue('bottom');
-                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor_a'][key]).id;
 
                 var sq = Entry.hw.sendQueue.moduleValue;
-                sq['motor'][key] = JSON.stringify({
+                sq['motor_a'][key] = JSON.stringify({
                     module: property,
                     id: moduleID,
                     value1: upper,
@@ -1699,7 +1530,7 @@ Entry.MODI.getBlocks = function () {
                 upper: 2,
                 bottom: 3,
             },
-            class: 'motor',
+            class: 'motor_a',
             isNotFor: ['modi'],
             func: function (sprite, script) {
                 if (!Entry.hw.sendQueue.moduleValue) {
@@ -1709,10 +1540,10 @@ Entry.MODI.getBlocks = function () {
                     property = script.getStringField('property'),
                     upper = script.getNumberValue('upper'),
                     bottom = script.getNumberValue('bottom');
-                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor_a'][key]).id;
 
                 var sq = Entry.hw.sendQueue.moduleValue;
-                sq['motor'][key] = JSON.stringify({
+                sq['motor_a'][key] = JSON.stringify({
                     module: property,
                     id: moduleID,
                     value1: upper,
@@ -1770,7 +1601,7 @@ Entry.MODI.getBlocks = function () {
                 upper: 2,
                 bottom: 3,
             },
-            class: 'motor',
+            class: 'motor_a',
             isNotFor: ['modi'],
             func: function (sprite, script) {
                 if (!Entry.hw.sendQueue.moduleValue) {
@@ -1780,10 +1611,10 @@ Entry.MODI.getBlocks = function () {
                     property = script.getStringField('property'),
                     upper = script.getNumberValue('upper'),
                     bottom = script.getNumberValue('bottom');
-                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor_a'][key]).id;
 
                 var sq = Entry.hw.sendQueue.moduleValue;
-                sq['motor'][key] = JSON.stringify({
+                sq['motor_a'][key] = JSON.stringify({
                     module: property,
                     id: moduleID,
                     value1: upper,
@@ -1851,7 +1682,7 @@ Entry.MODI.getBlocks = function () {
                 upper: 2,
                 bottom: 3,
             },
-            class: 'motor',
+            class: 'motor_b',
             isNotFor: ['modi'],
             func: function (sprite, script) {
                 if (!Entry.hw.sendQueue.moduleValue) {
@@ -1861,10 +1692,10 @@ Entry.MODI.getBlocks = function () {
                     property = script.getStringField('property'),
                     upper = script.getNumberValue('upper'),
                     bottom = script.getNumberValue('bottom');
-                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor_b'][key]).id;
 
                 var sq = Entry.hw.sendQueue.moduleValue;
-                sq['motor'][key] = JSON.stringify({
+                sq['motor_b'][key] = JSON.stringify({
                     module: property,
                     id: moduleID,
                     value1: upper,
@@ -1932,7 +1763,7 @@ Entry.MODI.getBlocks = function () {
                 upper: 2,
                 bottom: 3,
             },
-            class: 'motor',
+            class: 'motor_b',
             isNotFor: ['modi'],
             func: function (sprite, script) {
                 if (!Entry.hw.sendQueue.moduleValue) {
@@ -1942,10 +1773,10 @@ Entry.MODI.getBlocks = function () {
                     property = script.getStringField('property'),
                     upper = script.getNumberValue('upper'),
                     bottom = script.getNumberValue('bottom');
-                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor_b'][key]).id;
 
                 var sq = Entry.hw.sendQueue.moduleValue;
-                sq['motor'][key] = JSON.stringify({
+                sq['motor_b'][key] = JSON.stringify({
                     module: property,
                     id: moduleID,
                     value1: upper,
@@ -2024,7 +1855,7 @@ Entry.MODI.getBlocks = function () {
                 upper: 2,
                 bottom: 3,
             },
-            class: 'motor',
+            class: 'motor_b',
             isNotFor: ['modi'],
             func: function (sprite, script) {
                 if (!Entry.hw.sendQueue.moduleValue) {
@@ -2034,10 +1865,10 @@ Entry.MODI.getBlocks = function () {
                     property = script.getStringField('property'),
                     upper = script.getNumberValue('upper'),
                     bottom = script.getNumberValue('bottom');
-                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor_b'][key]).id;
 
                 var sq = Entry.hw.sendQueue.moduleValue;
-                sq['motor'][key] = JSON.stringify({
+                sq['motor_b'][key] = JSON.stringify({
                     module: property,
                     id: moduleID,
                     value1: upper,
@@ -2095,7 +1926,7 @@ Entry.MODI.getBlocks = function () {
                 upper: 2,
                 bottom: 3,
             },
-            class: 'motor',
+            class: 'motor_b',
             isNotFor: ['modi'],
             func: function (sprite, script) {
                 if (!Entry.hw.sendQueue.moduleValue) {
@@ -2105,10 +1936,10 @@ Entry.MODI.getBlocks = function () {
                     property = script.getStringField('property'),
                     upper = script.getNumberValue('upper'),
                     bottom = script.getNumberValue('bottom');
-                var moduleID = JSON.parse(Entry.hw.portData.module['motor'][key]).id;
+                var moduleID = JSON.parse(Entry.hw.portData.module['motor_b'][key]).id;
 
                 var sq = Entry.hw.sendQueue.moduleValue;
-                sq['motor'][key] = JSON.stringify({
+                sq['motor_b'][key] = JSON.stringify({
                     module: property,
                     id: moduleID,
                     value1: upper,

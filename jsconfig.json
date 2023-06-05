@@ -8,7 +8,9 @@
         "scripts",
         "images",
         "extern/blockly",
+        "extern/util/static.js",
         "node_modules",
         "**/node_modules/*"
+        
     ]
 }

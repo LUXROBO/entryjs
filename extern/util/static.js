@@ -12,19 +12,21 @@ EntryStatic.requiredTimes = [1, 2, 3, 4, 5];
 // JYJ - 사이드 메뉴 항목 설정
 EntryStatic.getAllBlocks = function () {
 
+    console.log('getAllBlocks start')
+
     let blocks = EntryStatic.defaultModiBlocks
 
     let moduleList;
-    // Entry.modiList = ['BATTERY', 'NETWORK', 'DIAL', 'MOTOR_A', 'MOTOR_B']
+    Entry.modiList = ['BATTERY', 'NETWORK', 'DIAL', 'MOTOR_A', 'MOTOR_B']
 
-    console.log('getAllBlocks Entry.modiList 1', Entry.modiList.length)
+    console.log('getAllBlocks Entry.modiList 1' , `${Entry.modiList}`)
 
     if (Entry.modiList && Entry.modiList.length > 0) {
-        console.log('getAllBlocks if1', JSON.stringify(Entry.modiList))
+        console.log('getAllBlocks if1')
         moduleList = Entry.modiList //["BATTERY", "BUTTON", "IR", "LED"]
     } else {
         moduleList = EntryStatic.defaultModiList
-        console.log('getAllBlocks if2', JSON.stringify(Entry.modiList))
+        console.log('getAllBlocks if2')
         
     }
 
@@ -37,11 +39,8 @@ EntryStatic.getAllBlocks = function () {
             HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks[moduleItem])
         }
 
-        console.log(moduleItem
-            )
-
     })
-
+    console.log('getAllBlocks HwBlocks : ', HwBlocks)
     // network 모듈은 마지막에 추가
     let networkList = EntryStatic.moduleToBlocks["NETWORK"]
 
@@ -50,14 +49,12 @@ EntryStatic.getAllBlocks = function () {
     })
 
     // console.log('getAllBlocks EntryStatic.moduleToBlocks[moduleItem] : ', EntryStatic.moduleToBlocks["NETWORK"])
-
-    // console.log('getAllBlocks HwBlocks : ', HwBlocks)
+    
 
     blocks.push({ category: 'modi', blocks: HwBlocks })
 
-    console.log('getAllBlocks moduleList 3', blocks.length)
-
-    blocks.push(EntryStatic.moduleToBlocks["NETWORK"])
+    // console.log('getAllBlocks moduleList 3', blocks.length)
+    // blocks.push(EntryStatic.moduleToBlocks["NETWORK"])
     // console.log('getAllBlocks blocks : ', JSON.stringify(Entry.modiList) )
 
     return blocks
