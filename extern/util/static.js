@@ -17,7 +17,7 @@ EntryStatic.getAllBlocks = function () {
     let blocks = EntryStatic.defaultModiBlocks
 
     let moduleList;
-    Entry.modiList = ['BATTERY', 'NETWORK', 'DIAL', 'MOTOR_A', 'MOTOR_B']
+    // Entry.modiList = ['BATTERY', 'NETWORK', 'DIAL', 'MOTOR_A', 'MOTOR_B']
 
     console.log('getAllBlocks Entry.modiList 1' , `${Entry.modiList}`)
 
