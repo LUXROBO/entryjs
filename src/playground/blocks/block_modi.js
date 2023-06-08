@@ -1,4 +1,4 @@
-'use strict';
+              'use strict';
 Entry.MODI = {
     id: '16.1',
     name: 'modi',
@@ -168,7 +168,7 @@ Entry.MODI.getBlocks = function () {
                     options: [
                         ['클릭', 'getClick()'],
                         ['두 번 클릭', 'getDoubleClick()'],
-                        ['누른상태', 'getPressStatus()'],
+                        ['누른 상태', 'getPressStatus()'],
                         ['스위치 켜짐', 'getToggle()'],
                     ],
                     fontSize: 11,
@@ -189,7 +189,7 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: 'this.button_01.%2 == true',
+                        syntax: 'this.button_01.%2 == TRUE',
                         template: 'button.%2',
                     },
                 ],
@@ -350,8 +350,8 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: '(this.dial_01.getTurn() %2 %3) == true',
-                        template: 'this.dial_01.getTurn() %2 %3 == true',
+                        syntax: '(this.dial_01.getTurn() %2 %3) == TRUE',
+                        template: 'this.dial_01.getTurn() %2 %3 == TRUE',
                     }
                 ],
                 py: [
@@ -436,8 +436,8 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: '(this.dial_01.getTurn() %2 %3) == true',
-                        template: 'this.dial_01.turn %2 %3 == true',
+                        syntax: '(this.dial_01.getTurn() %2 %3) == TRUE',
+                        template: 'this.dial_01.turn %2 %3 == TRUE',
                     }
                 ],
                 py: [
@@ -518,7 +518,7 @@ Entry.MODI.getBlocks = function () {
                  js: [
                     {
                         syntax: '(%2)',
-                        template: 'this.dial_01.turn %2 %3 == true',
+                        template: 'this.dial_01.turn %2 %3 == TRUE',
                     }
                 ],
                 py: [
@@ -592,8 +592,8 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: '(this.tof_01.getDistance() %2 %3) == true',
-                        template: 'this.tof_01.getDistance() %2 %3 == true',
+                        syntax: '(this.tof_01.getDistance() %2 %3) == TRUE',
+                        template: 'this.tof_01.getDistance() %2 %3 == TRUE',
                     }
                 ],
                 py: [
@@ -638,7 +638,7 @@ Entry.MODI.getBlocks = function () {
                 js: [
                     {
                         syntax: 'this.tof_01.getDistance()',
-                        template: 'this.tof_01.getDistance() %2 %3 == true',
+                        template: 'this.tof_01.getDistance() %2 %3 == TRUE',
                     }
                 ],
                 py: [
@@ -2556,7 +2556,7 @@ Entry.MODI.getBlocks = function () {
                     options: [
                         ['클릭', 'getClick(0)'],
                         ['두 번 클릭', 'getDoubleClick(0)'],
-                        ['누른상태', 'getPressStatus(0)'],
+                        ['누른 상태', 'getPressStatus(0)'],
                        
                     ],
                     fontSize: 11,
@@ -2578,7 +2578,7 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: 'this.network_01.%2 == true',
+                        syntax: 'this.network_01.%2 == TRUE',
                         template: 'network.%2',
                     }
                 ],
@@ -2813,8 +2813,8 @@ Entry.MODI.getBlocks = function () {
 
                 js: [
                     {
-                        syntax: 'this.network_01.getDialTurn(0) %2 %3 == true',
-                        template: 'this.network_01.getDialTurn(0) %2 %3 == true',
+                        syntax: 'this.network_01.getDialTurn(0) %2 %3 == TRUE',
+                        template: 'this.network_01.getDialTurn(0) %2 %3 == TRUE',
                     }
                 ],
 
@@ -3038,7 +3038,7 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: 'this.network_01.getSliderPosition(0) %2 %3 == true',
+                        syntax: 'this.network_01.getSliderPosition(0) %2 %3 == TRUE',
                         template: 'this.network_01.getJoystickDirection(0)',
                     }
                 ],

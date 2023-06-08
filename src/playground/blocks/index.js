@@ -27,7 +27,8 @@ Entry.EXPANSION_BLOCK = {};
 // require('./block_expansion_behaviorconduct_disaster');
 // require('./block_expansion_behaviorconduct_lifesafety');
 
-Entry.EXPANSION_BLOCK_LIST = {
+Entry.
+EXPANSION_BLOCK_LIST = {
     // weather: Entry.Expansion_Weather,
     // festival: Entry.EXPANSION_BLOCK.festival,
     // translate: Entry.EXPANSION_BLOCK.translate,

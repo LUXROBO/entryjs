@@ -20,13 +20,13 @@ module.exports = {
                         function() {
                             // 변수 만들기 버튼 클릭
                            
-                            // $("#entryVariableAddSpaceInputWorkspace").val('');
-                            // $("#variableModal").show();
-                            // $("#variableModal").addClass('entryRemove');
-                            // $("#variableModal").removeClass('entryRemove');
+                            $("#entryVariableAddSpaceInputWorkspace").val('');
+                            $("#variableModal").show();
+                            $("#variableModal").addClass('entryRemove');
+                            $("#variableModal").removeClass('entryRemove');
 
                             console.log('변수 만들기 버튼 클릭 : ', JSON.stringify(Entry.variableContainer.variables_));
-                            window.android.showEntryVariablePopUp( JSON.stringify(Entry.variableContainer.variables_));
+                            // window.android.showEntryVariablePopUp( JSON.stringify(Entry.variableContainer.variables_));
 
                             // Entry.variableContainer.openVariableAddPanel('variable');
                         },
@@ -380,8 +380,9 @@ module.exports = {
                 color: EntryStatic.colorSet.block.default.VARIABLE,
                 outerLine: EntryStatic.colorSet.block.darken.VARIABLE,
                 skeleton: 'basic',
-                statements: [],
+                template: '%1에 %2만큼 %3 %4',
                 params: [
+                   
                     {
                         type: 'DropdownDynamic',
                         value: null,
@@ -395,10 +396,22 @@ module.exports = {
                         accept: 'string',
                     },
                     {
+                        type: 'Dropdown',
+                        options: [
+                            ['더하기', '+'],
+                            ['빼기', '-'],
+                        ],
+                        fontSize: 11,
+                        bgColor: EntryStatic.colorSet.block.modi.VARIABLE,
+                        arrowColor: EntryStatic.colorSet.arrow.default.DEFAULT,
+                    },
+                    {
                         type: 'Indicator',
                         img: 'block_icon/variable_icon.svg',
                         size: 11,
                     },
+
+                   
                 ],
                 events: {
                     dataAdd: [
@@ -419,15 +432,14 @@ module.exports = {
                     ],
                 },
                 def: {
-                    params: [
-                        null,
+                    params :[
+                        null, 
                         {
                             type: 'text',
-                            params: ['10'],
+                            params: ['1'],
                         },
-                        null,
-                    ],
-                    type: 'change_variable',
+                        '+'],
+                    type : 'change_variable'
                 },
                 pyHelpDef: {
                     params: [
@@ -523,7 +535,7 @@ module.exports = {
                 color: EntryStatic.colorSet.block.default.VARIABLE,
                 outerLine: EntryStatic.colorSet.block.darken.VARIABLE,
                 skeleton: 'basic',
-                statements: [],
+                template: '%1을(를) %2(으)로 정하기 %3',
                 params: [
                     {
                         type: 'DropdownDynamic',
@@ -566,7 +578,7 @@ module.exports = {
                         null,
                         {
                             type: 'text',
-                            params: ['10'],
+                            params: ['0'],
                         },
                         null,
                     ],
