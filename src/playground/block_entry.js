@@ -585,16 +585,7 @@ function getBlocks() {
             },
             isPrimitive: true,
             syntax: {
-                js: [{
-                    syntax: '%1',
-                        keyOption: 'number',
-                        textParams: [
-                            {
-                                type: 'TextInput',
-                                converter: Entry.block.converters.returnStringOrNumberByValue,
-                            },
-                        ],
-                }],
+                js: ['Scope', '%1'],
                 py: [
                     {
                         syntax: '%1',
@@ -2714,14 +2705,7 @@ function getBlocks() {
                 return leftValue && rightValue;
             },
             syntax: {
-                js: [
-                    {
-                        syntax: '(%1 && %3)',
-                        template: '%1 && %3',
-                        blockType: 'param',
-                        dic: '&&',
-                    },
-                ],
+                js: [],
                 py: [
                     {
                         syntax: '(%1 and %3)',
@@ -2782,14 +2766,7 @@ function getBlocks() {
                 return leftValue || rightValue;
             },
             syntax: {
-                js: [
-                    {
-                        syntax: '(%1 || %3)',
-                        template: '%1 || %3',
-                        blockType: 'param',
-                        dic: '||',
-                    }
-                ],
+                js: [],
                 py: [
                     {
                         syntax: '(%1 or %3)',
@@ -2848,7 +2825,7 @@ function getBlocks() {
                 return true;
             },
             isPrimitive: true,
-            syntax: { js: ['true'], py: ['True'], c: ['true'] },
+            syntax: { js: ['Scope', 'true'], py: ['True'], c: ['true'] },
         },
         False: {
             color: EntryStatic.colorSet.block.default.JUDGE,
@@ -2870,7 +2847,7 @@ function getBlocks() {
                 return false;
             },
             isPrimitive: true,
-            syntax: { js: ['false'], py: ['False'], c: ['FALSE'] },
+            syntax: { js: [], py: ['False'], c: ['FALSE'] },
         },
         press_some_key: {
             color: EntryStatic.colorSet.block.default.START,
@@ -2972,16 +2949,7 @@ function getBlocks() {
             },
             isPrimitive: true,
             syntax: {
-                js: [{
-                    syntax: '%1',
-                    keyOption: 'text',
-                    textParams: [
-                        {
-                            type: 'TextInput',
-                            converter: Entry.block.converters.returnStringOrNumberByValue,
-                        },
-                    ],
-                }],
+                js: ['Scope', '%1'],
                 py: [
                     {
                         syntax: '%1',
