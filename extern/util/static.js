@@ -16,7 +16,7 @@ EntryStatic.getAllBlocks = function () {
 
     let blocks = EntryStatic.defaultModiBlocks
 
-    let moduleList;
+    let moduleList = [];
     // Entry.modiList = ['BATTERY', 'NETWORK', 'DIAL', 'MOTOR_A', 'MOTOR_B']
 
     console.log('getAllBlocks Entry.modiList 1' , `${Entry.modiList}`)
@@ -26,27 +26,27 @@ EntryStatic.getAllBlocks = function () {
         moduleList = Entry.modiList //["BATTERY", "BUTTON", "IR", "LED"]
     } else {
         moduleList = EntryStatic.defaultModiList
-        console.log('getAllBlocks if2')
+        console.log('getAllBlocks if2',moduleList)
         
     }
 
     // moduleList = moduleList.concat(EntryStatic.NetworkModule) // network 모듈은 기본으로 추가
 
     let HwBlocks = []
+   
     moduleList.forEach(moduleItem => {
-
-        if (moduleItem != "NETWORK") {
-            HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks[moduleItem])
-        }
+        console.log('getAllBlocks moduleItem : ', moduleItem)
+        HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks[moduleItem])
 
     })
     console.log('getAllBlocks HwBlocks : ', HwBlocks)
     // network 모듈은 마지막에 추가
-    let networkList = EntryStatic.moduleToBlocks["NETWORK"]
+    // let networkList = EntryStatic.moduleToBlocks["NETWORK"]
 
-    networkList.forEach(item => {
-        HwBlocks = HwBlocks.concat(item)
-    })
+    // networkList.forEach(item => {
+    //     HwBlocks = HwBlocks.concat(item)
+    // })
+
 
     // console.log('getAllBlocks EntryStatic.moduleToBlocks[moduleItem] : ', EntryStatic.moduleToBlocks["NETWORK"])
     
@@ -94,26 +94,19 @@ EntryStatic.defaultModiBlocks = [
             'calc_rand',
         ],
     },
-    {
-        category: 'variable',
-        blocks: [
-            'variableAddButton',
-            'get_variable',
-            'change_variable',
-            'set_variable',
-        ],
-    },
+    // {
+    //     category: 'variable',
+    //     blocks: [
+    //         'variableAddButton',
+    //         'get_variable',
+    //         'change_variable',
+    //         'set_variable',
+    //     ],
+    // },
 ];
 
 EntryStatic.defaultModiList = [
-    "BUTTON",
-    "DIAL",
-    "TOF",
-    "LED",
-    "SPEAKER",
-    "MOTOR_A",
-    "MOTOR_B",
-    "DISPLAY"
+    "CLOI"
 ]
 
 EntryStatic.NetworkModule = ["NETWORK"]
@@ -184,8 +177,15 @@ EntryStatic.moduleToBlocks = {
         'HW_NETWORK_TIMER_JUDGEMENT',
         'HW_NETWORK_TIMER',
         'HW_NETWORK_BELL',
+    ],
+    CLOI : [
+        'CLOI_MOVE_FORWARD',
+        'CLOI_ROTATE_LEFT',
+        'CLOI_ROTATE_RIGHT',
+        'CLOI_STOP',
     ]
 }
+
 
 EntryStatic.getCategoryByBlock = function (blockName) {
     if (!blockName) {

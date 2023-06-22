@@ -3251,6 +3251,222 @@ Entry.MODI.getBlocks = function () {
                 ],
             },
         },
+
+        CLOI_MOVE_FORWARD: {
+            color: EntryStatic.colorSet.block.modi.OUTPUT,
+            outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+            skeleton: 'basic',
+            template: '%1 CLoi의 속도를 %2(으)로 거리를 %3M만큼 이동하기   ',
+            params: [
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/led.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                }
+               
+            ],
+            def: {
+                params: [
+                    null,
+                    {
+                        type: 'number',
+                        params: ['1'],
+                    },
+                    {
+                        type: 'number',
+                        params: ['1'],
+                    },
+                  
+                ],
+                type: 'CLOI_MOVE_FORWARD',
+            },
+            paramsKeyMap: {
+                name: 0,
+                rValue: 1,
+                gValue: 2,
+                bValue: 3,
+            },
+            class: 'CLOI',
+            isNotFor: ['modi'],
+            
+            syntax: {
+                js: [
+                    {
+                        syntax: 'cloi_forward:%3,%2',
+                        template: 'led.set_rgb(0,0,0);',
+                    },
+                ],
+                py: [
+                    {
+                        syntax: 'led.set_rgb(%2,%3,%4);',
+                        template: 'led.set_rgb(%2,%3,%4);',
+                    },
+                ],
+            },
+        },
+
+        CLOI_ROTATE_LEFT: {
+            color: EntryStatic.colorSet.block.modi.OUTPUT,
+            outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+            skeleton: 'basic',
+            template: '%1 CLoi의 각도를 왼쪽으로 %2만큼 바꾸기   ',
+            params: [
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/led.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                },
+            
+            ],
+            def: {
+                params: [
+                    null,
+                    {
+                        type: 'number',
+                        params: ['90'],
+                    },
+                
+                  
+                ],
+                type: 'CLOI_ROTATE_LEFT',
+            },
+            paramsKeyMap: {
+                name: 0,
+                rValue: 1,
+                gValue: 2,
+                bValue: 3,
+            },
+            class: 'CLOI',
+            isNotFor: ['modi'],
+            
+            syntax: {
+                js: [
+                    {
+                        syntax: 'cloi_rotate_left:%2',
+                        template: 'led.set_rgb(0,0,0);',
+                    },
+                ],
+                py: [
+                    {
+                        syntax: 'led.set_rgb(%2,%3,%4);',
+                        template: 'led.set_rgb(%2,%3,%4);',
+                    },
+                ],
+            },
+        },
+
+        CLOI_ROTATE_RIGHT: {
+            color: EntryStatic.colorSet.block.modi.OUTPUT,
+            outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+            skeleton: 'basic',
+            template: '%1 CLoi의 각도를 오른쪽으로 %2만큼 바꾸기   ',
+            params: [
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/led.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Block',
+                    accept: 'string',
+                },
+            
+            ],
+            def: {
+                params: [
+                    null,
+                    {
+                        type: 'number',
+                        params: ['90'],
+                    },
+                
+                  
+                ],
+                type: 'CLOI_ROTATE_RIGHT',
+            },
+            paramsKeyMap: {
+                name: 0,
+                rValue: 1,
+                gValue: 2,
+                bValue: 3,
+            },
+            class: 'CLOI',
+            isNotFor: ['modi'],
+            
+            syntax: {
+                js: [
+                    {
+                        syntax: 'cloi_rotate_right:%2',
+                        template: 'led.set_rgb(0,0,0);',
+                    },
+                ],
+                py: [
+                    {
+                        syntax: 'led.set_rgb(%2,%3,%4);',
+                        template: 'led.set_rgb(%2,%3,%4);',
+                    },
+                ],
+            },
+        },
+
+        CLOI_STOP: {
+            color: EntryStatic.colorSet.block.modi.OUTPUT,
+            outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
+            skeleton: 'basic',
+            template: '%1 CLoi를 멈추기',
+            params: [
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/led.svg',
+                    size: 11,
+                },
+        
+               
+            ],
+            def: {
+                params: [
+                    null,
+    
+              
+                ],
+                type: 'CLOI_STOP',
+            },
+            paramsKeyMap: {
+                name: 0,
+                rValue: 1,
+                gValue: 2,
+                bValue: 3,
+            },
+            class: 'CLOI',
+            isNotFor: ['modi'],
+            
+            syntax: {
+                js: [
+                    {
+                        syntax: 'cloi_stop',
+                        template: 'led.set_rgb(0,0,0);',
+                    },
+                ],
+                py: [
+                    {
+                        syntax: 'led.set_rgb(%2,%3,%4);',
+                        template: 'led.set_rgb(%2,%3,%4);',
+                    },
+                ],
+            },
+        },
     };
 };
 //endregion modi 모디

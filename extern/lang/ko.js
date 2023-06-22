@@ -1210,7 +1210,7 @@ Lang.Blocks = {
     "TEXT_text_write_1": "",
     "TEXT_text_write_2": "라고 글쓰기",
     "VARIABLE": "자료",
-    "MODI": "하드웨어",
+    "MODI": "CLoi",
     "VARIABLE_add_value_to_list": "항목을 리스트에 추가하기",
     "VARIABLE_add_value_to_list_1": "",
     "VARIABLE_add_value_to_list_2": "항목을",
