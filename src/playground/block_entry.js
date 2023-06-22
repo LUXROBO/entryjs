@@ -585,7 +585,19 @@ function getBlocks() {
             },
             isPrimitive: true,
             syntax: {
-                js: ['Scope', '%1'],
+                // js: ['Scope', '%1'],
+                js : [
+                    {
+                        syntax: '%1',
+                        keyOption: 'number',
+                        textParams: [
+                            {
+                                type: 'TextInput',
+                                converter: Entry.block.converters.returnStringOrNumberByValue,
+                            },
+                        ],
+                    },
+                ],
                 py: [
                     {
                         syntax: '%1',
@@ -2949,7 +2961,19 @@ function getBlocks() {
             },
             isPrimitive: true,
             syntax: {
-                js: ['Scope', '%1'],
+                js: [
+                    {
+                        syntax: '%1',
+                        keyOption: 'text',
+                        textParams: [
+                            {
+                                type: 'TextInput',
+                                converter: Entry.block.converters.returnStringOrNumberByValue,
+                            },
+                        ],
+                    },
+                    
+                ],
                 py: [
                     {
                         syntax: '%1',

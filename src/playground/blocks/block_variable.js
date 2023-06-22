@@ -350,7 +350,11 @@ module.exports = {
                     return variable.getValue();
                 },
                 syntax: {
-                    js: [],
+                    js: [
+                        {
+                            syntax: 'this.%1',
+                        },
+                    ],
                     py: [
                         {
                             syntax: '%1의 값1',
@@ -394,6 +398,7 @@ module.exports = {
                     {
                         type: 'Block',
                         accept: 'string',
+                        defaultType: 'number',
                     },
                     {
                         type: 'Dropdown',
@@ -435,7 +440,7 @@ module.exports = {
                     params :[
                         null, 
                         {
-                            type: 'text',
+                            type: 'number',
                             params: ['1'],
                         },
                         '+'],
@@ -486,7 +491,11 @@ module.exports = {
                     return script.callReturn();
                 },
                 syntax: {
-                    js: [],
+                    js: [
+                        {
+                            syntax: 'this.%1 = this.%1 %3 %2;',
+                        },
+                    ],
                     py: [
                         {
                             syntax: '%1 += %2',
@@ -577,7 +586,7 @@ module.exports = {
                     params: [
                         null,
                         {
-                            type: 'text',
+                            type: 'number',
                             params: ['0'],
                         },
                         null,
@@ -609,7 +618,11 @@ module.exports = {
                     return script.callReturn();
                 },
                 syntax: {
-                    js: [],
+                    js: [
+                        {
+                            syntax: 'this.%1 = %2;',
+                        },
+                    ],
                     py: [
                         {
                             syntax: '%1 = %2',
