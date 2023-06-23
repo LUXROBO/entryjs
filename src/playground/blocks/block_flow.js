@@ -231,7 +231,7 @@ module.exports = {
                 syntax: {
                     js: [
                         {
-                            syntax: 'while(true) {\n$1\nthis.sleep(3);\n}\nthis.sleep(3);\n',
+                            syntax: 'while(true) {\n$1\n&this.sleep(3);\n}\nthis.sleep(3);\n',
                             template: 'while(true)\n{\n$1\nsleep(3);\n}\nsleep(3);\n',
                             textParams: [
                                 undefined,

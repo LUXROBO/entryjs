@@ -4548,7 +4548,7 @@ Lang.Menus = {
     "course_submit_homework": "課題提出",
     "course_done_study": "学習完了",
     "course_show_list": "リスト",
-    "modi": "MODI",
+    "modi": "하드웨어",
     "chocopi": "ChocoPi",
     "coconut": "coconut",
     "jdkit": "JDKit",

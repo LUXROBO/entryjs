@@ -3256,7 +3256,7 @@ Entry.MODI.getBlocks = function () {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             skeleton: 'basic',
-            template: '%1 CLoi의 속도를 %2(으)로 거리를 %3M만큼 이동하기   ',
+            template: '%1 Move CLoi %3 meters forward at speed level%2   ',
             params: [
                 {
                     type: 'Indicator',
@@ -3300,7 +3300,7 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: 'cloi_forward:%3,%2',
+                        syntax: '&cloi_forward:%3,%2',
                         template: 'led.set_rgb(0,0,0);',
                     },
                 ],
@@ -3317,7 +3317,7 @@ Entry.MODI.getBlocks = function () {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             skeleton: 'basic',
-            template: '%1 CLoi의 각도를 왼쪽으로 %2만큼 바꾸기   ',
+            template: '%1 Rotate CLoi %2 degrees to the left   ',
             params: [
                 {
                     type: 'Indicator',
@@ -3354,7 +3354,7 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: 'cloi_rotate_left:%2',
+                        syntax: '&cloi_rotate_left:%2',
                         template: 'led.set_rgb(0,0,0);',
                     },
                 ],
@@ -3371,7 +3371,7 @@ Entry.MODI.getBlocks = function () {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             skeleton: 'basic',
-            template: '%1 CLoi의 각도를 오른쪽으로 %2만큼 바꾸기   ',
+            template: '%1 Rotate CLoi %2 degrees to the right  ',
             params: [
                 {
                     type: 'Indicator',
@@ -3408,7 +3408,7 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: 'cloi_rotate_right:%2',
+                        syntax: '&cloi_rotate_right:%2',
                         template: 'led.set_rgb(0,0,0);',
                     },
                 ],
@@ -3425,7 +3425,7 @@ Entry.MODI.getBlocks = function () {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,
             skeleton: 'basic',
-            template: '%1 CLoi를 멈추기',
+            template: '%1 Stop CLoi',
             params: [
                 {
                     type: 'Indicator',
@@ -3455,7 +3455,7 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: 'cloi_stop',
+                        syntax: '&cloi_stop',
                         template: 'led.set_rgb(0,0,0);',
                     },
                 ],

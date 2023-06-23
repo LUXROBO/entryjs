@@ -72,26 +72,26 @@ Entry.ZoomController = class ZoomController {
         //     filter: 'url(#entryButtonShadowFilter)',
         //     style: 'cursor: pointer;',
         // });
-        // zoomGroup.export = zoomGroup.svgZoom.elem('image', {
-        //     href: `${Entry.mediaFilePath}custom/modi_btn_export.png`,
-        //     x: 93,
-        //     y: 3,
-        //     width: 83,
-        //     height: 91,
-        //     filter: 'url(#entryButtonShadowFilter)',
-        //     style: 'cursor: pointer;',
-        //     onClick :`window.android.uploadCode(${Entry.binaryOutput})`
-        // });
-        // zoomGroup.remote = zoomGroup.svgZoom.elem('image', {
-        //     id:'remote',
-        //     href: `${Entry.mediaFilePath}custom/modi_btn_remote_dis.png`,
-        //     x: 181,
-        //     y: 3,
-        //     width: 83,
-        //     height: 91,
-        //     filter: 'url(#entryButtonShadowFilter)',
-        //     style: 'cursor: pointer;',
-        // });
+        zoomGroup.export = zoomGroup.svgZoom.elem('image', {
+            href: `${Entry.mediaFilePath}custom/modi_btn_export.png`,
+            x: 93,
+            y: 3,
+            width: 83,
+            height: 91,
+            filter: 'url(#entryButtonShadowFilter)',
+            style: 'cursor: pointer;',
+            onClick :`window.android.uploadCode(${Entry.binaryOutput})`
+        });
+        zoomGroup.remote = zoomGroup.svgZoom.elem('image', {
+            id:'remote',
+            href: `${Entry.mediaFilePath}custom/modi_btn_remote_nor.png`,
+            x: 181,
+            y: 3,
+            width: 83,
+            height: 91,
+            filter: 'url(#entryButtonShadowFilter)',
+            style: 'cursor: pointer;',
+        });
 
        
 
@@ -204,7 +204,7 @@ Entry.ZoomController = class ZoomController {
             // window.android.log('blockMap : '+JSON.stringify(blockMap));
             // window.android.entryRefresh();
             // return;
-
+    
             const keys = Object.keys(blockMap) || [];
             keys.forEach((id) => {
                 let block = blockMap[id];
@@ -212,7 +212,7 @@ Entry.ZoomController = class ZoomController {
                     this.keyBlock = block;
                     startBtnCount++;
                     if(startBtnCount > 1) {
-
+    
                         // console.log('failUpload1');
                         window.android.failUpload('<내보내기 버튼을 클릭했을 때>\n코드 블록이 2개 이상이에요.\n1개만 남기고 삭제한 뒤\n내보내기를 다시 시도해 주세요.');
                         throw new Error('코드 블록이 2개 이상이에요.\n1개만 남기고 삭제한 뒤 내보내기를 다시 시도해 주세요.');
@@ -224,26 +224,26 @@ Entry.ZoomController = class ZoomController {
                     window.android.failUpload('DEFAULT_CODE');
                     throw new Error('기본 코딩입니다.');
                 }
-
+    
                 // console.log('block thread = ', block.getThread().getBlocks);
-
+    
             });
-
+    
             if(startBtnCount == 0) {
                 // console.log('failUpload3');
                 window.android.failUpload('<내보내기 버튼을 클릭했을 때>\n블록 없이는 내보내기를 할 수 없어요.\n다시 코딩을 한 뒤 내보내기를 시도해 주세요.');
                 throw new Error('기본 코딩입니다.');
             }
-
-
+    
+    
                 const block = this.keyBlock;
-
-
+    
+    
                 // window.android.log('block : ' + JSON.stringify(block));
-
+    
                 let parser = new Entry.Parser(Entry.Vim.WORKSPACE_MODE);
                 let syntax = parser.mappingSyntax(Entry.Vim.WORKSPACE_MODE);
-
+    
                 // console.log('parser : ',parser);
                 console.log('syntax : ',syntax);
                 // window.android.log('block getThread: '+JSON.stringify(block.getThread()));
@@ -262,7 +262,7 @@ Entry.ZoomController = class ZoomController {
                     window.android.failUpload('DEFAULT_CODE');
                     throw new Error('기본 코딩입니다.');
                 }
-
+    
                 else if (blockToPyParser._blockCount == 1) {
                     console.log('failUpload1');
                     window.android.failUpload('DEFAULT_CODE');
@@ -287,10 +287,10 @@ Entry.ZoomController = class ZoomController {
                 binary += `\t\t${output}\n`;
                 // binary = binary.replace(/module__/g, moduleList)
                 // binary = binary.replace(/\t/g, "    ")
-
+    
                 console.log('binary3', JSON.stringify(binary));
             
-
+    
                 // 모듈 연결 상태를 체크
                 const designatedModules = output.match(/[a-z]*(?=0\.)\d/g) || []
                 // const connectedModules = moduleList.match(/[a-z]*(?=0\()\d/g) || []
@@ -308,28 +308,28 @@ Entry.ZoomController = class ZoomController {
                 },[]) // 중복 모듈 정리
             
                 console.log(output)
-
+    
                 // const emojiRegex = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/
                 const emojiRegex = /[\uD83C-\uDBFF\uDC00-\uDFFF]+/;
                 const emojiMatch = binary.match(emojiRegex)
                 
                 if(emojiMatch){
-
+    
                     window.android.failUpload(`'${emojiMatch[0]}'는(은) 사용할 수 없어요!\n코딩한 내용을 다시 확인해 주세요.`);
-
+    
                     throw new Error(emojiMatch[0])
                 }
-
+    
                 // const numberRegex = /([ㄱ-ㅎㅏ-ㅣ가-힣])/
                 // const numberMatch = binary.match(numberRegex)
                 
                 // if(numberMatch){
-
+    
                 //     window.android.failUpload('숫자를 입력해 주세요.');
-
+    
                 //     throw new Error(numberMatch[0])
                 // }
-
+    
                 window.android.uploadCode(output)
                 // 프로젝트 저장
                 console.log('exportProject')
@@ -337,20 +337,20 @@ Entry.ZoomController = class ZoomController {
                 Entry.project = project
           
             }
-
+    
             catch(e) {
                 
                 console.log('export error', e);
-
+    
                 if( e.type === undefined && e.message.includes('length')) {
                     console.log('export length error');
                     window.android.failUpload('숫자를 입력해 주세요.');
                 }
-
+    
                 if(e == 'thread') {
                     this.retryCount++;
                 }
-
+    
                 if(this.retryCount >= 3) {
                     this.retryCount = 0;
                     window.android.entryRefresh();
@@ -383,6 +383,8 @@ Entry.ZoomController = class ZoomController {
                 break;
         }
     }
+
+    
 
     setScale(scale = 1) {
         const zoomGroup = this.boardMap.get(this.nowBoard);
@@ -442,3 +444,7 @@ Entry.ZoomController = class ZoomController {
         delete this.boardMap;
     }
 };
+
+Entry.uploadCode = function() {
+   Entry.ZoomController.uploadCode()
+}

@@ -52,7 +52,7 @@ module.exports = function(grunt) {
                 files: [
                     'http://ajax.aspnetcdn.com/ajax/jshint/r07/jshint.js',
                     'test_util/*.js',
-                    'extern/lang/ko.js',
+                    'extern/lang/en.js',
                     'extern/blockly/blockly_compressed.js',
                     'extern/util/static.js',
                     'extern/util/filbert.js',

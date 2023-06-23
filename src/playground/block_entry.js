@@ -6,7 +6,7 @@ if (typeof global.Entry !== 'object') {
 
 if (typeof exports === 'object') {
     /* IGNORE_WEBPACK:START */
-    const Lang = require('../../extern/lang/ko.js').Lang;
+    const Lang = require('../../extern/lang/en.js').Lang;
     global.Lang = Lang;
     /* IGNORE_WEBPACK:END */
     if (typeof EntryStatic !== 'object') {

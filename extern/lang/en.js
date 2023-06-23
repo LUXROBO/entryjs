@@ -1018,6 +1018,7 @@ Lang.Blocks = {
     "CALC_timer_visible_hide": "Hide",
     "color": "Color",
     "FLOW": "Flow",
+    "MODI": "Cloi",
     "FLOW__if_1": "If",
     "FLOW__if_2": "then",
     "FLOW_create_clone_1": "Create",
@@ -1534,7 +1535,7 @@ Lang.Blocks = {
     "ALBERT_set_tempo_to_1": "set tempo to",
     "ALBERT_set_tempo_to_2": "bpm",
     "VARIABLE_variable": "variable",
-    "MODI_modi": "modi",
+
     "wall": "Wall",
     "robotis_common_case_01": "(을)를",
     "robotis_common_set": "the output value",
@@ -4549,7 +4550,7 @@ Lang.Menus = {
     "course_submit_homework": "Submit",
     "course_done_study": "Complete",
     "course_show_list": "List",
-    "modi": "MODI",
+
     "chocopi": "ChocoPi",
     "coconut": "coconut",
     "jdkit": "JDKit",
@@ -4941,7 +4942,6 @@ Lang.Workspace = {
     "upload": "Upload files",
     "upload_addfile": "Add a file",
     "variable": "Variable",
-    "modi": "Modi",
     "variable_add_calcel": "Canceled",
     "variable_add_calcel_msg": "Add a variable was canceled.",
     "variable_add_fail": "Failed",
@@ -5062,6 +5062,7 @@ Lang.Workspace = {
     "broken_file_msg": "File is corrupt or wrong file is loaded",
     "check_audio_msg": "You can only upload mp3 files.",
     "check_entry_file_msg": "Only ENT files are loadable",
+
     "hardware_version_alert_text": "Please update your hardware connector to the latest version.",
     "variable_name_auto_edited_title": "variable name auto-edited",
     "variable_name_auto_edited_content": "variable name cannot exceed 10 characters",
@@ -5097,7 +5098,8 @@ Lang.Workspace = {
     "workspace_object_tooltip": "You can change the order of the object by\ndragging the image of the object. (It is the same\nin the ‘Shape’ and ‘Sound’ sections.)",
     "workspace_comment_tooltip": "You can hide or show all the memos\nadded.",
     "workspace_zoom_tooltip": "You can zoom in/out the blocks. If you click ‘=’\nthe block will be back to original size.",
-    "workspace_image_tooltip": "Create your own\nproject with new\nfunctions!"
+    "workspace_image_tooltip": "Create your own\nproject with new\nfunctions!",
+    "modi":"Cloi",
 };
 Lang.code = "view code";
 Lang.EntryStatic = {
