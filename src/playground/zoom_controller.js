@@ -73,7 +73,7 @@ Entry.ZoomController = class ZoomController {
         //     style: 'cursor: pointer;',
         // });
         zoomGroup.export = zoomGroup.svgZoom.elem('image', {
-            href: `${Entry.mediaFilePath}custom/modi_btn_export.png`,
+            href: `${Entry.mediaFilePath}custom/modi_com_btn_export.png`,
             x: 93,
             y: 3,
             width: 83,
@@ -84,7 +84,7 @@ Entry.ZoomController = class ZoomController {
         });
         zoomGroup.remote = zoomGroup.svgZoom.elem('image', {
             id:'remote',
-            href: `${Entry.mediaFilePath}custom/modi_btn_remote_nor.png`,
+            href: `${Entry.mediaFilePath}custom/modi_com_btn_plus.png`,
             x: 181,
             y: 3,
             width: 83,
