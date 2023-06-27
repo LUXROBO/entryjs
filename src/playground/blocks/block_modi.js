@@ -3252,6 +3252,65 @@ Entry.MODI.getBlocks = function () {
             },
         },
 
+        CLOI_JOYSTICK_JUDGEMENT: {
+            color: EntryStatic.colorSet.block.modi.SETUP,
+            outerLine: EntryStatic.colorSet.block.modi.SETUP_OUTLINE,
+            fontColor: '#fff',
+            skeleton: 'basic_boolean_field',
+            template: '%1 Cloi Joystic is %2',
+            params: [
+                {
+                    type: 'Indicator',
+                    img: 'block_icon/modi_icon/network.svg',
+                    size: 11,
+                },
+                {
+                    type: 'Dropdown',
+                    options: [
+                        ['origin', 0],
+                        ['up', 100],
+                        ['down', -100],
+                        ['left', -50],
+                        ['right', 50],
+                       
+                    ],
+                    fontSize: 11,
+                    bgColor: EntryStatic.colorSet.block.modi.SETUP_OUTLINE,
+                    arrowColor: EntryStatic.colorSet.arrow.default.HARDWARE,
+                },
+              
+            ],
+            def: {
+                params: [null, 0],
+                type: 'CLOI_JOYSTICK_JUDGEMENT',
+            },
+            paramsKeyMap: {
+                property: 0,
+            },
+            class: 'network',
+            isNotFor: ['modi'],
+
+            syntax: {
+                js: [
+                    {
+                        syntax: 'this.network_01.getJoystickDirection(0) == %2',
+                        template: 'this.network_01.getJoystickDirection(0)',
+                    }
+                ],
+                py: [
+                    {
+                        syntax: '(network.joystick_direction == %2)',
+                        template: '(network.joystick_direction == %2)',
+                    }
+                ],
+                c: [
+                    {
+                        syntax: '(network0.getJoystickDirection() == %2)',
+                        template: '(network0.getJoystickDirection() == %2)',
+                    },
+                ],
+            },
+        },
         CLOI_MOVE_FORWARD: {
             color: EntryStatic.colorSet.block.modi.OUTPUT,
             outerLine: EntryStatic.colorSet.block.modi.OUTPUT_OUTLINE,

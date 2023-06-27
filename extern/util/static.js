@@ -179,6 +179,7 @@ EntryStatic.moduleToBlocks = {
         'HW_NETWORK_BELL',
     ],
     CLOI : [
+        'CLOI_JOYSTICK_JUDGEMENT',
         'CLOI_MOVE_FORWARD',
         'CLOI_ROTATE_LEFT',
         'CLOI_ROTATE_RIGHT',
