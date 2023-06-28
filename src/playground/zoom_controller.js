@@ -254,22 +254,22 @@ Entry.ZoomController = class ZoomController {
                         }
                         
                         // let binary = 'import time\nimport modi_plus\nimport math\n\nbundle = modi_plus.MODIPlus()\n';
-                        let binary = 'class UserTask extends ModiTask {\n\tconstructor(port) {\n\t\tsuper(port);\n\n\ndoTask() {\n\tthis.sleep(2000);\n';
+                        let binary = 'class UserTask extends ModiTask {\n\tconstructor(port) {\n\t\tsuper(port);\n\nvariable__\ndoTask() {\n\tthis.sleep(2000);\n';
                    
-                        let moduleList = ''
+                        let variable = ''
                         const variables = Entry.variableContainer.variables_
                         variables.forEach((el)=>{
-                            moduleList += `float ${el.getId()} = 0.0;\n`
+                            variable += `this.${el.getId()} = 0;\n`
                         })
                        
                         
                         // 모듈 블럭 선언
-                        moduleList += `\n${Entry.module}\n`;
+                        // moduleList += `\n${Entry.module}\n`;
                        
                         // 코드
-                        // console.log("cOutput",cOutput)
+                        console.log("variables",variables)
                         binary += `\t\t${output}\n`;
-                        binary = binary.replace(/module__/g, moduleList)
+                        binary = binary.replace(/variable__/g, variable)
                         binary = binary.replace(/\t/g, "    ")
 
                         console.log('binary3', JSON.stringify(binary));

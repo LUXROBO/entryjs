@@ -1059,7 +1059,7 @@ class TextCodingUtil {
 
             } else if (option == '(3)') {
 
-                const condition = '(math.floor((this.dial_01.getTurn() - 1) / 10) + 1)';
+                const condition = '(this.floor((this.dial_01.getTurn() - 1) / 10) + 1)';
                 blockToken.splice(lastIndex, 0, condition);
                 lastIndex += 1;
                 blockToken.splice(lastIndex, 1);
