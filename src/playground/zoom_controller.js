@@ -230,16 +230,15 @@ Entry.ZoomController = class ZoomController {
         
                         // console.log('parser : ',parser);
                         console.log('syntax : ',syntax);
-                        // window.android.log('block getThread: '+JSON.stringify(block.getThread()));
-                        // console.log('block getThread: ', typeof block.getThread());
-                       
-                    
+                     
                         // var blockToPyParser = new Entry.BlockToPyParser(syntax);
                         var blockToPyParser = new Entry.BlockToLuxJsParser(syntax);
                         blockToPyParser._parseMode = Entry.Parser.PARSE_GENERAL;
                         
                         let output = blockToPyParser.Thread(block.getThread());
                         // let output =  blockToPyParser.Thread(new Entry.Thread([blockSchema.def], code));
+
+                        
                     
                         if(blockToPyParser._blockCount == 2 && blockToPyParser._secondBlock.data.type =='repeat_inf') {
                             console.log('failUpload2');
@@ -252,27 +251,38 @@ Entry.ZoomController = class ZoomController {
                             window.android.failUpload('DEFAULT_CODE');
                             throw new Error('기본 코딩입니다.');
                         }
-                        
-                        // let binary = 'import time\nimport modi_plus\nimport math\n\nbundle = modi_plus.MODIPlus()\n';
-                        let binary = 'class UserTask extends ModiTask {\n\tconstructor(port) {\n\t\tsuper(port);\n\nvariable__\ndoTask() {\n\tthis.sleep(2000);\n';
-                   
+
+                        let judgement = '';
+                        let binary = 'class UserTask extends ModiTask {\n\tconstructor(port) {\n\t\tsuper(port);\n\nmodule__\nvariable__\n}\ndoTask() {\n\tjudgement__\nthis.sleep(1000);\n';
                         let variable = ''
                         const variables = Entry.variableContainer.variables_
+
+
                         variables.forEach((el)=>{
                             variable += `this.${el.getId()} = 0;\n`
                         })
-                       
+
+                        let checkJudgement = output.split('\n');
+
+                        checkJudgement.forEach((el)=> {
+
+                        
+                            if(el.trim().startsWith('if((this.')) {
+                                console.log('el', el);
+                                judgement+=`${el}{};\n`;
+                            }
+                        })
                         
                         // 모듈 블럭 선언
                         // moduleList += `\n${Entry.module}\n`;
-                       
+                        
                         // 코드
-                        console.log("variables",variables)
-                        binary += `\t\t${output}\n`;
+                        binary += `\t\t${output}\n}\n}`;
                         binary = binary.replace(/variable__/g, variable)
+                        binary = binary.replace(/judgement__/g, judgement)
                         binary = binary.replace(/\t/g, "    ")
 
-                        console.log('binary3', JSON.stringify(binary));
+                        console.log(binary);
                     
         
                         // 모듈 연결 상태를 체크
@@ -291,7 +301,7 @@ Entry.ZoomController = class ZoomController {
                             return accArr
                         },[]) // 중복 모듈 정리
                     
-                        console.log(output)
+                        // console.log(output)
 
                         // const emojiRegex = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/
                         const emojiRegex = /[\uD83C-\uDBFF\uDC00-\uDFFF]+/;
@@ -314,7 +324,7 @@ Entry.ZoomController = class ZoomController {
                         //     throw new Error(numberMatch[0])
                         // }
         
-                        window.android.uploadCode(output)
+                        window.android.uploadCode(binary)
                         // 프로젝트 저장
                         console.log('exportProject')
                         let project = Entry.exportProject();

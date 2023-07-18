@@ -350,7 +350,7 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: '(this.dial_01.getTurn() %2 %3) == true',
+                        syntax: '(this.dial_01.getTurn() %2 %3)',
                         template: 'this.dial_01.getTurn() %2 %3 == true',
                     }
                 ],
@@ -436,7 +436,7 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: '(this.dial_01.getTurn() %2 %3) == true',
+                        syntax: '(this.dial_01.getTurn() %2 %3)',
                         template: 'this.dial_01.turn %2 %3 == true',
                     }
                 ],
@@ -592,7 +592,7 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: '(this.tof_01.getDistance() %2 %3) == true',
+                        syntax: '(this.tof_01.getDistance() %2 %3)',
                         template: 'this.tof_01.getDistance() %2 %3 == true',
                     }
                 ],
@@ -2172,16 +2172,15 @@ Entry.MODI.getBlocks = function () {
                         ['병아리','res/chick.bmp'],
                         ['사자','res/lion.bmp'],
                         ['거북이','res/turtle.bmp'],
-                        ['참새','res/sparrow.bmp'],
                         ['펭귄','res/penguin.bmp'],
                         ['나비','res/butfly.bmp'],
                         ['물고기','res/fish.bmp'],
                         ['돌고래','res/dolphin.bmp'],
                         ['고슴도치','res/hedgeh.bmp'],
                         //*
-                        ['참새 한 마리','res/sparrow.bmp'],
-                        ['참새 두 마리','res/sparrow.bmp'],
-                        ['참새 세 마리','res/sparrow.bmp'],
+                        ['참새 한 마리','res/1bird.bmp'],
+                        ['참새 두 마리','res/2birds.bmp'],
+                        ['참새 세 마리','res/3birds.bmp'],
 
                         ['꽃','res/flower.bmp'],
                         ['나무','res/tree.bmp'],
