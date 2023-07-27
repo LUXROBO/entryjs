@@ -111,8 +111,8 @@ EntryStatic.defaultModiList = [
     "TOF",
     "LED",
     "SPEAKER",
-    "MOTOR_A",
-    "MOTOR_B",
+    "MOTORA",
+    "MOTORB",
     "DISPLAY"
 ]
 
@@ -147,7 +147,7 @@ EntryStatic.moduleToBlocks = {
         'HW_SPEAKER_OFF',
     ],
 
-    MOTOR_A: [
+    MOTORA: [
         'HW_MOTOR_A',
         'HW_MOTOR_A_ANGLE',
         'HW_MOTOR_A_ANGLE_CHANGE',
@@ -155,7 +155,7 @@ EntryStatic.moduleToBlocks = {
     
     ],
 
-    MOTOR_B: [
+    MOTORB: [
         'HW_MOTOR_B',
         'HW_MOTOR_B_ANGLE',
         'HW_MOTOR_B_ANGLE_CHANGE',
