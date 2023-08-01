@@ -1789,7 +1789,7 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: 'this.motorb_01.setAngle(%2);',
+                        syntax: 'this.motorb_01.setAngle(%2,70,1);',
                     
                     },
                 ], 
