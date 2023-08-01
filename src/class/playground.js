@@ -52,15 +52,17 @@ Entry.Playground = class {
         
         
         // create video player
-        $("#entryMenuTop").html(`<video autoplay width="100%" height="100%" preload="metadata" controlsList="nodownload" id="myVideo" src=${global.Entry.guideList[global.Entry.videoNum].videoUrl}#t=1.1></video>`); //controls 
-        $("#entryMenuTop").css({'z-index':99, position:'absolute'})
-        $("#myVideo").css({position:'absolute'})
+        $("#entryMenuTop").html(`<video autoplay width="100%" height="100%" preload="metadata" controls id="myVideo" src=${global.Entry.guideList[global.Entry.videoNum].videoUrl}#t=1.1></video>`); //controls 
+        $("#entryMenuTop").css({'z-index':99})
+        // $("#myVideo").css({position:'absolute'})
 
         // create play list
         $("#entryMenuTop").append(`<div id="playlist"></div>`)
-
+        
         // create video-controls
         $("#entryMenuTop").append(`<div id="video-controls"></div>`)
+      
+
         let state= `
         <img src="./images/modi_invenact_btn_prev.svg" id="previous" display = "hidden">
         <img src="./images/modi_invenact_btn_play.svg" id="play">
@@ -68,16 +70,21 @@ Entry.Playground = class {
         <img src="./images/modi_invenact_btn_pause.svg" id="pause">
         <img src="./images/modi_invenact_btn_next.svg" id="next">
         <img src="./images/modi_invenact_btn_next_transparent.svg" id="next_t">
+
+        <div id="layout_progress">
+            <div id="currentTime"></div>
+            <div class="wrap" id="wrap">
+                <input type="range" min="0" max="100" value="0" class="range" id="range" />
+            <div id="duration"></div>
+        </div>
+
         <img src="./images/modi_invenact_btn_fullscreen.svg" id="playerfullscreen">
         <img src="./images/modi_invenact_btn_fullscreen_exit.svg" id="playerminscreen">
-
-        <div id="currentTime"></div>
-        <div class="wrap">
-        <input type="range" min="0" max="100" value="0" class="range"  />
-       </div>
-        <div id="duration"></div>
+        </div>   
+       
         `;
-        $("#video-controls").append(state);
+       
+        $("#video-controls").append(state);  
         
         function progressUpdate() {
             const percent = ( $("#myVideo")[0].currentTime /  $("#myVideo")[0].duration) * 100;
@@ -179,7 +186,6 @@ Entry.Playground = class {
     
         function updatePlayList(params) {
 
-            // console.log('updatePlayList');
             if(global.Entry.videoNum == 0) {
                 document.getElementById("previous").style.visibility = "hidden";
             }
@@ -276,26 +282,43 @@ Entry.Playground = class {
 
         $("#playerfullscreen").on('click',()=>{
 
-            
-            global.Entry.currentTime =  $("#myVideo")[0].currentTime;
-            const videoData =global.Entry.currentTime+'#'+global.Entry.isPlayVideo+"#"+global.Entry.videoNum;
+            let video = $("#entryMenuTop")[0];
 
-            $("#myVideo")[0].pause();
-            window.android.setPlayerFullScreen(videoData);
-            
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                video.webkitRequestFullscreen();
+            } else if (video.mozRequestFullScreen) { /* Firefox */
+                video.mozRequestFullScreen();
+            } else if (video.msRequestFullscreen) { /* IE/Edge */
+                video.msRequestFullscreen();
+            }
         })
 
         $("#playerminscreen").on('click',()=>{
-           
+
+
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitCancelFullScreen) { /* Chrome, Safari and Opera */
+                document.webkitCancelFullScreen();
+            } else if (document.mozCancelFullScreen) { /* Firefox */
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) { /* IE/Edge */
+                document.msExitFullscreen();
+            }
         })
 
         $(document).on('mozfullscreenchange webkitfullscreenchange fullscreenchange',()=>{
             let fullscreenElement = document.fullscreenElement || document.mozFullScreenElement ||
                 document.webkitFullscreenElement || document.msFullscreenElement;
             
+                console.log('fullscreenElement',fullscreenElement);
+
             if(fullscreenElement){
                 $("#playerminscreen").show();
                 $("#playerfullscreen").hide();   
+             
             } else {
                 $("#playerminscreen").hide();
                 $("#playerfullscreen").show();  
@@ -755,6 +778,7 @@ Entry.Playground = class {
             
             console.log('device model', `${global.Entry.deviceModel}`);
             $(".engineContainer").hide();
+            this.createVideoPlayer();
         }
     }
 
