@@ -54,7 +54,7 @@ Entry.Playground = class {
         // create video player
         $("#entryMenuTop").html(`<video autoplay width="100%" height="100%" preload="metadata" controls id="myVideo" src=${global.Entry.guideList[global.Entry.videoNum].videoUrl}#t=1.1></video>`); //controls 
         $("#entryMenuTop").css({'z-index':99})
-        // $("#myVideo").css({position:'absolute'})
+        // $("#entryMenuTop").css({position:'absolute'})
 
         // create play list
         $("#entryMenuTop").append(`<div id="playlist"></div>`)
@@ -75,12 +75,15 @@ Entry.Playground = class {
             <div id="currentTime"></div>
             <div class="wrap" id="wrap">
                 <input type="range" min="0" max="100" value="0" class="range" id="range" />
+            </div>
             <div id="duration"></div>
         </div>
-       
         `;
        
         $("#video-controls").append(state);  
+        $("#video-controls").append(`
+        <img src="./images/modi_invenact_btn_fullscreen.svg" id="playerfullscreen">
+        <img src="./images/modi_invenact_btn_fullscreen_exit.svg" id="playerminscreen">`);  
         
         function progressUpdate() {
             const percent = ( $("#myVideo")[0].currentTime /  $("#myVideo")[0].duration) * 100;
@@ -321,8 +324,8 @@ Entry.Playground = class {
             }
         })
 
-        $("#myVideo")[0].play();
-        global.Entry.isPlayVideo= true;
+        // $("#myVideo")[0].play();
+        // global.Entry.isPlayVideo= true;
     }
 
     
@@ -414,33 +417,17 @@ Entry.Playground = class {
         
     }
 
-    setMediaPlayer(videoData) {
+    playMediaPlayer() {
 
        
-        const dataToken = videoData.split('#');
-        const isPlayMin = dataToken[1];
-
-        // $("#playlist").text(`[ ${videoNum + 1} / ${guideList.length} ]`)
-    
-        if(isPlayMin == 'true') {
-            global.Entry.isPlayVideo = true;
-            $("#myVideo")[0].play();
-           
-        }
-
-        else {
-            global.Entry.isPlayVideo = false;
-            $("#myVideo")[0].pause();
-        }
+        $("#myVideo")[0].play();
         
     }
 
-    getMediaPlayerState() {
-        global.Entry.currentTime =  $("#myVideo")[0].currentTime;
-            
-        const videoData =global.Entry.currentTime+'#'+global.Entry.isPlayVideo+"#"+global.Entry.videoNum;
-
-        window.android.setMediaPlayerState(videoData);
+    stopMediaPlayer() {
+        // global.Entry.currentTime =  $("#myVideo")[0].currentTime;
+        // const videoData =global.Entry.currentTime+'#'+global.Entry.isPlayVideo+"#"+global.Entry.videoNum;
+        // window.android.setMediaPlayerState(videoData);
         $("#myVideo")[0].pause();
     }
 
