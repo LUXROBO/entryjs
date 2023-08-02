@@ -184,7 +184,7 @@ Entry.ZoomController = class ZoomController {
                      
                     
                     const blockMap = this.nowBoard.code._blockMap;
-                    // console.log('blockMap', blockMap);
+                    console.log('blockMap', blockMap);
                     // window.android.log('blockMap : '+JSON.stringify(blockMap));
                     // window.android.entryRefresh();
                     // return;
@@ -205,7 +205,7 @@ Entry.ZoomController = class ZoomController {
                        
                         if(keys.length == 1 && blockMap[keys[0]].data.type == 'when_run_button_click') {
                             // console.log('failUpload4');
-                            window.android.failUpload('DEFAULT_CODE');
+                            window.android.failUpload('default_code');
                             throw new Error('기본 코딩입니다.');
                         }
 
@@ -223,7 +223,7 @@ Entry.ZoomController = class ZoomController {
                         const block = this.keyBlock;
 
         
-                        // window.android.log('block : ' + JSON.stringify(block));
+                        // console.log('block : ' + JSON.stringify(block));
 
                         let parser = new Entry.Parser(Entry.Vim.WORKSPACE_MODE);
                         let syntax = parser.mappingSyntax(Entry.Vim.WORKSPACE_MODE);
@@ -242,13 +242,13 @@ Entry.ZoomController = class ZoomController {
                     
                         if(blockToPyParser._blockCount == 2 && blockToPyParser._secondBlock.data.type =='repeat_inf') {
                             console.log('failUpload2');
-                            window.android.failUpload('DEFAULT_CODE');
+                            window.android.failUpload("default_code");
                             throw new Error('기본 코딩입니다.');
                         }
 
                         else if (blockToPyParser._blockCount == 1) {
                             console.log('failUpload1');
-                            window.android.failUpload('DEFAULT_CODE');
+                            window.android.failUpload("default_code");
                             throw new Error('기본 코딩입니다.');
                         }
 
@@ -274,34 +274,98 @@ Entry.ZoomController = class ZoomController {
                         })
                         
                         // 모듈 블럭 선언
-                        // moduleList += `\n${Entry.module}\n`;
-                        
+                        // let moduleList = `\n${Entry.module}\n`;
+                        // console.log('EntryStatic.moduleToBlocks', EntryStatic.moduleToBlocks);
+
                         // 코드
                         binary += `\t\t${output}\n}\n}`;
                         binary = binary.replace(/variable__/g, variable)
                         binary = binary.replace(/judgement__/g, judgement)
                         binary = binary.replace(/\t/g, "    ")
 
-                        console.log(binary);
+                        // console.log(binary);
                     
-        
+                        
                         // 모듈 연결 상태를 체크
-                        const designatedModules = output.match(/[a-z]*(?=0\.)\d/g) || []
-                        // const connectedModules = moduleList.match(/[a-z]*(?=0\()\d/g) || []
-                        const connectedModules = Entry.module.match(/[a-z]*(?=0\()\d/g) || []
-                        const unconnectedModules = 
-                        designatedModules
-                        .filter(module => {
-                            return !connectedModules.includes(module)
-                        }) // designatedModules에 포함된 모듈이 connectedModules에 없으면 unconnectedModules에 추가
-                        .reduce((accArr,el)=>{
-                            if(!accArr.includes(el)){
-                                accArr.push(el)
+                        const checkList = []
+                        keys.forEach((id) => {
+                                let block = blockMap[id];
+                                
+                                if(block._schema.def.category == 'modi') {
+                                    checkList.push(block._schema.def.type)
+                                }
+                                 
                             }
-                            return accArr
-                        },[]) // 중복 모듈 정리
+                        )
+
+                        console.log('checkList',checkList); 
                     
-                        // console.log(output)
+                        // const propertyName = `${unconnectedModules[0]}`.trim()
+                        // const designatedModules = EntryStatic.moduleToBlocks[propertyName]
+                        // const connectedModules = moduleList.match(/[a-z]*(?=0\()\d/g) || []
+
+                        const designatedModules = EntryStatic.defaultModiList;
+                        const disAvailableBlock = []
+
+                        designatedModules.filter(module => {
+                            
+                            if(module.trim() == 'BATTERY' || module.trim() == 'NETWORK') {
+
+                                return 
+                            }
+                            
+    
+                            checkList.forEach((item) => {
+                       
+                                if(EntryStatic.moduleToBlocks[module].includes(item) && !Entry.module.includes(module)) {
+                
+                                    disAvailableBlock.push(module)
+                                }
+                            
+                            })                
+                        }) 
+
+
+                        // designatedModules에 포함된 모듈이 connectedModules에 없으면 unconnectedModules에 추가
+        
+                        if(disAvailableBlock.length > 0) { 
+
+                            let module = ""
+
+                            switch(disAvailableBlock[0]) {
+                                case 'BUTTON':
+                                    module = "버튼"
+                                    break;
+
+                                case 'DIAL':
+                                    module = "다이얼"
+                                    break;
+
+                                case 'TOF':
+                                    module = "거리"
+                                    break;
+                                case 'LED':
+                                    module = "불빛"
+                                    break;  
+                                case 'SPEAKER':
+                                    module = "스피커"
+                                    break;  
+                                case 'MOTORA':
+                                    module = "모터 A"
+                                    break;  
+                                case 'MOTORB':
+                                    module = "모터 B"
+                                    break;  
+                                case 'DISPLAY':
+                                    module = "화면"
+                                    break;  
+    
+                            }
+                            console.log('disAvailableBlock', `'${module}'블록이 연결되지 않았어요\n사용할 모디 블록을 모두 연결해 주세요.`);
+                            window.android.failUpload(`'${module}'블록이 연결되지 않았어요\n사용할 모디 블록을 모두 연결해 주세요.`);
+                            
+                            throw new Error(disAvailableBlock[0])
+                        }
 
                         // const emojiRegex = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/
                         const emojiRegex = /[\uD83C-\uDBFF\uDC00-\uDFFF]+/;
@@ -314,15 +378,15 @@ Entry.ZoomController = class ZoomController {
                             throw new Error(emojiMatch[0])
                         }
 
-                        // const numberRegex = /([ㄱ-ㅎㅏ-ㅣ가-힣])/
-                        // const numberMatch = binary.match(numberRegex)
+                        const numberRegex = /([ㄱ-ㅎㅏ-ㅣ가-힣])/
+                        const numberMatch = binary.match(numberRegex)
                         
-                        // if(numberMatch){
+                        if(numberMatch){
 
-                        //     window.android.failUpload('숫자를 입력해 주세요.');
+                            window.android.failUpload('숫자를 입력해 주세요.');
 
-                        //     throw new Error(numberMatch[0])
-                        // }
+                            throw new Error(numberMatch[0])
+                        }
         
                         window.android.uploadCode(binary)
                         // 프로젝트 저장

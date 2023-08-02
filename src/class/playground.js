@@ -77,10 +77,6 @@ Entry.Playground = class {
                 <input type="range" min="0" max="100" value="0" class="range" id="range" />
             <div id="duration"></div>
         </div>
-
-        <img src="./images/modi_invenact_btn_fullscreen.svg" id="playerfullscreen">
-        <img src="./images/modi_invenact_btn_fullscreen_exit.svg" id="playerminscreen">
-        </div>   
        
         `;
        
@@ -475,10 +471,10 @@ Entry.Playground = class {
 
                 
             } else {
-                Entry.toast.warning(
-                    "변수명 중복",
-                    "동일한 변수명이 이미 사용 중입니다"
-                );
+                // Entry.toast.warning(
+                //     "변수명 중복",
+                //     "동일한 변수명이 이미 사용 중입니다"
+                // );
                 variableItemInput.value = Entry.variableContainer.variables_[index].name_
             }
         }
@@ -806,10 +802,10 @@ Entry.Playground = class {
                 const { nameField } = variable.listElement;
                 nameField.removeAttribute('disabled');
             } else {
-                Entry.toast.warning(
-                    "변수명 중복",
-                    "동일한 변수명이 이미 사용 중입니다"
-                );
+                // Entry.toast.warning(
+                //     "변수명 중복",
+                //     "동일한 변수명이 이미 사용 중입니다"
+                // );
             }
 
             // 변수 rerender

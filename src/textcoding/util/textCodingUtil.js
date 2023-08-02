@@ -1131,8 +1131,8 @@ class TextCodingUtil {
         const option2 = blockToken[1];
        
 
-        console.log("HW_MOTOR_A_ANGLE_CHANGE blockToken : ", blockToken);
-        console.log("HW_MOTOR_A_ANGLE_CHANGE option : ", option1);
+        console.log("HW_MOTOR_B_ANGLE_CHANGE blockToken : ", blockToken);
+        console.log("HW_MOTOR_B_ANGLE_CHANGE option : ", option1);
 
 
         if (block.data.type === 'HW_MOTOR_B_ANGLE_CHANGE') {
