@@ -52,7 +52,7 @@ Entry.Playground = class {
         
         
         // create video player
-        $("#entryMenuTop").html(`<video autoplay width="100%" height="100%" preload="metadata" controls id="myVideo" src=${global.Entry.guideList[global.Entry.videoNum].videoUrl}#t=1.1></video>`); //controls 
+        $("#entryMenuTop").html(`<video autoplay width="100%" height="100%" preload="metadata" poster="./images/poster.png" controls id="myVideo" src=${global.Entry.guideList[global.Entry.videoNum].videoUrl}#t=1.1></video>`); //controls 
         $("#entryMenuTop").css({'z-index':99})
         // $("#entryMenuTop").css({position:'absolute'})
 
@@ -148,7 +148,7 @@ Entry.Playground = class {
 
         $('.range').bind('mouseup touchend', () => {
         
-            $("#myVideo")[0].play();
+            // $("#myVideo")[0].play();
         }); 
         $('.range').bind('mousedown touchstart', () => {
            
