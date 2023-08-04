@@ -33,13 +33,46 @@ EntryStatic.getAllBlocks = function () {
     // moduleList = moduleList.concat(EntryStatic.NetworkModule) // network 모듈은 기본으로 추가
 
     let HwBlocks = []
-    moduleList.forEach(moduleItem => {
+    // moduleList.forEach(moduleItem => {
 
-        if (moduleItem != "NETWORK") {
-            HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks[moduleItem])
-        }
+    //     if (moduleItem != "NETWORK") {
+    //         HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks[moduleItem])
+    //     }
 
-    })
+    // })
+
+    if(moduleList.includes("BUTTON")) {
+        HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks['BUTTON'])
+    }
+
+    if(moduleList.includes("DIAL")) {
+        HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks['DIAL'])
+    }
+
+    if(moduleList.includes("DISTANCE")) {
+        HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks['DISTANCE'])
+    }
+
+    if(moduleList.includes("LED")) {
+        HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks['LED'])
+    }
+
+    if(moduleList.includes("SPEAKER")) {
+        HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks['SPEAKER'])
+    }
+
+    if(moduleList.includes("MOTORA")) {
+        HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks['MOTORA'])
+    }
+
+    if(moduleList.includes("MOTORB")) {
+        HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks['MOTORB'])
+    }
+
+    if(moduleList.includes("DISPLAY")) {
+        HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks['DISPLAY'])
+    }
+
     console.log('getAllBlocks HwBlocks : ', HwBlocks)
     // network 모듈은 마지막에 추가
     let networkList = EntryStatic.moduleToBlocks["NETWORK"]
@@ -108,7 +141,7 @@ EntryStatic.defaultModiBlocks = [
 EntryStatic.defaultModiList = [
     "BUTTON",
     "DIAL",
-    "TOF",
+    "DISTANCE",
     "LED",
     "SPEAKER",
     "MOTORA",
@@ -132,7 +165,7 @@ EntryStatic.moduleToBlocks = {
         'HW_DIAL_VALUE',
     ],
    
-    TOF: [
+    DISTANCE: [
         'HW_TOF_JUDGEMENT',
         'HW_TOF_VALUE'
     ],

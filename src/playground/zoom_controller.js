@@ -341,7 +341,7 @@ Entry.ZoomController = class ZoomController {
                                     module = "다이얼"
                                     break;
 
-                                case 'TOF':
+                                case 'DISTANCE':
                                     module = "거리"
                                     break;
                                 case 'LED':
@@ -378,15 +378,15 @@ Entry.ZoomController = class ZoomController {
                             throw new Error(emojiMatch[0])
                         }
 
-                        const numberRegex = /([ㄱ-ㅎㅏ-ㅣ가-힣])/
-                        const numberMatch = binary.match(numberRegex)
+                        // const numberRegex = /([ㄱ-ㅎㅏ-ㅣ가-힣])/
+                        // const numberMatch = binary.match(numberRegex)
                         
-                        if(numberMatch){
+                        // if(numberMatch){
 
-                            window.android.failUpload('숫자를 입력해 주세요.');
+                        //     window.android.failUpload('숫자를 입력해 주세요.');
 
-                            throw new Error(numberMatch[0])
-                        }
+                        //     throw new Error(numberMatch[0])
+                        // }
         
                         window.android.uploadCode(binary)
                         // 프로젝트 저장

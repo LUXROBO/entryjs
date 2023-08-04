@@ -586,7 +586,7 @@ Entry.MODI.getBlocks = function () {
             paramsKeyMap: {
                 property: 0,
             },
-            class: 'TOF',
+            class: 'DISTANCE',
             isNotFor: ['modi'],
 
             syntax: {
@@ -631,7 +631,7 @@ Entry.MODI.getBlocks = function () {
             paramsKeyMap: {
                 property: 0,
             },
-            class: 'TOF',
+            class: 'DISTANCE',
             isNotFor: ['modi'],
 
             syntax: {
