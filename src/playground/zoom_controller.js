@@ -144,15 +144,19 @@ Entry.ZoomController = class ZoomController {
 
     addControl(zoomGroup) {
         if (this.nowBoard) {
-            $(zoomGroup.reset).bind('mousedown touchstart', (e) => {
+            
+
+            $(zoomGroup.reset).on('click',()=>{
                 this.doAction('RESET');
-            });
-            $(zoomGroup.export).bind('mousedown touchstart', (e) => {
+            })
+
+            $(zoomGroup.export).on('click',()=>{
                 this.doAction('EXPORT');
-            });
-            $(zoomGroup.remote).bind('mousedown touchstart', (e) => {
+            })
+
+            $(zoomGroup.remote).on('click',()=>{
                 this.doAction('REMOTE');
-            });
+            })
         
             $(zoomGroup.svgZoom).bind('mousedown touchstart', (e) => {
                 e.stopImmediatePropagation();
@@ -172,8 +176,10 @@ Entry.ZoomController = class ZoomController {
     doAction(mode) {
         switch(mode) {
             case 'RESET':
+                    console.log('RESET')
                     createjs.Sound.play('entryMenuClick');
                     window.android.callFuntion('RESET');
+
                 break;
             case 'EXPORT':
 
@@ -199,14 +205,14 @@ Entry.ZoomController = class ZoomController {
 
                                 // console.log('failUpload1');
                                 window.android.failUpload('<내보내기 버튼을 클릭했을 때>\n코드 블록이 2개 이상이에요.\n1개만 남기고 삭제한 뒤\n내보내기를 다시 시도해 주세요.');
-                                throw new Error('코드 블록이 2개 이상이에요.\n1개만 남기고 삭제한 뒤 내보내기를 다시 시도해 주세요.');
+                                return
                             }
                         }         
                        
                         if(keys.length == 1 && blockMap[keys[0]].data.type == 'when_run_button_click') {
                             // console.log('failUpload4');
                             window.android.failUpload('default_code');
-                            throw new Error('기본 코딩입니다.');
+                            return
                         }
 
                         // console.log('block thread = ', block.getThread().getBlocks);
@@ -216,7 +222,7 @@ Entry.ZoomController = class ZoomController {
                     if(startBtnCount == 0) {
                         // console.log('failUpload3');
                         window.android.failUpload('<내보내기 버튼을 클릭했을 때>\n블록 없이는 내보내기를 할 수 없어요.\n다시 코딩을 한 뒤 내보내기를 시도해 주세요.');
-                        throw new Error('기본 코딩입니다.');
+                        return
                     }
 
     
@@ -243,13 +249,13 @@ Entry.ZoomController = class ZoomController {
                         if(blockToPyParser._blockCount == 2 && blockToPyParser._secondBlock.data.type =='repeat_inf') {
                             console.log('failUpload2');
                             window.android.failUpload("default_code");
-                            throw new Error('기본 코딩입니다.');
+                            return
                         }
 
                         else if (blockToPyParser._blockCount == 1) {
                             console.log('failUpload1');
                             window.android.failUpload("default_code");
-                            throw new Error('기본 코딩입니다.');
+                            return
                         }
 
                         let judgement = '';
@@ -364,7 +370,7 @@ Entry.ZoomController = class ZoomController {
                             console.log('disAvailableBlock', `'${module}'블록이 연결되지 않았어요\n사용할 모디 블록을 모두 연결해 주세요.`);
                             window.android.failUpload(`'${module}'블록이 연결되지 않았어요\n사용할 모디 블록을 모두 연결해 주세요.`);
                             
-                            throw new Error(disAvailableBlock[0])
+                            return
                         }
 
                         // const emojiRegex = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/
@@ -374,8 +380,8 @@ Entry.ZoomController = class ZoomController {
                         if(emojiMatch){
 
                             window.android.failUpload(`'${emojiMatch[0]}'는(은) 사용할 수 없어요!\n코딩한 내용을 다시 확인해 주세요.`);
-
-                            throw new Error(emojiMatch[0])
+                            return
+                            // throw new Error(emojiMatch[0])
                         }
 
                         // const numberRegex = /([ㄱ-ㅎㅏ-ㅣ가-힣])/
