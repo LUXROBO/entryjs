@@ -8,6 +8,7 @@ import { Backpack, ColorPicker, Dropdown, Sortable } from '@entrylabs/tool';
 import Toast from '../playground/toast';
 import EntryEvent from '@entrylabs/event';
 import { Destroyer } from '../util/destroyer/Destroyer';
+import { stringify } from 'querystring';
 
 
 const Entry = require('../entry');
@@ -52,7 +53,7 @@ Entry.Playground = class {
         
         
         // create video player
-        $("#entryMenuTop").html(`<video autoplay width="100%" height="100%" preload="metadata" poster="./images/poster.png" controls id="myVideo" src=${global.Entry.guideList[global.Entry.videoNum].videoUrl}#t=1.1></video>`); //controls 
+        $("#entryMenuTop").html(`<video autoplay width="100%" height="100%" preload="metadata" poster="./images/media/bound.png" controls id="myVideo" src=${global.Entry.guideList[global.Entry.videoNum].videoUrl}#t=1.1></video>`); //controls 
         $("#entryMenuTop").css({'z-index':99})
         // $("#entryMenuTop").css({position:'absolute'})
 
@@ -420,14 +421,25 @@ Entry.Playground = class {
     playMediaPlayer() {
 
        
+    
+        $("#myVideo")[0].currentTime = global.Entry.currentTime;
         $("#myVideo")[0].play();
-        
     }
 
     stopMediaPlayer() {
-        // global.Entry.currentTime =  $("#myVideo")[0].currentTime;
+        
         // const videoData =global.Entry.currentTime+'#'+global.Entry.isPlayVideo+"#"+global.Entry.videoNum;
-        // window.android.setMediaPlayerState(videoData);
+
+        global.Entry.currentTime = $("#myVideo")[0].currentTime;
+
+        const json = {};
+        json.isPlayVideo = global.Entry.isPlayVideo;
+        json.currentTime = $("#myVideo")[0].currentTime;
+        json.videoNum = global.Entry.videoNum;
+           
+            
+        window.android.setMediaPlayerState(JSON.stringify(json));
+        
         $("#myVideo")[0].pause();
     }
 
