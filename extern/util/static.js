@@ -14,12 +14,13 @@ EntryStatic.getAllBlocks = function () {
 
     console.log('getAllBlocks start')
 
-    let blocks = EntryStatic.defaultModiBlocks
+    const blocks = EntryStatic.defaultModiBlocks;
 
     let moduleList;
     // Entry.modiList = ['BATTERY', 'NETWORK', 'DIAL', 'MOTOR_A', 'MOTOR_B']
 
     console.log('getAllBlocks Entry.modiList 1' , `${Entry.modiList}`)
+    console.log('getAllBlocks Entry.volume' , Entry.volume)
 
     if (Entry.modiList && Entry.modiList.length > 0) {
         console.log('getAllBlocks if1')
@@ -30,6 +31,7 @@ EntryStatic.getAllBlocks = function () {
         
     }
 
+    // Entry.volume = 53;
     // moduleList = moduleList.concat(EntryStatic.NetworkModule) // network 모듈은 기본으로 추가
 
     let HwBlocks = []
@@ -47,6 +49,7 @@ EntryStatic.getAllBlocks = function () {
 
     if(moduleList.includes("DIAL")) {
         HwBlocks = HwBlocks.concat(EntryStatic.moduleToBlocks['DIAL'])
+        
     }
 
     if(moduleList.includes("DISTANCE")) {

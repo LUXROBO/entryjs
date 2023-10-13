@@ -225,9 +225,7 @@ Entry.ZoomController = class ZoomController {
                         return
                     }
 
-    
                         const block = this.keyBlock;
-
         
                         // console.log('block : ' + JSON.stringify(block));
 
@@ -289,7 +287,7 @@ Entry.ZoomController = class ZoomController {
                         binary = binary.replace(/judgement__/g, judgement)
                         binary = binary.replace(/\t/g, "    ")
 
-                        // console.log(binary);
+                        console.log(binary);
                     
                         
                         // 모듈 연결 상태를 체크

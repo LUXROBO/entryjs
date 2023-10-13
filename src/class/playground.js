@@ -50,7 +50,7 @@ Entry.Playground = class {
     
         global.Entry.videoNum = 0;
         global.Entry.guideList = this.mainWorkspace.guideList;
-        
+        global.Entry.isPlayVideo = true;
         
         // create video player
         $("#entryMenuTop").html(`<video autoplay width="100%" height="100%" preload="metadata" poster="./images/media/bound.png" controls id="myVideo" src=${global.Entry.guideList[global.Entry.videoNum].videoUrl}#t=1.1></video>`); //controls 
@@ -149,7 +149,7 @@ Entry.Playground = class {
 
         $('.range').bind('mouseup touchend', () => {
         
-            // $("#myVideo")[0].play();
+            $("#myVideo")[0].play();
         }); 
         $('.range').bind('mousedown touchstart', () => {
            
@@ -324,113 +324,20 @@ Entry.Playground = class {
                 $("#playerfullscreen").show();  
             }
         })
-
-        // $("#myVideo")[0].play();
-        // global.Entry.isPlayVideo= true;
     }
 
-    
-    
 
-    minScreen(videoData) {
-
-       
-        const dataToken = videoData.split('#');
-        const isPlayMin = dataToken[1];
-
-        global.Entry.currentTime = dataToken[0] * 1;
-        global.Entry.videoNum = dataToken[2] * 1;
-        
-
-        // console.log(isPlayMin)
-        // console.log(global.Entry.currentTime)
-        // console.log(global.Entry.videoNum)
-        // $("#playlist").text(`[ ${videoNum + 1} / ${guideList.length} ]`)
-    
-        $("#myVideo")[0].src = global.Entry.guideList[global.Entry.videoNum].videoUrl;
-
-        if(global.Entry.videoNum == 0) {
-            document.getElementById("previous").style.visibility = "hidden";
-        }
-
-        else {
-            document.getElementById("previous").style.visibility = "visible";
-        }
-
-        if (global.Entry.videoNum >= global.Entry.guideList.length-1) {
-            global.Entry.videoNum = global.Entry.guideList.length-1
-            $("#next").hide();
-            $("#next_t").show();
-        } 
-
-
-        $("#playlist").text(`[ ${global.Entry.videoNum+1} / ${global.Entry.guideList.length} ]`)
-
-        const min = Math.floor($("#myVideo")[0].duration / 60);
-        const sec = Math.floor($("#myVideo")[0].duration % 60);
-
-        let duration_m = '00';
-        let duration_s = '00';
-
-        if(isNaN(min)) {
-            duration_m = '00';
-        }
-
-        if(isNaN(sec)) {
-            duration_s = '00';
-        }
-
-        if (min < 10) {
-        
-            duration_m = '0'+sec;
-        }
-
-        else {
-            duration_m = sec
-        }
-
-
-        if (sec < 10) {
-        
-            duration_s = '0'+sec;
-        }
-
-        else {
-            duration_s = sec
-        }
-
-    
-        
-        $("#duration").text(`${duration_m} : ${duration_s}`)
-    
-
-        if(isPlayMin == 'true') {
-            global.Entry.isPlayVideo = true;
-            $("#myVideo")[0].play();
-            $("#myVideo")[0].currentTime = global.Entry.currentTime;
-        }
-
-        else {
-            global.Entry.isPlayVideo = false;
-            $("#myVideo")[0].pause();
-            $("#myVideo")[0].currentTime = global.Entry.currentTime;
-        }
-        
-    }
 
     playMediaPlayer() {
 
-       
-    
-        $("#myVideo")[0].currentTime = global.Entry.currentTime;
+        // $("#myVideo")[0].currentTime = global.Entry.currentTime;
         $("#myVideo")[0].play();
     }
 
     stopMediaPlayer() {
         
         // const videoData =global.Entry.currentTime+'#'+global.Entry.isPlayVideo+"#"+global.Entry.videoNum;
-
-        global.Entry.currentTime = $("#myVideo")[0].currentTime;
+        $("#myVideo")[0].pause();
 
         const json = {};
         json.isPlayVideo = global.Entry.isPlayVideo;
@@ -440,7 +347,7 @@ Entry.Playground = class {
             
         window.android.setMediaPlayerState(JSON.stringify(json));
         
-        $("#myVideo")[0].pause();
+       
     }
 
     renderVariableModal (variable, index) {

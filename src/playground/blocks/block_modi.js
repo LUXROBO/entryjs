@@ -1302,8 +1302,8 @@ Entry.MODI.getBlocks = function () {
             syntax: {
                 js: [
                     {
-                        syntax: 'this.speaker_01.playMelody(SPEAKER_START,"%2",%3);',
-                        template: 'this.speaker_01.setTune(0, 0);',
+                        syntax: 'this.speaker_01?%2?%3',
+                        template: 'this.speaker_01.playMusic(SPEAKER_START,"%2",%3);',
                     },
                 ],
                 py:[

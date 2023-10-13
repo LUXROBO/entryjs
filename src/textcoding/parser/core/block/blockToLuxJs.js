@@ -299,6 +299,14 @@ Entry.BlockToLuxJsParser = class {
                         break;
                     }
 
+                    case 'HW_SPEAKER_MELODY' : {
+                        resultTextCode = Entry.TextCodingUtil.assembleSpeakerMelodyBlock(
+                            block,
+                            resultTextCode
+                        );
+                        break;
+                    }
+
             
                 }
             }

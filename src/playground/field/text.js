@@ -56,7 +56,7 @@ Entry.Utils.inherit(Entry.Field, Entry.FieldText);
         }
 
         var { width, height } = this.getTextBBox();
-        const x = this._align == 'center' ? -width / 2 : 0;
+        const x = this._align == 'center' ? -width / 2 : 0 ;
         this.textElement.attr({
             x,
             y: height * 0.25,

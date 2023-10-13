@@ -61,7 +61,7 @@ Entry.FieldTextInput = class FieldTextInput extends Entry.Field {
 
         if (!this.textElement) {
             this.textElement = this.svgGroup.elem('text', {
-                x: 0,
+                x: 5,
                 y: this.TEXT_Y_PADDING,
                 fill: this._contents.color || 'black',
                 'font-size': `${this._font_size}px`,
@@ -246,7 +246,7 @@ Entry.FieldTextInput = class FieldTextInput extends Entry.Field {
         const height = (this._CONTENT_HEIGHT - 4) * scale;
         inputField.css({
             height,
-            left: x + 1,
+            left: x + 5,
             top: y + (scale - 1) * 4 + 2 * scale - 1 * (scale / 2) - this.box.height / 2,
             width: this.box.width * scale,
             'font-size': `${this._font_size}px`,

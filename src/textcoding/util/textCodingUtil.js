@@ -1303,6 +1303,35 @@ class TextCodingUtil {
         return result
     }
 
+    assembleSpeakerMelodyBlock(block, syntax) {
+
+        let result = '';
+
+        const blockToken = syntax.split('?');
+
+        const option1 = blockToken[1];
+        const option2 = blockToken[2];
+
+        if(option1 == 'res/Win.wav' || option1 == 'res/Success.wav' || option1 == 'res/bouncing.wav' || option1 == 'res/Bomb.wav' 
+        ||option1 == 'res/Start.wav' || option1 =='res/Complete.wav' || option1 == 'res/Car.wav' || option1 == 'res/Siren.wav'||
+        option1 == 'res/Alarm.wav'|| option1 =='res/Exciting.wav'||
+        option1 == 'res/Robot.wav' || option1 =='res/Camera.wav') {
+            result = `this.speaker_01.playMusic(SPEAKER_START,"${option1}",${option2});`;
+        }
+        else {
+            result = `this.speaker_01.playMelody(SPEAKER_START,"${option1}",${option2});`;
+        }
+
+        console.log("HW_SPEAKER_TUNE option1 : ", option1);
+        console.log("HW_SPEAKER_TUNE option2 : ", option2);
+        console.log("HW_SPEAKER_TUNE result : ", result);
+
+
+
+        return result;
+
+    }
+
     jsAdjustSyntax(block, syntax) {
         let result = '';
         if (block.data.type == 'ai_boolean_distance') {
