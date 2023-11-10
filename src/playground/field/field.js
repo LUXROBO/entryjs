@@ -426,7 +426,7 @@ Entry.Field = class Field {
         const { scale = 1 } = board;
         invisibleContext.font = `bold ${fontSize}px ${this.getFontFamily()}`;
         bBox = {
-            width: Math.round((invisibleContext.measureText(value).width + 10) * 100) / 100 ,
+            width: Math.round((invisibleContext.measureText(value).width) * 100) / 100 ,
             height: Math.round(invisibleContext.measureText('M').width * 100) / 100,
         };
 

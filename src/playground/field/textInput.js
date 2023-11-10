@@ -61,12 +61,12 @@ Entry.FieldTextInput = class FieldTextInput extends Entry.Field {
 
         if (!this.textElement) {
             this.textElement = this.svgGroup.elem('text', {
-                x: 5,
+                x: 10,
                 y: this.TEXT_Y_PADDING,
                 fill: this._contents.color || 'black',
                 'font-size': `${this._font_size}px`,
                 'font-weight': 'bold',
-                'font-family': 'NanumGothic',
+                'font-family': 'NanumGothic'
             });
         }
 
@@ -74,7 +74,7 @@ Entry.FieldTextInput = class FieldTextInput extends Entry.Field {
 
         this._setConvertedValue();
 
-        const width = this.getTextWidth();
+        const width = this.getTextWidth() + 10;
         let y = this.position && this.position.y ? this.position.y : 0;
         const CONTENT_HEIGHT = this._CONTENT_HEIGHT;
         y -= CONTENT_HEIGHT / 2;
@@ -107,6 +107,7 @@ Entry.FieldTextInput = class FieldTextInput extends Entry.Field {
             width,
             height: CONTENT_HEIGHT,
         });
+        
     }
 
     renderOptions(neighborFields) {
@@ -246,9 +247,9 @@ Entry.FieldTextInput = class FieldTextInput extends Entry.Field {
         const height = (this._CONTENT_HEIGHT - 4) * scale;
         inputField.css({
             height,
-            left: x + 5,
+            left: x + 11,
             top: y + (scale - 1) * 4 + 2 * scale - 1 * (scale / 2) - this.box.height / 2,
-            width: this.box.width * scale,
+            width: this.box.width  - 5,
             'font-size': `${this._font_size}px`,
             'background-color': EntryStatic.colorSet.block.lighten.CALC,
         });
@@ -288,7 +289,7 @@ Entry.FieldTextInput = class FieldTextInput extends Entry.Field {
     resize() {
         const { scale = 1 } = this.board;
         const size = { width: this.getTextWidth() };
-        const scaleSize = { width: this.getTextWidth() / scale };
+        const scaleSize = { width: this.getTextWidth() / scale + 10 };
         this._header.attr(scaleSize);
         this.box.set(scaleSize);
         this.optionInput && this.optionInput.css(size);
@@ -313,7 +314,7 @@ Entry.FieldTextInput = class FieldTextInput extends Entry.Field {
     }
 
     getTextWidth() {
-        return Math.max(this.getTextBBox().width, 7);
+        return Math.max(this.getTextBBox().width + 10,15);
     }
 
     _setTextValue() {
