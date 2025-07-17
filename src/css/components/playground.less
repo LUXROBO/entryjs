@@ -1522,6 +1522,10 @@ video::-webkit-media-controls-enclosure {
 
 #video-controls {
     position:absolute;
+    display: flex; /* 한 줄로 나열 */
+    align-items: center; /* 수직 중앙 정렬 */
+    gap: 8px; /* 버튼 사이 간격 */
+
     z-index: 2147483648;
     bottom: 0;
     width: 100%;
@@ -1538,13 +1542,18 @@ video::-webkit-media-controls-enclosure {
         vertical-align: middle;
     }
 
-    #play, #playerfullscreen, #playerminscreen {
+    #play {
         margin-top: 3px;
         margin-left: 1%; // 23px
         margin-right: 1%; // 23px
         height: 32px;
         width: 32px;
        
+    }
+
+    #playerfullscreen, #playerminscreen {
+        margin-left: auto; /* 오른쪽 끝으로 보내기 */
+        margin-right: 21.5px; /* 오른쪽 여백 */
     }
 
     #replay {
@@ -1580,15 +1589,39 @@ video::-webkit-media-controls-enclosure {
        
     }
 
-    #playerfullscreen, #playerminscreen {
-        float: right;
-        margin-left: 0;
-        margin-right: 5%; //21.5px
+
+    #layout_progress {
+        flex: 1; /* progress bar가 남는 공간 채움 */
+        display: flex;
+        align-items: center;
     }
 
-    .wrap { 
+
+    #currentTime,  #duration {
         display: inline-flex;
-        width: 40%;
+        width: 50px;
+        height: 15px;
+        transition: height 0.3s;
+        color: white;
+        vertical-align: middle;
+        font-size: 14px;
+        font-weight: bold;
+        min-width: 50px; /* 시간 표시 최소 폭 */
+        text-align: center;
+    }
+
+    #duration {
+       
+        margin-left: 10px;
+
+    }
+    
+
+
+    #wrap {
+        flex: 1; /* range 슬라이더가 공간 차지 */
+         display: inline-flex;
+        width: 85%;
         vertical-align: middle;
     }
 
@@ -1629,29 +1662,5 @@ video::-webkit-media-controls-enclosure {
       outline: none;
     }
 
-
-
-    #currentTime {
-        display: inline-flex;
-        width: 50px;
-        height: 15px;
-        transition: height 0.3s;
-        color: white;
-        vertical-align: middle;
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    #duration {
-        display: inline-flex;
-        width: 50px;
-        height: 15px;
-        transition: height 0.3s;
-        color: white;
-        vertical-align: middle;
-        font-size: 14px;
-        font-weight: bold;
-        margin-left: 10px;
-    }
 
 }

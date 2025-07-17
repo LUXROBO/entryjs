@@ -8,6 +8,7 @@ import { Backpack, ColorPicker, Dropdown, Sortable } from '@entrylabs/tool';
 import Toast from '../playground/toast';
 import EntryEvent from '@entrylabs/event';
 import { Destroyer } from '../util/destroyer/Destroyer';
+import { stringify } from 'querystring';
 
 
 const Entry = require('../entry');
@@ -49,18 +50,20 @@ Entry.Playground = class {
     
         global.Entry.videoNum = 0;
         global.Entry.guideList = this.mainWorkspace.guideList;
-        
+        global.Entry.isPlayVideo = true;
         
         // create video player
-        $("#entryMenuTop").html(`<video autoplay width="100%" height="100%" preload="metadata" controlsList="nodownload" id="myVideo" src=${global.Entry.guideList[global.Entry.videoNum].videoUrl}#t=1.1></video>`); //controls 
-        $("#entryMenuTop").css({'z-index':99, position:'absolute'})
-        $("#myVideo").css({position:'absolute'})
+        $("#entryMenuTop").html(`<video autoplay width="100%" height="100%" preload="metadata" poster="./images/media/bound.png" controls id="myVideo" src=${global.Entry.guideList[global.Entry.videoNum].videoUrl}#t=1.1></video>`); //controls 
+        $("#entryMenuTop").css({'z-index':99})
+        $("#entryMenuTop").css({position:'absolute'})
 
         // create play list
         $("#entryMenuTop").append(`<div id="playlist"></div>`)
-
+        
         // create video-controls
         $("#entryMenuTop").append(`<div id="video-controls"></div>`)
+      
+
         let state= `
         <img src="./images/modi_invenact_btn_prev.svg" id="previous" display = "hidden">
         <img src="./images/modi_invenact_btn_play.svg" id="play">
@@ -68,16 +71,20 @@ Entry.Playground = class {
         <img src="./images/modi_invenact_btn_pause.svg" id="pause">
         <img src="./images/modi_invenact_btn_next.svg" id="next">
         <img src="./images/modi_invenact_btn_next_transparent.svg" id="next_t">
-        <img src="./images/modi_invenact_btn_fullscreen.svg" id="playerfullscreen">
-        <img src="./images/modi_invenact_btn_fullscreen_exit.svg" id="playerminscreen">
 
-        <div id="currentTime"></div>
-        <div class="wrap">
-        <input type="range" min="0" max="100" value="0" class="range"  />
-       </div>
-        <div id="duration"></div>
+        <div id="layout_progress">
+            <div id="currentTime"></div>
+            <div class="wrap" id="wrap">
+                <input type="range" min="0" max="100" value="0" class="range" id="range" />
+            </div>
+            <div id="duration"></div>
+        </div>
         `;
-        $("#video-controls").append(state);
+       
+        $("#video-controls").append(state);  
+        $("#video-controls").append(`
+        <img src="./images/modi_invenact_btn_fullscreen.svg" id="playerfullscreen">
+        <img src="./images/modi_invenact_btn_fullscreen_exit.svg" id="playerminscreen">`);  
         
         function progressUpdate() {
             const percent = ( $("#myVideo")[0].currentTime /  $("#myVideo")[0].duration) * 100;
@@ -179,7 +186,6 @@ Entry.Playground = class {
     
         function updatePlayList(params) {
 
-            // console.log('updatePlayList');
             if(global.Entry.videoNum == 0) {
                 document.getElementById("previous").style.visibility = "hidden";
             }
@@ -276,153 +282,72 @@ Entry.Playground = class {
 
         $("#playerfullscreen").on('click',()=>{
 
-            
-            global.Entry.currentTime =  $("#myVideo")[0].currentTime;
-            const videoData =global.Entry.currentTime+'#'+global.Entry.isPlayVideo+"#"+global.Entry.videoNum;
+            let video = $("#entryMenuTop")[0];
 
-            $("#myVideo")[0].pause();
-            window.android.setPlayerFullScreen(videoData);
-            
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                video.webkitRequestFullscreen();
+            } else if (video.mozRequestFullScreen) { /* Firefox */
+                video.mozRequestFullScreen();
+            } else if (video.msRequestFullscreen) { /* IE/Edge */
+                video.msRequestFullscreen();
+            }
         })
 
         $("#playerminscreen").on('click',()=>{
-           
+
+
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitCancelFullScreen) { /* Chrome, Safari and Opera */
+                document.webkitCancelFullScreen();
+            } else if (document.mozCancelFullScreen) { /* Firefox */
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) { /* IE/Edge */
+                document.msExitFullscreen();
+            }
         })
 
         $(document).on('mozfullscreenchange webkitfullscreenchange fullscreenchange',()=>{
             let fullscreenElement = document.fullscreenElement || document.mozFullScreenElement ||
                 document.webkitFullscreenElement || document.msFullscreenElement;
             
+                console.log('fullscreenElement',fullscreenElement);
+
             if(fullscreenElement){
                 $("#playerminscreen").show();
                 $("#playerfullscreen").hide();   
+             
             } else {
                 $("#playerminscreen").hide();
                 $("#playerfullscreen").show();  
             }
         })
+    }
 
+
+
+    playMediaPlayer() {
+
+        // $("#myVideo")[0].currentTime = global.Entry.currentTime;
         $("#myVideo")[0].play();
-        global.Entry.isPlayVideo= true;
     }
 
-    
-    
-
-    minScreen(videoData) {
-
-       
-        const dataToken = videoData.split('#');
-        const isPlayMin = dataToken[1];
-
-        global.Entry.currentTime = dataToken[0] * 1;
-        global.Entry.videoNum = dataToken[2] * 1;
+    stopMediaPlayer() {
         
-
-        // console.log(isPlayMin)
-        // console.log(global.Entry.currentTime)
-        // console.log(global.Entry.videoNum)
-        // $("#playlist").text(`[ ${videoNum + 1} / ${guideList.length} ]`)
-    
-        $("#myVideo")[0].src = global.Entry.guideList[global.Entry.videoNum].videoUrl;
-
-        if(global.Entry.videoNum == 0) {
-            document.getElementById("previous").style.visibility = "hidden";
-        }
-
-        else {
-            document.getElementById("previous").style.visibility = "visible";
-        }
-
-        if (global.Entry.videoNum >= global.Entry.guideList.length-1) {
-            global.Entry.videoNum = global.Entry.guideList.length-1
-            $("#next").hide();
-            $("#next_t").show();
-        } 
-
-
-        $("#playlist").text(`[ ${global.Entry.videoNum+1} / ${global.Entry.guideList.length} ]`)
-
-        const min = Math.floor($("#myVideo")[0].duration / 60);
-        const sec = Math.floor($("#myVideo")[0].duration % 60);
-
-        let duration_m = '00';
-        let duration_s = '00';
-
-        if(isNaN(min)) {
-            duration_m = '00';
-        }
-
-        if(isNaN(sec)) {
-            duration_s = '00';
-        }
-
-        if (min < 10) {
-        
-            duration_m = '0'+sec;
-        }
-
-        else {
-            duration_m = sec
-        }
-
-
-        if (sec < 10) {
-        
-            duration_s = '0'+sec;
-        }
-
-        else {
-            duration_s = sec
-        }
-
-    
-        
-        $("#duration").text(`${duration_m} : ${duration_s}`)
-    
-
-        if(isPlayMin == 'true') {
-            global.Entry.isPlayVideo = true;
-            $("#myVideo")[0].play();
-            $("#myVideo")[0].currentTime = global.Entry.currentTime;
-        }
-
-        else {
-            global.Entry.isPlayVideo = false;
-            $("#myVideo")[0].pause();
-            $("#myVideo")[0].currentTime = global.Entry.currentTime;
-        }
-        
-    }
-
-    setMediaPlayer(videoData) {
-
-       
-        const dataToken = videoData.split('#');
-        const isPlayMin = dataToken[1];
-
-        // $("#playlist").text(`[ ${videoNum + 1} / ${guideList.length} ]`)
-    
-        if(isPlayMin == 'true') {
-            global.Entry.isPlayVideo = true;
-            $("#myVideo")[0].play();
-           
-        }
-
-        else {
-            global.Entry.isPlayVideo = false;
-            $("#myVideo")[0].pause();
-        }
-        
-    }
-
-    getMediaPlayerState() {
-        global.Entry.currentTime =  $("#myVideo")[0].currentTime;
-            
-        const videoData =global.Entry.currentTime+'#'+global.Entry.isPlayVideo+"#"+global.Entry.videoNum;
-
-        window.android.setMediaPlayerState(videoData);
+        // const videoData =global.Entry.currentTime+'#'+global.Entry.isPlayVideo+"#"+global.Entry.videoNum;
         $("#myVideo")[0].pause();
+
+        const json = {};
+        json.isPlayVideo = global.Entry.isPlayVideo;
+        json.currentTime = $("#myVideo")[0].currentTime;
+        json.videoNum = global.Entry.videoNum;
+           
+            
+        window.android.setMediaPlayerState(JSON.stringify(json));
+        
+       
     }
 
     renderVariableModal (variable, index) {
@@ -452,10 +377,10 @@ Entry.Playground = class {
 
                 
             } else {
-                Entry.toast.warning(
-                    "변수명 중복",
-                    "동일한 변수명이 이미 사용 중입니다"
-                );
+                // Entry.toast.warning(
+                //     "변수명 중복",
+                //     "동일한 변수명이 이미 사용 중입니다"
+                // );
                 variableItemInput.value = Entry.variableContainer.variables_[index].name_
             }
         }
@@ -753,8 +678,9 @@ Entry.Playground = class {
                 this.createVideoPlayer();
             }
             
-            console.log('device model', `${global.Entry.deviceModel} ${global.Entry.deviceModel}`);
+            console.log('device model', `${global.Entry.deviceModel}`);
             $(".engineContainer").hide();
+            this.createVideoPlayer();
         }
     }
 
@@ -782,10 +708,10 @@ Entry.Playground = class {
                 const { nameField } = variable.listElement;
                 nameField.removeAttribute('disabled');
             } else {
-                Entry.toast.warning(
-                    "변수명 중복",
-                    "동일한 변수명이 이미 사용 중입니다"
-                );
+                // Entry.toast.warning(
+                //     "변수명 중복",
+                //     "동일한 변수명이 이미 사용 중입니다"
+                // );
             }
 
             // 변수 rerender
@@ -2418,26 +2344,7 @@ Entry.Playground = class {
         this.injectSound();
     }
 
-    downloadSound(soundId) {
-        const sound = Entry.playground.object.getSound(soundId);
-        if (sound.fileurl) {
-            if (sound.fileurl.indexOf('bark.mp3') > -1) {
-                window.open(
-                    `/api/sprite/download/entryjs/${btoa(sound.fileurl)}/${encodeURIComponent(
-                        `${sound.name}.mp3`
-                    )}`
-                );
-            } else {
-                window.open(sound.fileurl);
-            }
-        } else {
-            window.open(
-                `/api/sprite/download/sound/${encodeURIComponent(
-                    sound.filename
-                )}/${encodeURIComponent(sound.name)}`
-            );
-        }
-    }
+
 
     /**
      * select view mode
